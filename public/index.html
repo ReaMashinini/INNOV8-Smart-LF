@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>INNOV8 — Smart NFC & QR Recovery Tags</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -32,14 +32,16 @@ body {
   font-size: 15px;
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .page { display:none; min-height:100vh; }
 .page.active { display:block; }
 
+/* ── NAV ── */
 nav {
   position: fixed; top:0; left:0; right:0; z-index: 999;
-  background: rgba(10,10,15,0.92);
+  background: rgba(10,10,15,0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 0 5%;
@@ -72,14 +74,88 @@ nav {
   letter-spacing: 0.02em;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
-.nav-actions { display:flex; align-items:center; gap:12px; }
+.nav-actions { display:flex; align-items:center; gap:8px; }
 
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  min-width: 40px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+.hamburger span {
+  display: block;
+  width: 20px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  background: rgba(13,13,22,0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  z-index: 998;
+  padding: 16px 5% 24px;
+  flex-direction: column;
+  gap: 4px;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+.mobile-drawer.open {
+  display: flex;
+  transform: translateY(0);
+}
+.mobile-drawer a {
+  display: block;
+  padding: 13px 16px;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.mobile-drawer a:hover, .mobile-drawer a.active {
+  background: var(--surface2);
+  color: var(--text);
+}
+.mobile-drawer-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 8px 0;
+}
+.mobile-drawer-actions {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0 0;
+  flex-wrap: wrap;
+}
+
+/* ── BUTTONS ── */
 .btn {
   display: inline-flex; align-items:center; gap:6px;
   padding: 9px 20px; border-radius: 8px;
   font-family: var(--font-body); font-size: 0.88rem; font-weight: 600;
   cursor: pointer; border: none; transition: all 0.2s;
   text-decoration: none; letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 .btn-ghost { background:transparent; color:var(--muted); border:1px solid var(--border); }
 .btn-ghost:hover { color:var(--text); border-color:var(--accent); }
@@ -97,6 +173,7 @@ nav {
 .btn-sm { padding: 6px 14px; font-size: 0.8rem; border-radius: 6px; }
 .btn-full { width:100%; justify-content:center; }
 
+/* ── FORMS ── */
 .form-group { margin-bottom: 18px; }
 label { display:block; font-size:0.82rem; color:var(--muted); margin-bottom:6px; font-weight:500; letter-spacing:0.04em; text-transform:uppercase; }
 input, select, textarea {
@@ -104,12 +181,14 @@ input, select, textarea {
   color: var(--text); padding: 11px 14px; border-radius:8px;
   font-family: var(--font-body); font-size:0.93rem; outline:none;
   transition: border-color 0.2s;
+  -webkit-appearance: none;
 }
 input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,229,255,0.08); }
 textarea { resize:vertical; min-height:80px; }
 .form-error { color: var(--danger); font-size:0.8rem; margin-top:4px; }
 .form-hint { color: var(--muted); font-size:0.8rem; margin-top:4px; }
 
+/* ── CARDS ── */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -119,6 +198,7 @@ textarea { resize:vertical; min-height:80px; }
 .card-hover { transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
 .card-hover:hover { border-color: var(--accent); transform:translateY(-3px); box-shadow: 0 8px 32px rgba(0,229,255,0.08); }
 
+/* ── BADGES ── */
 .badge {
   display:inline-flex; align-items:center;
   padding: 3px 10px; border-radius:20px;
@@ -130,13 +210,14 @@ textarea { resize:vertical; min-height:80px; }
 .badge-warn { background:rgba(245,158,11,0.12); color:var(--warn); }
 .badge-red { background:rgba(239,68,68,0.12); color:var(--danger); }
 
+/* ── LAYOUT ── */
 .section { padding: 80px 5%; }
 .section-sm { padding: 40px 5%; }
 .container { max-width: 1200px; margin: 0 auto; }
 .section-tag { font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
 h1, h2, h3, h4 { font-family: var(--font-head); }
-h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight:800; line-height:1.1; }
-h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight:700; line-height:1.2; }
+h1 { font-size: clamp(2rem, 5vw, 4rem); font-weight:800; line-height:1.1; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight:700; line-height:1.2; }
 h3 { font-size: 1.25rem; font-weight:700; }
 h4 { font-size:1rem; font-weight:600; }
 .text-muted { color: var(--muted); }
@@ -144,10 +225,9 @@ h4 { font-size:1rem; font-weight:600; }
 .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
 .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
 .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-@media(max-width:900px){ .grid-3,.grid-4{grid-template-columns:1fr 1fr;} }
-@media(max-width:600px){ .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;} nav .nav-links{display:none;} }
 .flex { display:flex; }
 .flex-col { flex-direction:column; }
+.flex-wrap { flex-wrap:wrap; }
 .gap-8 { gap:8px; }
 .gap-12 { gap:12px; }
 .gap-16 { gap:16px; }
@@ -167,6 +247,7 @@ h4 { font-size:1rem; font-weight:600; }
 .text-lg { font-size:1.1rem; }
 .w-full { width:100%; }
 .mt-auto { margin-top:auto; }
+.mt-8 { margin-top:8px; }
 .mt-12 { margin-top:12px; }
 .mt-16 { margin-top:16px; }
 .mt-24 { margin-top:24px; }
@@ -175,12 +256,13 @@ h4 { font-size:1rem; font-weight:600; }
 .icon-lg { font-size:2rem; }
 .icon-xl { font-size:2.8rem; }
 
-.toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:10px; }
+/* ── TOAST ── */
+.toast-container { position:fixed; bottom:24px; right:16px; z-index:9999; display:flex; flex-direction:column; gap:10px; }
 .toast {
   background:var(--surface2); border:1px solid var(--border);
   border-radius:10px; padding:14px 20px;
   font-size:0.88rem; color:var(--text);
-  min-width:260px; max-width:360px;
+  min-width:240px; max-width:320px;
   animation: slideIn 0.3s ease;
   display:flex; align-items:center; gap:10px;
 }
@@ -189,16 +271,17 @@ h4 { font-size:1rem; font-weight:600; }
 .toast.info { border-color: var(--accent); }
 @keyframes slideIn { from{transform:translateX(100px);opacity:0} to{transform:translateX(0);opacity:1} }
 
+/* ── MODAL ── */
 .modal-overlay {
   display:none; position:fixed; inset:0;
   background:rgba(0,0,0,0.7); z-index:1000;
   align-items:center; justify-content:center;
-  padding:20px;
+  padding:16px;
 }
 .modal-overlay.active { display:flex; }
 .modal {
   background:var(--surface); border:1px solid var(--border);
-  border-radius:20px; padding:32px;
+  border-radius:20px; padding:28px 24px;
   width:100%; max-width:480px;
   max-height:90vh; overflow-y:auto;
   position:relative;
@@ -212,6 +295,7 @@ h4 { font-size:1rem; font-weight:600; }
 }
 .modal-close:hover { color:var(--text); }
 
+/* ── TABS ── */
 .tabs { display:flex; gap:4px; background:var(--surface2); border-radius:10px; padding:4px; margin-bottom:28px; }
 .tab-btn {
   flex:1; padding:9px; border-radius:8px; border:none;
@@ -221,6 +305,7 @@ h4 { font-size:1rem; font-weight:600; }
 }
 .tab-btn.active { background:var(--surface); color:var(--text); box-shadow:0 1px 4px rgba(0,0,0,0.3); }
 
+/* ── DASHBOARD ── */
 .dashboard-layout { display:flex; min-height:100vh; padding-top:64px; }
 .sidebar {
   width:240px; flex-shrink:0;
@@ -240,9 +325,42 @@ h4 { font-size:1rem; font-weight:600; }
 }
 .sidebar-link:hover, .sidebar-link.active { background:var(--surface2); color:var(--text); }
 .sidebar-link.active { color:var(--accent); }
-.dashboard-main { flex:1; padding:32px 40px; overflow-x:hidden; }
-@media(max-width:768px){ .sidebar{display:none;} .dashboard-main{padding:20px;} }
+.dashboard-main { flex:1; padding:32px 40px; overflow-x:hidden; min-width:0; }
 
+/* Mobile bottom nav for dashboard */
+.dash-mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+  padding: 8px 0 env(safe-area-inset-bottom, 8px);
+}
+.dash-mobile-nav-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.dash-mobile-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.15s;
+  font-size: 0.65rem;
+  color: var(--muted);
+  font-weight: 500;
+  min-width: 56px;
+}
+.dash-mobile-link .dash-icon { font-size: 1.2rem; }
+.dash-mobile-link.active { color: var(--accent); }
+.dash-mobile-link:hover { background: var(--surface2); }
+
+/* ── STATS ── */
 .stat-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:14px; padding:20px;
@@ -251,12 +369,14 @@ h4 { font-size:1rem; font-weight:600; }
 .stat-value { font-family:var(--font-head); font-size:2rem; font-weight:800; line-height:1; }
 .stat-change { font-size:0.8rem; color:var(--accent3); margin-top:4px; }
 
-.table-wrap { overflow-x:auto; border-radius:12px; border:1px solid var(--border); }
-table { width:100%; border-collapse:collapse; }
+/* ── TABLE ── */
+.table-wrap { overflow-x:auto; border-radius:12px; border:1px solid var(--border); -webkit-overflow-scrolling:touch; }
+table { width:100%; border-collapse:collapse; min-width:500px; }
 th { background:var(--surface2); color:var(--muted); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; padding:12px 16px; text-align:left; font-weight:600; }
-td { padding:14px 16px; font-size:0.88rem; border-top:1px solid var(--border); }
+td { padding:12px 16px; font-size:0.85rem; border-top:1px solid var(--border); word-break:break-word; }
 tr:hover td { background:rgba(255,255,255,0.015); }
 
+/* ── CART BTN ── */
 .cart-btn { position:relative; cursor:pointer; }
 .cart-count {
   position:absolute; top:-6px; right:-6px;
@@ -266,6 +386,7 @@ tr:hover td { background:rgba(255,255,255,0.015); }
   display:flex; align-items:center; justify-content:center;
 }
 
+/* ── HERO ── */
 .hero-grid-bg {
   position:absolute; inset:0; pointer-events:none;
   background-image: linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
@@ -279,7 +400,15 @@ tr:hover td { background:rgba(255,255,255,0.015); }
   background:radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
   pointer-events:none;
 }
+.hero-float-card {
+  position:absolute; right:6%; top:50%;
+  transform:translateY(-50%);
+  display:flex; flex-direction:column; gap:16px;
+  opacity:0.9;
+}
+@keyframes float { 0%,100%{transform:translateY(-50%) translateY(0)} 50%{transform:translateY(-50%) translateY(-12px)} }
 
+/* ── PRICING ── */
 .pricing-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:20px; padding:32px;
@@ -296,6 +425,7 @@ tr:hover td { background:rgba(255,255,255,0.015); }
 .check { color:var(--accent3); }
 .cross { color:var(--danger); }
 
+/* ── PRODUCT CARD ── */
 .product-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:16px; overflow:hidden;
@@ -304,8 +434,8 @@ tr:hover td { background:rgba(255,255,255,0.015); }
 }
 .product-card:hover { border-color:var(--accent); transform:translateY(-3px); box-shadow:0 8px 32px rgba(0,229,255,0.1); }
 .product-img {
-  height:180px; display:flex; align-items:center; justify-content:center;
-  font-size:4rem; background:var(--surface2);
+  height:160px; display:flex; align-items:center; justify-content:center;
+  font-size:3.5rem; background:var(--surface2);
   position:relative; overflow:hidden;
 }
 .product-img::after {
@@ -313,14 +443,15 @@ tr:hover td { background:rgba(255,255,255,0.015); }
   position:absolute; inset:0;
   background:radial-gradient(circle at center, rgba(0,229,255,0.05) 0%, transparent 70%);
 }
-.product-info { padding:20px; flex:1; display:flex; flex-direction:column; }
-.product-name { font-family:var(--font-head); font-weight:700; margin-bottom:4px; }
-.product-desc { font-size:0.82rem; color:var(--muted); margin-bottom:12px; flex:1; }
-.product-price { font-family:var(--font-head); font-weight:800; font-size:1.3rem; color:var(--accent); margin-bottom:12px; }
+.product-info { padding:18px; flex:1; display:flex; flex-direction:column; }
+.product-name { font-family:var(--font-head); font-weight:700; margin-bottom:4px; font-size:0.95rem; }
+.product-desc { font-size:0.8rem; color:var(--muted); margin-bottom:12px; flex:1; }
+.product-price { font-family:var(--font-head); font-weight:800; font-size:1.2rem; color:var(--accent); margin-bottom:12px; }
 .product-price span { font-size:0.82rem; font-weight:400; color:var(--muted); }
 
-.steps { display:flex; gap:0; margin-bottom:32px; }
-.step-item { flex:1; display:flex; flex-direction:column; align-items:center; position:relative; }
+/* ── HOW STEPS ── */
+.steps { display:flex; gap:0; margin-bottom:32px; overflow-x:auto; }
+.step-item { flex:1; display:flex; flex-direction:column; align-items:center; position:relative; min-width:70px; }
 .step-item:not(:last-child)::after {
   content:''; position:absolute; top:14px; left:50%; width:100%; height:2px;
   background:var(--border);
@@ -335,21 +466,7 @@ tr:hover td { background:rgba(255,255,255,0.015); }
 }
 .step-item.active .step-circle { border-color:var(--accent); color:var(--accent); }
 .step-item.done .step-circle { background:var(--accent); border-color:var(--accent); color:#0a0a0f; }
-.step-label { font-size:0.72rem; color:var(--muted); margin-top:6px; text-align:center; }
-
-.notif-dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
-
-footer {
-  background:var(--surface); border-top:1px solid var(--border);
-  padding:40px 5% 24px;
-}
-.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:32px; }
-@media(max-width:768px){ .footer-grid{grid-template-columns:1fr 1fr;} }
-.footer-col h4 { font-family:var(--font-head); margin-bottom:14px; font-size:0.95rem; }
-.footer-col a { display:block; color:var(--muted); font-size:0.85rem; margin-bottom:8px; cursor:pointer; transition:color 0.2s; text-decoration:none; }
-.footer-col a:hover { color:var(--text); }
-.footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; align-items:center; }
-.footer-bottom p { font-size:0.8rem; color:var(--muted); }
+.step-label { font-size:0.68rem; color:var(--muted); margin-top:6px; text-align:center; }
 
 .how-step { display:flex; gap:20px; align-items:flex-start; }
 .how-num {
@@ -359,6 +476,7 @@ footer {
   font-family:var(--font-head); font-weight:800; color:var(--accent); font-size:0.95rem;
 }
 
+/* ── TESTIMONIALS ── */
 .testimonial-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:16px; padding:24px;
@@ -370,6 +488,127 @@ footer {
   width:36px; height:36px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   font-size:1rem; font-weight:700; font-family:var(--font-head);
+  flex-shrink:0;
+}
+
+/* ── FOOTER ── */
+footer {
+  background:var(--surface); border-top:1px solid var(--border);
+  padding:40px 5% 24px;
+}
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:32px; }
+.footer-col h4 { font-family:var(--font-head); margin-bottom:14px; font-size:0.95rem; }
+.footer-col a { display:block; color:var(--muted); font-size:0.85rem; margin-bottom:8px; cursor:pointer; transition:color 0.2s; text-decoration:none; }
+.footer-col a:hover { color:var(--text); }
+.footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.footer-bottom p { font-size:0.8rem; color:var(--muted); }
+
+/* ── BRIGHT MODE ── */
+body.bright-mode {
+  --bg:#f7fafc; --surface:#ffffff; --surface2:#eef4f8;
+  --border:#d7e3ea; --text:#0a0a0f; --muted:#51606c; --card:#ffffff;
+}
+body.bright-mode nav { background:rgba(255,255,255,.95); }
+body.bright-mode .product-img { background:#eef4f8; }
+body.bright-mode .mobile-drawer { background:rgba(255,255,255,0.98); }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+─────────────────────────────────────────── */
+
+/* Tablet: ≤ 1024px */
+@media(max-width:1024px) {
+  .grid-4 { grid-template-columns:repeat(2,1fr); }
+  .hero-float-card { display:none; }
+  .dashboard-main { padding:24px; }
+}
+
+/* Tablet/Small desktop: ≤ 900px */
+@media(max-width:900px) {
+  .grid-3 { grid-template-columns:1fr 1fr; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .sidebar { width:200px; }
+}
+
+/* Mobile: ≤ 768px */
+@media(max-width:768px) {
+  /* Nav */
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .nav-actions .btn-ghost[onclick*="signin"],
+  .nav-actions .btn-primary[onclick*="signup"] { display:none !important; }
+  nav { padding: 0 16px; }
+
+  /* Dashboard layout */
+  .sidebar { display:none; }
+  .dashboard-main { padding:16px 16px 100px; }
+  .dash-mobile-nav { display:block; }
+
+  /* Checkout steps */
+  .steps { gap:0; }
+  .step-label { display:none; }
+
+  /* Section padding */
+  .section { padding:48px 16px; }
+  .section-sm { padding:28px 16px; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns:1fr; gap:28px; }
+
+  /* Toasts */
+  .toast-container { bottom:16px; right:8px; left:8px; }
+  .toast { min-width:unset; max-width:100%; }
+
+  /* Cart */
+  .cart-page-layout { grid-template-columns:1fr !important; }
+}
+
+/* Small mobile: ≤ 600px */
+@media(max-width:600px) {
+  .grid-2 { grid-template-columns:1fr; }
+  .grid-3 { grid-template-columns:1fr; }
+  .grid-4 { grid-template-columns:1fr 1fr; }
+  .stat-card .stat-value { font-size:1.6rem; }
+
+  /* Hero stats row */
+  .hero-stats { flex-direction:row !important; flex-wrap:wrap; gap:16px !important; }
+  .hero-stats .stat-divider { display:none; }
+
+  /* Pricing — stack on mobile */
+  .pricing-grid { grid-template-columns:1fr !important; }
+
+  /* Checkout grid */
+  .checkout-grid { grid-template-columns:1fr !important; }
+
+  /* How-it-works visual */
+  .how-visual { display:none; }
+
+  /* Buttons in hero */
+  .hero-btns { flex-direction:column; align-items:flex-start; }
+  .hero-btns .btn-lg { width:100%; justify-content:center; }
+
+  h1 { font-size:2rem; }
+  h2 { font-size:1.5rem; }
+
+  /* Modal */
+  .modal { padding:20px 16px; border-radius:16px; }
+
+  /* Cards */
+  .card { padding:18px; }
+  .pricing-card { padding:24px; }
+}
+
+/* Very small: ≤ 380px */
+@media(max-width:380px) {
+  .grid-4 { grid-template-columns:1fr; }
+  .nav-logo { font-size:1.2rem; }
+}
+
+/* Touch targets */
+@media(pointer:coarse) {
+  .btn { min-height:44px; }
+  .sidebar-link { min-height:44px; }
+  .dash-mobile-link { min-height:56px; }
 }
 </style>
 </head>
@@ -388,41 +627,59 @@ footer {
     <a onclick="goTo('about')" id="nav-about">About</a>
   </div>
   <div class="nav-actions" id="nav-actions">
-    <button class="btn btn-ghost btn-sm" onclick="goTo('signin')">Sign In</button>
-    <button class="btn btn-primary btn-sm" onclick="goTo('signup')">Get Started</button>
+    <button class="btn btn-ghost btn-sm" onclick="goTo('signin')" id="btn-signin">Sign In</button>
+    <button class="btn btn-primary btn-sm" onclick="goTo('signup')" id="btn-signup">Get Started</button>
     <div class="cart-btn btn btn-ghost btn-sm" onclick="goTo('cart')" style="display:none" id="nav-cart-btn">
       🛒 Cart <div class="cart-count" id="cart-count">0</div>
     </div>
     <button class="btn btn-ghost btn-sm" onclick="logoutUser()" id="nav-logout-btn" style="display:none">Logout</button>
     <button class="btn btn-outline btn-sm" onclick="goTo('dashboard')" id="nav-dashboard-btn" style="display:none">Dashboard</button>
+    <button class="hamburger" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <a onclick="navGo('home')">🏠 Home</a>
+  <a onclick="navGo('how')">⚡ How It Works</a>
+  <a onclick="navGo('products')">🏷️ Products</a>
+  <a onclick="navGo('pricing')">💎 Pricing</a>
+  <a onclick="navGo('about')">ℹ️ About</a>
+  <hr class="mobile-drawer-divider">
+  <div id="drawer-auth-area" class="mobile-drawer-actions">
+    <button class="btn btn-ghost btn-sm" onclick="navGo('signin')">Sign In</button>
+    <button class="btn btn-primary btn-sm" onclick="navGo('signup')">Get Started</button>
+  </div>
+</div>
+
 <div class="toast-container" id="toasts"></div>
 
+<!-- HOME PAGE -->
 <div id="page-home" class="page">
-  <div style="position:relative; overflow:hidden; padding:120px 5% 80px; min-height:92vh; display:flex; align-items:center;">
+  <div style="position:relative; overflow:hidden; padding:120px 5% 80px; min-height:85vh; display:flex; align-items:center;">
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
     <div class="container" style="position:relative; z-index:1;">
       <div style="max-width:680px;">
-        <div class="badge badge-cyan mb-16">🇿🇦 Made for South African students & professionals</div>
+        <div class="badge badge-cyan mb-16">🇿🇦 Made for South African students &amp; professionals</div>
         <h1 class="mb-24">Tap to return.<br><span style="color:var(--accent)">Never lose</span> anything again.</h1>
-        <p class="text-lg text-muted mb-32" style="max-width:520px; line-height:1.8;">INNOV8 NFC & QR tags turn any item into a smart, recoverable asset. One tap. One scan. You're reunited with your belongings instantly.</p>
-        <div class="flex gap-16 flex-wrap">
+        <p class="text-lg text-muted mb-32" style="max-width:520px; line-height:1.8;">INNOV8 NFC &amp; QR tags turn any item into a smart, recoverable asset. One tap. One scan. You're reunited with your belongings instantly.</p>
+        <div class="flex gap-16 hero-btns flex-wrap">
           <button class="btn btn-primary btn-lg" onclick="goTo('signup')">Start for free →</button>
           <button class="btn btn-ghost btn-lg" onclick="goTo('how')">See how it works</button>
         </div>
-        <div class="flex gap-24 mt-24 flex-wrap">
+        <div class="flex gap-24 mt-24 hero-stats" style="flex-wrap:wrap;">
           <div><div style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;">2,400+</div><div class="text-muted text-sm">Items returned</div></div>
-          <div style="width:1px;background:var(--border)"></div>
+          <div class="stat-divider" style="width:1px;background:var(--border)"></div>
           <div><div style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;">1,200+</div><div class="text-muted text-sm">Happy users</div></div>
-          <div style="width:1px;background:var(--border)"></div>
+          <div class="stat-divider" style="width:1px;background:var(--border)"></div>
           <div><div style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;">12+</div><div class="text-muted text-sm">Universities</div></div>
         </div>
       </div>
     </div>
-    <div style="position:absolute; right:6%; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:16px; opacity:0.9;">
+    <div class="hero-float-card">
       <div class="card" style="width:220px; animation: float 3s ease-in-out infinite;">
         <div style="font-size:2rem; margin-bottom:8px;">📱</div>
         <div style="font-family:var(--font-head);font-weight:700;margin-bottom:4px;">This item belongs to</div>
@@ -435,7 +692,6 @@ footer {
       </div>
     </div>
   </div>
-  <style>@keyframes float { 0%,100%{transform:translateY(-50%) translateY(0)} 50%{transform:translateY(-50%) translateY(-12px)} }</style>
 
   <div class="section-sm" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
@@ -484,6 +740,7 @@ footer {
   <div id="home-footer"></div>
 </div>
 
+<!-- HOW IT WORKS -->
 <div id="page-how" class="page pt-64">
   <div class="section">
     <div class="container">
@@ -495,12 +752,12 @@ footer {
           <div class="flex gap-24 flex-col">
             <div class="how-step"><div class="how-num">1</div><div><h3 class="mb-8">Register your account</h3><p class="text-muted text-sm">Sign up and complete your profile with your name, contact details, and emergency contacts. Takes 2 minutes.</p></div></div>
             <div class="how-step"><div class="how-num">2</div><div><h3 class="mb-8">Order your tags</h3><p class="text-muted text-sm">Choose from NFC stickers, QR cards, keychains, or bulk packs. We ship to your door within 3–5 business days.</p></div></div>
-            <div class="how-step"><div class="how-num">3</div><div><h3 class="mb-8">Attach & activate</h3><p class="text-muted text-sm">Each tag has a unique code. Log in, activate it, and link it to any item — bag, keys, laptop, water bottle.</p></div></div>
+            <div class="how-step"><div class="how-num">3</div><div><h3 class="mb-8">Attach &amp; activate</h3><p class="text-muted text-sm">Each tag has a unique code. Log in, activate it, and link it to any item — bag, keys, laptop, water bottle.</p></div></div>
             <div class="how-step"><div class="how-num">4</div><div><h3 class="mb-8">Finder scans or taps</h3><p class="text-muted text-sm">Someone finds your item. They tap their phone on the NFC or scan the QR. Your profile page opens instantly.</p></div></div>
             <div class="how-step"><div class="how-num">5</div><div><h3 class="mb-8">You're reunited! 🎉</h3><p class="text-muted text-sm">The finder contacts you directly or sends an anonymous message. You get notified and recover your item.</p></div></div>
           </div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:16px;align-items:center;">
+        <div class="how-visual" style="display:flex;flex-direction:column;gap:16px;align-items:center;">
           <div class="card" style="width:280px;text-align:center;"><div style="font-size:3rem;margin-bottom:12px;">🏷️</div><h4 class="mb-8">Your Tag</h4><p class="text-muted text-sm">Waterproof NFC + QR sticker on your backpack</p></div>
           <div style="font-size:1.5rem;color:var(--muted);">↓</div>
           <div class="card" style="width:280px;text-align:center;"><div style="font-size:3rem;margin-bottom:12px;">📱</div><h4 class="mb-8">Finder Scans</h4><p class="text-muted text-sm">No app needed. Works with any modern phone camera or NFC.</p></div>
@@ -521,13 +778,14 @@ footer {
   <div id="how-footer"></div>
 </div>
 
+<!-- PRODUCTS PAGE -->
 <div id="page-products" class="page pt-64">
   <div class="section">
     <div class="container">
       <div class="section-tag">Shop</div>
-      <div class="flex justify-between items-center mb-32 flex-wrap gap-16">
-        <div><h2 class="mb-8">Our Products</h2><p class="text-muted">All tags include 1 year of profile hosting. Bulk discounts available.</p></div>
-        <div class="flex gap-12 items-center">
+      <div class="flex justify-between items-center mb-24 flex-wrap gap-16">
+        <div><h2 class="mb-8">Our Products</h2><p class="text-muted">All tags include 1 year of profile hosting.</p></div>
+        <div class="flex gap-12 items-center flex-wrap">
           <select id="product-filter" onchange="filterProducts()" style="width:auto;padding:8px 14px;">
             <option value="all">All Categories</option>
             <option value="nfc">NFC Tags</option>
@@ -544,13 +802,14 @@ footer {
   <div id="products-footer"></div>
 </div>
 
+<!-- PRICING PAGE -->
 <div id="page-pricing" class="page pt-64">
   <div class="section">
     <div class="container">
       <div class="section-tag text-center">Plans</div>
       <h2 class="text-center mb-12">Simple, affordable pricing</h2>
-      <p class="text-muted text-center mb-48">Choose a plan that works for you. Cancel anytime. All plans include free tags on sign-up.</p>
-      <div class="grid-3" style="gap:28px;align-items:start;">
+      <p class="text-muted text-center mb-48">Choose a plan that works for you. Cancel anytime.</p>
+      <div class="pricing-grid grid-3" style="gap:28px;align-items:start;">
         <div class="pricing-card">
           <div class="badge badge-cyan mb-16">Free</div>
           <h3 class="mb-8">Starter</h3>
@@ -570,7 +829,7 @@ footer {
         <div class="pricing-card">
           <div class="badge badge-green mb-16">Pro</div>
           <h3 class="mb-8">Business</h3>
-          <p class="text-muted text-sm mb-20">For gyms, offices & schools.</p>
+          <p class="text-muted text-sm mb-20">For gyms, offices &amp; schools.</p>
           <div class="flex items-end gap-8 mb-20"><div class="price-amount">R199</div><div class="price-period">/month</div></div>
           <ul class="price-features"><li><span class="check">✓</span> Unlimited tags</li><li><span class="check">✓</span> Branded profile pages</li><li><span class="check">✓</span> Full analytics dashboard</li><li><span class="check">✓</span> Bulk tag management</li><li><span class="check">✓</span> Priority support</li><li><span class="check">✓</span> Custom domain</li><li><span class="check">✓</span> API access</li></ul>
           <button class="btn btn-green btn-full mt-auto" onclick="subscribePlan('Business','R199/mo')">Subscribe — R199/mo</button>
@@ -579,7 +838,7 @@ footer {
       <div style="margin-top:60px;padding:32px;background:var(--surface2);border-radius:20px;border:1px solid var(--border);">
         <h3 class="mb-16">One-time purchase or subscription?</h3>
         <div class="grid-2" style="gap:24px;">
-          <div><h4 class="mb-8">💰 One-Time Purchase</h4><p class="text-muted text-sm mb-12">Buy tags once. Profile hosting is included for 12 months. After that, renew at R15/tag/year.</p><div class="flex gap-12 flex-wrap"><div class="badge badge-cyan">No recurring charge</div><div class="badge badge-cyan">Simple</div></div></div>
+          <div><h4 class="mb-8">💰 One-Time Purchase</h4><p class="text-muted text-sm mb-12">Buy tags once. Profile hosting included for 12 months. After that, renew at R15/tag/year.</p><div class="flex gap-12 flex-wrap"><div class="badge badge-cyan">No recurring charge</div><div class="badge badge-cyan">Simple</div></div></div>
           <div><h4 class="mb-8">🔄 Subscription</h4><p class="text-muted text-sm mb-12">Monthly plan includes all platform features, unlimited tag activations, and premium profile customisation.</p><div class="flex gap-12 flex-wrap"><div class="badge badge-purple">More features</div><div class="badge badge-purple">Cancel anytime</div></div></div>
         </div>
       </div>
@@ -588,6 +847,7 @@ footer {
   <div id="pricing-footer"></div>
 </div>
 
+<!-- ABOUT PAGE -->
 <div id="page-about" class="page pt-64">
   <div class="section">
     <div class="container">
@@ -602,7 +862,7 @@ footer {
         <div style="display:flex;flex-direction:column;gap:16px;">
           <div class="card" style="border-color:var(--accent);"><div style="font-size:2rem;margin-bottom:8px;">🎯</div><h4 class="mb-8">Our Mission</h4><p class="text-muted text-sm">To make losing things temporary — and returning them simple, safe, and instant.</p></div>
           <div class="card"><div style="font-size:2rem;margin-bottom:8px;">🌱</div><h4 class="mb-8">Sustainability</h4><p class="text-muted text-sm">Eco-friendly packaging. Recycled sticker materials. Reducing unnecessary replacements of lost items reduces waste.</p></div>
-          <div class="card"><div style="font-size:2rem;margin-bottom:8px;">🔐</div><h4 class="mb-8">Privacy & Safety</h4><p class="text-muted text-sm">We never expose your number directly. Anonymous contact forms protect both owners and finders.</p></div>
+          <div class="card"><div style="font-size:2rem;margin-bottom:8px;">🔐</div><h4 class="mb-8">Privacy &amp; Safety</h4><p class="text-muted text-sm">We never expose your number directly. Anonymous contact forms protect both owners and finders.</p></div>
         </div>
       </div>
       <div style="border-top:1px solid var(--border);padding-top:60px;">
@@ -618,6 +878,7 @@ footer {
   <div id="about-footer"></div>
 </div>
 
+<!-- SIGN UP -->
 <div id="page-signup" class="page pt-64">
   <div class="section" style="display:flex;justify-content:center;">
     <div style="width:100%;max-width:480px;">
@@ -627,11 +888,11 @@ footer {
         <p class="text-muted">Join SmartLF and protect what matters to you.</p>
       </div>
       <div class="card">
-        <div class="form-group"><label>Full Name</label><input type="text" id="su-name" placeholder="Sipho Nkosi"></div>
-        <div class="form-group"><label>Email Address</label><input type="email" id="su-email" placeholder="sipho@email.com"></div>
-        <div class="form-group"><label>Phone Number</label><input type="tel" id="su-phone" placeholder="071 XXX XXXX"></div>
-        <div class="form-group"><label>Password</label><input type="password" id="su-pass" placeholder="Minimum 8 characters"></div>
-        <div class="form-group"><label>Confirm Password</label><input type="password" id="su-pass2" placeholder="Repeat password"></div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="su-name" placeholder="Sipho Nkosi" autocomplete="name"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="su-email" placeholder="sipho@email.com" autocomplete="email"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="su-phone" placeholder="071 XXX XXXX" autocomplete="tel"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="su-pass" placeholder="Minimum 8 characters" autocomplete="new-password"></div>
+        <div class="form-group"><label>Confirm Password</label><input type="password" id="su-pass2" placeholder="Repeat password" autocomplete="new-password"></div>
         <div class="form-group"><label>I am a...</label><select id="su-role"><option value="student">Student</option><option value="professional">Professional / Office worker</option><option value="gym">Gym member</option><option value="business">Business / School</option><option value="other">Other</option></select></div>
         <div style="background:var(--surface2);border-radius:10px;padding:14px;margin-bottom:18px;font-size:0.82rem;color:var(--muted);">📧 By signing up, you'll receive a welcome email with your first QR tag setup guide.</div>
         <button class="btn btn-primary btn-full btn-lg" onclick="signupUser()">Create Account</button>
@@ -642,6 +903,7 @@ footer {
   </div>
 </div>
 
+<!-- SIGN IN -->
 <div id="page-signin" class="page pt-64">
   <div class="section" style="display:flex;justify-content:center;">
     <div style="width:100%;max-width:420px;">
@@ -655,8 +917,8 @@ footer {
           <button class="tab-btn active" onclick="setSigninTab('user',this)">Customer</button>
           <button class="tab-btn" onclick="setSigninTab('admin',this)">Admin</button>
         </div>
-        <div class="form-group"><label>Email Address</label><input type="email" id="si-email" placeholder="your@email.com"></div>
-        <div class="form-group"><label>Password</label><input type="password" id="si-pass" placeholder="Your password"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="si-email" placeholder="your@email.com" autocomplete="email"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="si-pass" placeholder="Your password" autocomplete="current-password"></div>
         <div class="flex justify-between items-center mb-18" style="margin-bottom:18px;">
           <label style="display:flex;align-items:center;gap:6px;cursor:pointer;text-transform:none;font-size:0.85rem;"><input type="checkbox" style="width:auto;"> Remember me</label>
           <a style="color:var(--accent);font-size:0.85rem;cursor:pointer;">Forgot password?</a>
@@ -669,14 +931,35 @@ footer {
   </div>
 </div>
 
+<!-- CART -->
 <div id="page-cart" class="page pt-64">
-  <div class="section"><div class="container"><h2 class="mb-32">Your Cart</h2><div id="cart-content" class="grid-2" style="gap:32px;align-items:start;"></div></div></div>
+  <div class="section">
+    <div class="container">
+      <div class="flex justify-between items-center mb-32 flex-wrap gap-12">
+        <h2>Your Cart</h2>
+        <button class="btn btn-ghost btn-sm" onclick="goTo('products')">← Continue shopping</button>
+      </div>
+      <div id="cart-content"></div>
+    </div>
+  </div>
 </div>
 
+<!-- CHECKOUT -->
 <div id="page-checkout" class="page pt-64">
-  <div class="section"><div class="container" style="max-width:800px;"><h2 class="mb-32">Checkout</h2><div class="steps mb-32" id="checkout-steps"><div class="step-item active" id="step-1"><div class="step-circle">1</div><div class="step-label">Delivery</div></div><div class="step-item" id="step-2"><div class="step-circle">2</div><div class="step-label">Payment</div></div><div class="step-item" id="step-3"><div class="step-circle">3</div><div class="step-label">Confirm</div></div></div><div id="checkout-content"></div></div></div>
+  <div class="section">
+    <div class="container" style="max-width:800px;">
+      <h2 class="mb-32">Checkout</h2>
+      <div class="steps mb-32" id="checkout-steps">
+        <div class="step-item active" id="step-1"><div class="step-circle">1</div><div class="step-label">Delivery</div></div>
+        <div class="step-item" id="step-2"><div class="step-circle">2</div><div class="step-label">Payment</div></div>
+        <div class="step-item" id="step-3"><div class="step-circle">3</div><div class="step-label">Confirm</div></div>
+      </div>
+      <div id="checkout-content"></div>
+    </div>
+  </div>
 </div>
 
+<!-- USER DASHBOARD -->
 <div id="page-dashboard" class="page">
   <div class="dashboard-layout">
     <aside class="sidebar">
@@ -698,8 +981,19 @@ footer {
     </aside>
     <main class="dashboard-main" id="dashboard-main"></main>
   </div>
+  <!-- Mobile bottom nav for dashboard -->
+  <nav class="dash-mobile-nav">
+    <div class="dash-mobile-nav-inner">
+      <div class="dash-mobile-link active" onclick="dashMobileNav('overview',this)"><span class="dash-icon">📊</span>Overview</div>
+      <div class="dash-mobile-link" onclick="dashMobileNav('tags',this)"><span class="dash-icon">🏷️</span>Tags</div>
+      <div class="dash-mobile-link" onclick="dashMobileNav('orders',this)"><span class="dash-icon">📦</span>Orders</div>
+      <div class="dash-mobile-link" onclick="dashMobileNav('subscription',this)"><span class="dash-icon">💎</span>Plan</div>
+      <div class="dash-mobile-link" onclick="dashMobileNav('profile',this)"><span class="dash-icon">👤</span>Profile</div>
+    </div>
+  </nav>
 </div>
 
+<!-- ADMIN DASHBOARD -->
 <div id="page-admin" class="page">
   <div class="dashboard-layout">
     <aside class="sidebar">
@@ -716,6 +1010,16 @@ footer {
     </aside>
     <main class="dashboard-main" id="admin-main"></main>
   </div>
+  <!-- Mobile bottom nav for admin -->
+  <nav class="dash-mobile-nav">
+    <div class="dash-mobile-nav-inner">
+      <div class="dash-mobile-link active" onclick="adminMobileNav('overview',this)"><span class="dash-icon">📊</span>Overview</div>
+      <div class="dash-mobile-link" onclick="adminMobileNav('users',this)"><span class="dash-icon">👥</span>Users</div>
+      <div class="dash-mobile-link" onclick="adminMobileNav('orders',this)"><span class="dash-icon">📦</span>Orders</div>
+      <div class="dash-mobile-link" onclick="adminMobileNav('tags',this)"><span class="dash-icon">🏷️</span>Tags</div>
+      <div class="dash-mobile-link" onclick="adminMobileNav('emails',this)"><span class="dash-icon">📧</span>Email</div>
+    </div>
+  </nav>
 </div>
 
 <template id="footer-template">
@@ -724,14 +1028,14 @@ footer {
       <div class="footer-grid">
         <div class="footer-col">
           <div class="nav-logo mb-16"><div class="nav-logo-dot"></div>INNOV<span style="color:var(--accent)">8</span></div>
-          <p style="color:var(--muted);font-size:0.85rem;line-height:1.7;max-width:260px;">Smart NFC & QR recovery tags for students, professionals, and businesses across South Africa.</p>
+          <p style="color:var(--muted);font-size:0.85rem;line-height:1.7;max-width:260px;">Smart NFC &amp; QR recovery tags for students, professionals, and businesses across South Africa.</p>
         </div>
         <div class="footer-col"><h4>Product</h4><a onclick="goTo('how')">How It Works</a><a onclick="goTo('products')">Products</a><a onclick="goTo('pricing')">Pricing</a></div>
         <div class="footer-col"><h4>Company</h4><a onclick="goTo('about')">About Us</a><a>Press Kit</a><a>Careers</a></div>
         <div class="footer-col"><h4>Support</h4><a>Help Centre</a><a>Contact Us</a><a>Privacy Policy</a><a>Terms of Service</a></div>
       </div>
       <div class="footer-bottom">
-        <p>© 2025 INNOV8 SmartLF (Pty) Ltd. Durban, KwaZulu-Natal. All rights reserved.</p>
+        <p>© 2025 INNOV8 SmartLF (Pty) Ltd. Durban, KwaZulu-Natal.</p>
         <p>🇿🇦 Proudly South African</p>
       </div>
     </div>
@@ -756,6 +1060,39 @@ const PRODUCTS = [
   { id:8, name:'Business Bulk Pack (50 tags)', emoji:'🏢', category:'bulk', price:1490, desc:'50x NFC+QR combo tags. Branded with your company name. For gyms & schools.' },
 ];
 
+// ── DRAWER ──
+function toggleDrawer() {
+  const drawer = document.getElementById('mobile-drawer');
+  const btn = document.getElementById('hamburger-btn');
+  const isOpen = drawer.classList.contains('open');
+  if (isOpen) { drawer.classList.remove('open'); btn.classList.remove('open'); }
+  else { drawer.classList.add('open'); btn.classList.add('open'); }
+}
+function closeDrawer() {
+  document.getElementById('mobile-drawer').classList.remove('open');
+  document.getElementById('hamburger-btn').classList.remove('open');
+}
+function navGo(page) { closeDrawer(); goTo(page); }
+document.addEventListener('click', function(e) {
+  const drawer = document.getElementById('mobile-drawer');
+  const btn = document.getElementById('hamburger-btn');
+  if (drawer.classList.contains('open') && !drawer.contains(e.target) && !btn.contains(e.target)) closeDrawer();
+});
+
+// ── MOBILE DASH NAV ──
+function dashMobileNav(section, el) {
+  document.querySelectorAll('#page-dashboard .dash-mobile-link').forEach(l => l.classList.remove('active'));
+  if (el) el.classList.add('active');
+  showDashSection(section, null);
+  document.querySelector('#page-dashboard .dashboard-main').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+function adminMobileNav(section, el) {
+  document.querySelectorAll('#page-admin .dash-mobile-link').forEach(l => l.classList.remove('active'));
+  if (el) el.classList.add('active');
+  showAdminSection(section, null);
+  document.querySelector('#page-admin .dashboard-main').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
 function goTo(page) {
   if (page === 'dashboard' && !STATE.user) { goTo('signin'); return; }
   if (page === 'admin' && !STATE.isAdmin) { goTo('signin'); return; }
@@ -773,6 +1110,7 @@ function goTo(page) {
   if (navEl) navEl.classList.add('active');
   const inits = { home: renderHomePage, products: renderProductsPage, cart: renderCartPage, checkout: renderCheckout, dashboard: renderDashboard, admin: renderAdmin, pricing: () => injectFooter('pricing-footer'), about: () => injectFooter('about-footer'), how: () => injectFooter('how-footer') };
   if (inits[page]) inits[page]();
+  updateDrawerAuthArea();
 }
 
 function injectFooter(id) {
@@ -798,7 +1136,7 @@ function setSigninTab(tab, btn) {
 }
 
 function renderProductCard(p) {
-  return `<div class="product-card"><div class="product-img">${p.emoji}${p.badge ? `<div style="position:absolute;top:12px;right:12px;z-index:2;" class="badge badge-cyan">${p.badge}</div>` : ''}</div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-desc">${p.desc}</div><div class="product-price">R${p.price} <span>once-off</span></div><div class="flex gap-8"><button class="btn btn-primary btn-sm" onclick="addToCart(${p.id})">+ Add to Cart</button><button class="btn btn-ghost btn-sm" onclick="goTo('pricing')">Subscribe</button></div></div></div>`;
+  return `<div class="product-card"><div class="product-img">${p.emoji}${p.badge ? `<div style="position:absolute;top:12px;right:12px;z-index:2;" class="badge badge-cyan">${p.badge}</div>` : ''}</div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-desc">${p.desc}</div><div class="product-price">R${p.price} <span>once-off</span></div><div class="flex gap-8 flex-wrap"><button class="btn btn-primary btn-sm" onclick="addToCart(${p.id})">+ Add to Cart</button><button class="btn btn-ghost btn-sm" onclick="goTo('pricing')">Subscribe</button></div></div></div>`;
 }
 
 function renderHomePage() { injectFooter('home-footer'); const c = document.getElementById('home-products'); if (c) c.innerHTML = PRODUCTS.slice(0,4).map(renderProductCard).join(''); }
@@ -822,9 +1160,45 @@ function cartTotal() { return STATE.cart.reduce((a,b) => a + b.price*b.qty, 0); 
 
 function renderCartPage() {
   const c = document.getElementById('cart-content'); if (!c) return;
-  if (STATE.cart.length === 0) { c.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 0;"><div style="font-size:4rem;margin-bottom:16px;">🛒</div><h3 class="mb-8">Your cart is empty</h3><p class="text-muted mb-24">Add some smart tags to get started.</p><button class="btn btn-primary" onclick="goTo('products')">Browse Products</button></div>`; return; }
-  const itemsHtml = STATE.cart.map(item => `<div class="flex justify-between items-center" style="padding:14px 0;border-bottom:1px solid var(--border);"><div class="flex gap-12 items-center"><div style="font-size:2rem;">${item.emoji}</div><div><div style="font-weight:600;font-size:0.9rem;">${item.name}</div><div class="text-muted text-sm">R${item.price} each</div></div></div><div class="flex gap-8 items-center"><button class="btn btn-ghost btn-sm" onclick="updateQty(${item.id},-1)">−</button><span style="width:24px;text-align:center;font-weight:600;">${item.qty}</span><button class="btn btn-ghost btn-sm" onclick="updateQty(${item.id},1)">+</button><span style="width:60px;text-align:right;font-family:var(--font-head);font-weight:700;">R${item.price*item.qty}</span><button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">✕</button></div></div>`).join('');
-  c.innerHTML = `<div><div class="card"><h3 class="mb-20">Cart Items (${STATE.cart.reduce((a,b)=>a+b.qty,0)})</h3>${itemsHtml}</div></div><div><div class="card" style="position:sticky;top:80px;"><h3 class="mb-20">Order Summary</h3>${STATE.cart.map(i=>`<div class="flex justify-between text-sm mb-8"><span class="text-muted">${i.name} x${i.qty}</span><span>R${i.price*i.qty}</span></div>`).join('')}<div class="separator"></div><div class="flex justify-between mb-8"><span class="text-muted text-sm">Subtotal</span><span>R${cartTotal()}</span></div><div class="flex justify-between mb-8"><span class="text-muted text-sm">Shipping</span><span class="text-accent text-sm">Free</span></div><div class="flex justify-between mb-20" style="font-family:var(--font-head);font-weight:800;font-size:1.1rem;"><span>Total</span><span>R${cartTotal()}</span></div><div class="form-group"><input placeholder="Promo code (try WELCOME20)" id="promo-input"></div><button class="btn btn-ghost btn-sm btn-full mb-12" onclick="applyPromo()">Apply Code</button><button class="btn btn-primary btn-lg btn-full" onclick="proceedCheckout()">Proceed to Checkout →</button><button class="btn btn-ghost btn-sm btn-full mt-8" onclick="goTo('products')">← Continue shopping</button></div></div>`;
+  if (STATE.cart.length === 0) {
+    c.innerHTML = `<div style="text-align:center;padding:60px 0;"><div style="font-size:4rem;margin-bottom:16px;">🛒</div><h3 class="mb-8">Your cart is empty</h3><p class="text-muted mb-24">Add some smart tags to get started.</p><button class="btn btn-primary" onclick="goTo('products')">Browse Products</button></div>`;
+    return;
+  }
+  const itemsHtml = STATE.cart.map(item => `
+    <div class="flex justify-between items-center" style="padding:14px 0;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:12px;">
+      <div class="flex gap-12 items-center">
+        <div style="font-size:2rem;">${item.emoji}</div>
+        <div><div style="font-weight:600;font-size:0.9rem;">${item.name}</div><div class="text-muted text-sm">R${item.price} each</div></div>
+      </div>
+      <div class="flex gap-8 items-center">
+        <button class="btn btn-ghost btn-sm" onclick="updateQty(${item.id},-1)" style="min-width:36px;">−</button>
+        <span style="width:24px;text-align:center;font-weight:600;">${item.qty}</span>
+        <button class="btn btn-ghost btn-sm" onclick="updateQty(${item.id},1)" style="min-width:36px;">+</button>
+        <span style="min-width:50px;text-align:right;font-family:var(--font-head);font-weight:700;">R${item.price*item.qty}</span>
+        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">✕</button>
+      </div>
+    </div>`).join('');
+
+  c.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr;gap:24px;">
+      <div class="card"><h3 class="mb-20">Cart Items (${STATE.cart.reduce((a,b)=>a+b.qty,0)})</h3>${itemsHtml}</div>
+      <div class="card">
+        <h3 class="mb-20">Order Summary</h3>
+        ${STATE.cart.map(i=>`<div class="flex justify-between text-sm mb-8"><span class="text-muted">${i.name} x${i.qty}</span><span>R${i.price*i.qty}</span></div>`).join('')}
+        <div class="separator"></div>
+        <div class="flex justify-between mb-8"><span class="text-muted text-sm">Subtotal</span><span>R${cartTotal()}</span></div>
+        <div class="flex justify-between mb-8"><span class="text-muted text-sm">Shipping</span><span class="text-accent text-sm">Free</span></div>
+        <div class="flex justify-between mb-20" style="font-family:var(--font-head);font-weight:800;font-size:1.1rem;"><span>Total</span><span>R${cartTotal()}</span></div>
+        <div class="form-group"><input placeholder="Promo code (try WELCOME20)" id="promo-input"></div>
+        <button class="btn btn-ghost btn-sm btn-full mb-12" onclick="applyPromo()">Apply Code</button>
+        <button class="btn btn-primary btn-lg btn-full" onclick="proceedCheckout()">Proceed to Checkout →</button>
+      </div>
+    </div>`;
+
+  // On wider screens, make it 2-col
+  if (window.innerWidth > 768) {
+    c.querySelector('[style*="grid-template-columns"]').style.gridTemplateColumns = '1fr 1fr';
+  }
 }
 
 function applyPromo() { const code = document.getElementById('promo-input')?.value.trim().toUpperCase(); if (code === 'WELCOME20') showToast('🎉 20% discount applied!','success'); else showToast('Invalid promo code.','error'); }
@@ -833,12 +1207,19 @@ function proceedCheckout() { if (STATE.isAdmin) { showToast('Admin cannot checko
 function renderCheckout() {
   updateCheckoutSteps();
   const c = document.getElementById('checkout-content'); if (!c) return;
+  const summaryHtml = `<div class="card"><h3 class="mb-16">Order Summary</h3>${STATE.cart.map(i=>`<div class="flex justify-between mb-12"><div class="flex gap-10 items-center"><span>${i.emoji}</span><span class="text-sm">${i.name} x${i.qty}</span></div><span class="text-sm">R${i.price*i.qty}</span></div>`).join('')}<div class="separator"></div><div class="flex justify-between" style="font-family:var(--font-head);font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div><div class="badge badge-green mt-16">🚚 Free delivery nationwide</div></div>`;
+
   if (STATE.checkoutStep === 1) {
-    c.innerHTML = `<div class="grid-2" style="gap:32px;align-items:start;"><div class="card"><h3 class="mb-20">Delivery Details</h3><div class="form-group"><label>Full Name</label><input id="co-name" value="${STATE.user?.name||''}"></div><div class="form-group"><label>Phone</label><input id="co-phone" value="${STATE.user?.phone||''}"></div><div class="form-group"><label>Street Address</label><input id="co-addr" placeholder="123 Main Street"></div><div class="form-group"><label>City</label><input id="co-city" value="Durban"></div><div class="form-group"><label>Province</label><select id="co-prov"><option>KwaZulu-Natal</option><option>Gauteng</option><option>Western Cape</option><option>Eastern Cape</option></select></div><div class="form-group"><label>Postal Code</label><input id="co-postal" placeholder="4001"></div><button class="btn btn-primary btn-full btn-lg" onclick="checkoutNext(2)">Continue to Payment →</button></div><div class="card"><h3 class="mb-16">Order Summary</h3>${STATE.cart.map(i=>`<div class="flex justify-between mb-12"><div class="flex gap-10 items-center"><span>${i.emoji}</span><span class="text-sm">${i.name} x${i.qty}</span></div><span class="text-sm">R${i.price*i.qty}</span></div>`).join('')}<div class="separator"></div><div class="flex justify-between" style="font-family:var(--font-head);font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div><div class="badge badge-green mt-16">🚚 Free delivery nationwide</div></div></div>`;
+    c.innerHTML = `<div class="checkout-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;"><div class="card"><h3 class="mb-20">Delivery Details</h3><div class="form-group"><label>Full Name</label><input id="co-name" value="${STATE.user?.name||''}" autocomplete="name"></div><div class="form-group"><label>Phone</label><input id="co-phone" value="${STATE.user?.phone||''}" autocomplete="tel"></div><div class="form-group"><label>Street Address</label><input id="co-addr" placeholder="123 Main Street" autocomplete="street-address"></div><div class="grid-2"><div class="form-group"><label>City</label><input id="co-city" value="Durban" autocomplete="address-level2"></div><div class="form-group"><label>Postal Code</label><input id="co-postal" placeholder="4001" autocomplete="postal-code"></div></div><div class="form-group"><label>Province</label><select id="co-prov"><option>KwaZulu-Natal</option><option>Gauteng</option><option>Western Cape</option><option>Eastern Cape</option></select></div><button class="btn btn-primary btn-full btn-lg" onclick="checkoutNext(2)">Continue to Payment →</button></div>${summaryHtml}</div>`;
   } else if (STATE.checkoutStep === 2) {
-    c.innerHTML = `<div class="grid-2" style="gap:32px;align-items:start;"><div class="card"><h3 class="mb-20">Payment Method</h3><div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;"><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--accent);"><input type="radio" name="pay" value="card" checked style="width:auto;"> 💳 Credit/Debit Card</label><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);"><input type="radio" name="pay" value="eft" style="width:auto;"> 🏦 EFT / Bank Transfer</label><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);"><input type="radio" name="pay" value="snapscan" style="width:auto;"> 📱 SnapScan / Zapper</label></div><div class="form-group"><label>Card Number</label><input placeholder="4242 4242 4242 4242" maxlength="19"></div><div class="grid-2" style="gap:12px;"><div class="form-group"><label>Expiry</label><input placeholder="MM/YY"></div><div class="form-group"><label>CVV</label><input placeholder="123" maxlength="3"></div></div><div class="form-group"><label>Name on Card</label><input value="${STATE.user?.name||''}"></div><div class="flex gap-12"><button class="btn btn-ghost" onclick="checkoutNext(1)">← Back</button><button class="btn btn-primary btn-full btn-lg" onclick="checkoutNext(3)">Review Order →</button></div></div><div class="card"><h3 class="mb-16">Order Summary</h3>${STATE.cart.map(i=>`<div class="flex justify-between mb-12"><div class="flex gap-10 items-center"><span>${i.emoji}</span><span class="text-sm">${i.name} x${i.qty}</span></div><span class="text-sm">R${i.price*i.qty}</span></div>`).join('')}<div class="separator"></div><div class="flex justify-between" style="font-family:var(--font-head);font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div></div></div>`;
+    c.innerHTML = `<div class="checkout-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;"><div class="card"><h3 class="mb-20">Payment Method</h3><div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;"><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--accent);"><input type="radio" name="pay" value="card" checked style="width:auto;"> 💳 Credit/Debit Card</label><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);"><input type="radio" name="pay" value="eft" style="width:auto;"> 🏦 EFT / Bank Transfer</label><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);"><input type="radio" name="pay" value="snapscan" style="width:auto;"> 📱 SnapScan / Zapper</label></div><div class="form-group"><label>Card Number</label><input placeholder="4242 4242 4242 4242" maxlength="19" autocomplete="cc-number"></div><div class="grid-2" style="gap:12px;"><div class="form-group"><label>Expiry</label><input placeholder="MM/YY" autocomplete="cc-exp"></div><div class="form-group"><label>CVV</label><input placeholder="123" maxlength="3" autocomplete="cc-csc"></div></div><div class="form-group"><label>Name on Card</label><input value="${STATE.user?.name||''}" autocomplete="cc-name"></div><div class="flex gap-12"><button class="btn btn-ghost" onclick="checkoutNext(1)">← Back</button><button class="btn btn-primary" style="flex:1;" onclick="checkoutNext(3)">Review Order →</button></div></div>${summaryHtml}</div>`;
   } else if (STATE.checkoutStep === 3) {
-    c.innerHTML = `<div class="card" style="max-width:560px;margin:0 auto;text-align:center;"><div style="font-size:3rem;margin-bottom:16px;">✅</div><h2 class="mb-8">Confirm your order</h2><p class="text-muted mb-24">Please review your order before placing it.</p><div style="background:var(--surface2);border-radius:12px;padding:20px;text-align:left;margin-bottom:24px;">${STATE.cart.map(i=>`<div class="flex justify-between mb-8"><span>${i.emoji} ${i.name} x${i.qty}</span><strong>R${i.price*i.qty}</strong></div>`).join('')}<div class="separator"></div><div class="flex justify-between" style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div></div><div class="flex gap-12 justify-center"><button class="btn btn-ghost" onclick="checkoutNext(2)">← Edit</button><button class="btn btn-primary btn-lg" onclick="placeOrder()">Place Order 🎉</button></div></div>`;
+    c.innerHTML = `<div class="card" style="max-width:560px;margin:0 auto;text-align:center;"><div style="font-size:3rem;margin-bottom:16px;">✅</div><h2 class="mb-8">Confirm your order</h2><p class="text-muted mb-24">Please review your order before placing it.</p><div style="background:var(--surface2);border-radius:12px;padding:20px;text-align:left;margin-bottom:24px;">${STATE.cart.map(i=>`<div class="flex justify-between mb-8"><span>${i.emoji} ${i.name} x${i.qty}</span><strong>R${i.price*i.qty}</strong></div>`).join('')}<div class="separator"></div><div class="flex justify-between" style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div></div><div class="flex gap-12 justify-center flex-wrap"><button class="btn btn-ghost" onclick="checkoutNext(2)">← Edit</button><button class="btn btn-primary btn-lg" onclick="placeOrder()">Place Order 🎉</button></div></div>`;
+  }
+
+  // Collapse checkout grid on mobile
+  if (window.innerWidth <= 600) {
+    c.querySelectorAll('.checkout-grid').forEach(g => g.style.gridTemplateColumns = '1fr');
   }
 }
 
@@ -849,18 +1230,29 @@ function logoutUser() { STATE.user = null; STATE.isAdmin = false; updateNavAuth(
 
 function updateNavAuth() {
   const loggedIn = !!STATE.user;
-  const logoutBtn = document.getElementById('nav-logout-btn');
+  document.getElementById('nav-logout-btn').style.display = loggedIn ? '' : 'none';
   const dashBtn = document.getElementById('nav-dashboard-btn');
-  const cartBtn = document.getElementById('nav-cart-btn');
-  if (logoutBtn) logoutBtn.style.display = loggedIn ? '' : 'none';
-  if (dashBtn) { dashBtn.style.display = loggedIn ? '' : 'none'; dashBtn.textContent = STATE.isAdmin ? 'Admin Panel' : 'Dashboard'; }
-  if (cartBtn) cartBtn.style.display = (loggedIn && !STATE.isAdmin) ? '' : 'none';
-  const actions = document.getElementById('nav-actions');
-  if (!actions) return;
-  actions.querySelectorAll('button').forEach(btn => {
-    if (btn.getAttribute('onclick') === "goTo('signin')") btn.style.display = loggedIn ? 'none' : '';
-    if (btn.getAttribute('onclick') === "goTo('signup')") btn.style.display = loggedIn ? 'none' : '';
-  });
+  dashBtn.style.display = loggedIn ? '' : 'none';
+  dashBtn.textContent = STATE.isAdmin ? 'Admin Panel' : 'Dashboard';
+  document.getElementById('nav-cart-btn').style.display = (loggedIn && !STATE.isAdmin) ? '' : 'none';
+  document.getElementById('btn-signin').style.display = loggedIn ? 'none' : '';
+  document.getElementById('btn-signup').style.display = loggedIn ? 'none' : '';
+  updateDrawerAuthArea();
+}
+
+function updateDrawerAuthArea() {
+  const area = document.getElementById('drawer-auth-area'); if (!area) return;
+  const loggedIn = !!STATE.user;
+  if (loggedIn) {
+    area.innerHTML = `
+      <button class="btn btn-outline btn-sm" onclick="navGo('dashboard')">${STATE.isAdmin ? '⚡ Admin Panel' : '📊 Dashboard'}</button>
+      ${!STATE.isAdmin ? `<button class="btn btn-ghost btn-sm" onclick="navGo('cart')">🛒 Cart (${STATE.cart.reduce((a,b)=>a+b.qty,0)})</button>` : ''}
+      <button class="btn btn-danger btn-sm" onclick="logoutUser();closeDrawer()">Logout</button>`;
+  } else {
+    area.innerHTML = `
+      <button class="btn btn-ghost btn-sm" onclick="navGo('signin')">Sign In</button>
+      <button class="btn btn-primary btn-sm" onclick="navGo('signup')">Get Started</button>`;
+  }
 }
 
 function cancelSub() { showToast('Subscription cancelled. Downgraded to Starter.','info'); if (STATE.user) { STATE.user.plan = 'Starter'; STATE.user.subscriptionActive = false; } showDashSection('subscription', null); }
@@ -901,9 +1293,7 @@ async function signupUser() {
   try {
     const { user } = await API.call('/api/auth/signup', { method:'POST', body: JSON.stringify({ name, email, phone, password }) });
     STATE.user = user; STATE.isAdmin = user.role === 'admin'; STATE.cart = [];
-    updateNavAuth();
-    showToast(`Welcome to INNOV8 SmartLF, ${user.name}!`, 'success');
-    goTo('dashboard');
+    updateNavAuth(); showToast(`Welcome to INNOV8 SmartLF, ${user.name}!`, 'success'); goTo('dashboard');
   } catch (e) { showToast(e.message, 'error'); }
 }
 
@@ -915,25 +1305,16 @@ async function signinUser() {
     const { user } = await API.call('/api/auth/login', { method:'POST', body: JSON.stringify({ email, password }) });
     STATE.user = user; STATE.isAdmin = user.role === 'admin';
     if (STATE.isAdmin) STATE.cart = [];
-    updateNavAuth();
-    showToast(`Welcome back, ${user.name}!`, 'success');
-    goTo(STATE.isAdmin ? 'admin' : 'dashboard');
+    updateNavAuth(); showToast(`Welcome back, ${user.name}!`, 'success'); goTo(STATE.isAdmin ? 'admin' : 'dashboard');
   } catch (e) { showToast(e.message, 'error'); }
 }
 
-// ── SUBSCRIPTION — saves to Postgres ──
 async function subscribePlan(plan, price) {
   if (!STATE.user) { showToast('Please sign in first.','info'); goTo('signin'); return; }
   try {
-    await fetch('/api/admin/users/' + STATE.user.id, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
-      body: JSON.stringify({ plan, subscriptionActive: plan !== 'Starter' })
-    });
-    STATE.user.plan = plan;
-    STATE.user.subscriptionActive = plan !== 'Starter';
-    showToast(`${plan} plan activated! ✅`, 'success');
-    goTo('dashboard');
+    await fetch('/api/admin/users/' + STATE.user.id, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'x-role': 'admin' }, body: JSON.stringify({ plan, subscriptionActive: plan !== 'Starter' }) });
+    STATE.user.plan = plan; STATE.user.subscriptionActive = plan !== 'Starter';
+    showToast(`${plan} plan activated! ✅`, 'success'); goTo('dashboard');
     setTimeout(() => showDashSection('subscription', null), 100);
   } catch(e) { showToast(e.message || 'Could not update plan.', 'error'); }
 }
@@ -945,8 +1326,7 @@ async function placeOrder() {
     const payload = { userId: STATE.user.id, items: STATE.cart.map(i => ({ id:i.id, name:i.name, qty:i.qty, price:i.price, type:i.category })), total: cartTotal() };
     const { order } = await API.call('/api/orders', { method:'POST', body: JSON.stringify(payload) });
     STATE.orders.unshift(order); STATE.cart = []; updateCartUI();
-    showToast('Order placed successfully! 🎉','success');
-    goTo('dashboard'); showDashSection('orders', null);
+    showToast('Order placed successfully! 🎉','success'); goTo('dashboard'); showDashSection('orders', null);
   } catch (e) { showToast(e.message, 'error'); }
 }
 
@@ -960,16 +1340,15 @@ async function showDashSection(section, btnEl) {
   const main = document.getElementById('dashboard-main'); if (!main) return;
   try { await refreshSmartData(); } catch(e) {}
   const tags = DB_CACHE.tags || [], orders = DB_CACHE.orders || [], scans = DB_CACHE.scans || [];
-  const tagRows = tags.map(t => `<tr><td><b>${t.label}</b><br><span class="text-muted text-sm">${t.code}</span></td><td><span class="badge ${t.type.includes('nfc')?'badge-purple':'badge-cyan'}">${t.type.toUpperCase()}</span></td><td>${t.itemName}</td><td><span class="badge ${t.active?'badge-green':'badge-warn'}">${t.active?'Active':'Inactive'}</span></td><td><button class="btn btn-ghost btn-sm" onclick="copySmartLink('${t.url}')">Copy Link</button> <button class="btn btn-outline btn-sm" onclick="editSmartTag('${t.id}')">Edit</button> <button class="btn ${t.active?'btn-danger':'btn-green'} btn-sm" onclick="toggleSmartTag('${t.id}', ${!t.active})">${t.active?'Deactivate':'Activate'}</button></td></tr>`).join('') || '<tr><td colspan="5" class="text-muted">No tags yet.</td></tr>';
-  const orderRows = orders.map(o => `<tr><td style="color:var(--accent);font-family:var(--font-head);">${o.id}</td><td>${(o.items||[]).map(i=>`${i.name} x${i.qty}`).join('<br>')}</td><td>${smartMoney(o.total)}</td><td><span class="badge badge-cyan">${o.status}</span></td><td>${smartDateTime(o.placedAt)}</td><td>${o.userReceived?'✅ Received':`<button class="btn btn-green btn-sm" onclick="markOrderReceived('${o.id}')">Mark received</button>`}</td></tr>`).join('') || '<tr><td colspan="6" class="text-muted">No orders yet.</td></tr>';
-  const scanRows = scans.map(s => `<tr><td>${smartDateTime(s.createdAt)}</td><td>${s.code}</td><td>${s.trackingAllowed?'✅ NFC tracking':'Locked'}</td><td>${s.lat ? `${s.lat}, ${s.lng}` : 'No coordinates'}</td></tr>`).join('') || '<tr><td colspan="4" class="text-muted">No scans yet.</td></tr>';
-
+  const tagRows = tags.map(t => `<tr><td><b>${t.label}</b><br><span class="text-muted text-sm">${t.code}</span></td><td><span class="badge ${t.type.includes('nfc')?'badge-purple':'badge-cyan'}">${t.type.toUpperCase()}</span></td><td>${t.itemName}</td><td><span class="badge ${t.active?'badge-green':'badge-warn'}">${t.active?'Active':'Inactive'}</span></td><td style="white-space:nowrap;"><button class="btn btn-ghost btn-sm" onclick="copySmartLink('${t.url}')">Copy</button> <button class="btn btn-outline btn-sm" onclick="editSmartTag('${t.id}')">Edit</button> <button class="btn ${t.active?'btn-danger':'btn-green'} btn-sm" onclick="toggleSmartTag('${t.id}', ${!t.active})">${t.active?'Off':'On'}</button></td></tr>`).join('') || '<tr><td colspan="5" class="text-muted">No tags yet.</td></tr>';
+  const orderRows = orders.map(o => `<tr><td style="color:var(--accent);font-family:var(--font-head);">${o.id}</td><td>${(o.items||[]).map(i=>`${i.name} x${i.qty}`).join('<br>')}</td><td>${smartMoney(o.total)}</td><td><span class="badge badge-cyan">${o.status}</span></td><td>${smartDateTime(o.placedAt)}</td><td>${o.userReceived?'✅':`<button class="btn btn-green btn-sm" onclick="markOrderReceived('${o.id}')">Received</button>`}</td></tr>`).join('') || '<tr><td colspan="6" class="text-muted">No orders yet.</td></tr>';
+  const scanRows = scans.map(s => `<tr><td>${smartDateTime(s.createdAt)}</td><td>${s.code}</td><td>${s.trackingAllowed?'✅':'Locked'}</td><td>${s.lat ? `${s.lat}, ${s.lng}` : '—'}</td></tr>`).join('') || '<tr><td colspan="4" class="text-muted">No scans yet.</td></tr>';
   const currentPlan = STATE.user?.plan || 'Starter';
   const sections = {
-    overview: `<h2 class="mb-8">My Dashboard</h2><p class="text-muted mb-24">Date: <b>${todaySmartLF()}</b></p><div class="grid-4 mb-24"><div class="stat-card"><div class="stat-label">Active Tags</div><div class="stat-value text-accent">${tags.filter(t=>t.active).length}</div></div><div class="stat-card"><div class="stat-label">Orders</div><div class="stat-value">${orders.length}</div></div><div class="stat-card"><div class="stat-label">Plan</div><div class="stat-value" style="font-size:1.4rem;">${currentPlan}</div></div><div class="stat-card"><div class="stat-label">Scans</div><div class="stat-value" style="color:var(--accent3);">${scans.length}</div></div></div><div class="card"><h3 class="mb-16">Recent scans</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Code</th><th>Tracking</th><th>Location</th></tr></thead><tbody>${scanRows}</tbody></table></div></div>`,
-    tags: `<div class="flex justify-between items-center mb-24"><h2>My Tags</h2><button class="btn btn-primary btn-sm" onclick="showAddTagModal()">+ Add Tag</button></div><div class="table-wrap"><table><thead><tr><th>Tag</th><th>Type</th><th>Item</th><th>Status</th><th>Actions</th></tr></thead><tbody>${tagRows}</tbody></table></div>`,
+    overview: `<h2 class="mb-8">My Dashboard</h2><p class="text-muted mb-24"><b>${todaySmartLF()}</b></p><div class="grid-4 mb-24"><div class="stat-card"><div class="stat-label">Active Tags</div><div class="stat-value text-accent">${tags.filter(t=>t.active).length}</div></div><div class="stat-card"><div class="stat-label">Orders</div><div class="stat-value">${orders.length}</div></div><div class="stat-card"><div class="stat-label">Plan</div><div class="stat-value" style="font-size:1.3rem;">${currentPlan}</div></div><div class="stat-card"><div class="stat-label">Scans</div><div class="stat-value" style="color:var(--accent3);">${scans.length}</div></div></div><div class="card"><h3 class="mb-16">Recent scans</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Code</th><th>Tracking</th><th>Location</th></tr></thead><tbody>${scanRows}</tbody></table></div></div>`,
+    tags: `<div class="flex justify-between items-center mb-24 flex-wrap gap-12"><h2>My Tags</h2><button class="btn btn-primary btn-sm" onclick="showAddTagModal()">+ Add Tag</button></div><div class="table-wrap"><table><thead><tr><th>Tag</th><th>Type</th><th>Item</th><th>Status</th><th>Actions</th></tr></thead><tbody>${tagRows}</tbody></table></div>`,
     orders: `<h2 class="mb-24">My Orders</h2><div class="table-wrap"><table><thead><tr><th>Order</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th>Received</th></tr></thead><tbody>${orderRows}</tbody></table></div>`,
-    subscription: `<h2 class="mb-24">Subscription</h2><div class="card mb-24" style="border-color:var(--accent2);"><div class="flex justify-between items-center flex-wrap gap-12"><div><div class="badge badge-purple mb-8">${currentPlan} Plan</div><h3 class="mb-4">${currentPlan === 'Starter' ? 'Free Plan' : currentPlan === 'Student' ? 'R49/month' : 'R199/month'}</h3><p class="text-muted text-sm">Subscription active: <b>${STATE.user?.subscriptionActive ? 'Yes ✅' : 'No'}</b></p></div><div class="flex gap-12">${currentPlan !== 'Business' ? `<button class="btn btn-primary" onclick="goTo('pricing')">Upgrade Plan</button>` : ''}${currentPlan !== 'Starter' ? `<button class="btn btn-danger" onclick="cancelSub()">Cancel</button>` : ''}</div></div></div><div class="table-wrap"><table><thead><tr><th>Feature</th><th>Starter</th><th>Student</th><th>Business</th></tr></thead><tbody><tr><td>Active tags</td><td>1</td><td>5</td><td>Unlimited</td></tr><tr><td>Anonymous messages</td><td>❌</td><td>✅</td><td>✅</td></tr><tr><td>Scan location log</td><td>❌</td><td>✅</td><td>✅</td></tr><tr><td>Analytics</td><td>❌</td><td>Basic</td><td>Full</td></tr><tr><td>Priority support</td><td>❌</td><td>❌</td><td>✅</td></tr></tbody></table></div>`,
+    subscription: `<h2 class="mb-24">Subscription</h2><div class="card mb-24" style="border-color:var(--accent2);"><div class="flex justify-between items-center flex-wrap gap-12"><div><div class="badge badge-purple mb-8">${currentPlan} Plan</div><h3 class="mb-4">${currentPlan === 'Starter' ? 'Free Plan' : currentPlan === 'Student' ? 'R49/month' : 'R199/month'}</h3><p class="text-muted text-sm">Active: <b>${STATE.user?.subscriptionActive ? 'Yes ✅' : 'No'}</b></p></div><div class="flex gap-12 flex-wrap">${currentPlan !== 'Business' ? `<button class="btn btn-primary" onclick="goTo('pricing')">Upgrade Plan</button>` : ''}${currentPlan !== 'Starter' ? `<button class="btn btn-danger" onclick="cancelSub()">Cancel</button>` : ''}</div></div></div><div class="table-wrap"><table><thead><tr><th>Feature</th><th>Starter</th><th>Student</th><th>Business</th></tr></thead><tbody><tr><td>Active tags</td><td>1</td><td>5</td><td>Unlimited</td></tr><tr><td>Anonymous messages</td><td>❌</td><td>✅</td><td>✅</td></tr><tr><td>Scan location log</td><td>❌</td><td>✅</td><td>✅</td></tr><tr><td>Analytics</td><td>❌</td><td>Basic</td><td>Full</td></tr><tr><td>Priority support</td><td>❌</td><td>❌</td><td>✅</td></tr></tbody></table></div>`,
     profile: `<h2 class="mb-24">Profile</h2><div class="card" style="max-width:560px;"><div class="form-group"><label>Name</label><input value="${STATE.user?.name||''}" readonly></div><div class="form-group"><label>Email</label><input value="${STATE.user?.email||''}" readonly></div><div class="form-group"><label>Phone</label><input value="${STATE.user?.phone||''}" readonly></div></div>`,
     notifications: `<h2 class="mb-24">Notifications</h2><div class="card"><p class="text-muted">Email alerts are sent when tags are assigned, orders update, and scans happen.</p></div>`
   };
@@ -995,7 +1374,7 @@ function copySmartLink(url) { navigator.clipboard?.writeText(url); showToast('Sc
 function editSmartTag(id) { const t=(DB_CACHE.tags||[]).find(x=>x.id===id); if(!t) return; const label=prompt('Tag label:',t.label); if(label===null) return; const itemName=prompt('Item name:',t.itemName); if(itemName===null) return; API.call('/api/tags/'+id,{method:'PUT',body:JSON.stringify({label,itemName})}).then(()=>{showToast('Tag updated','success');showDashSection('tags',null);}).catch(e=>showToast(e.message,'error')); }
 async function markOrderReceived(id) { try { await API.call('/api/orders/'+id+'/received',{method:'PUT'}); showToast('Order marked as received.','success'); showDashSection('orders', null); } catch(e){ showToast(e.message,'error'); } }
 
-// ── ADMIN DASHBOARD ──
+// ── ADMIN ──
 async function renderAdmin() { await showAdminSection(STATE.adminSection || 'overview', null); }
 
 async function showAdminSection(section, btnEl) {
@@ -1005,12 +1384,11 @@ async function showAdminSection(section, btnEl) {
   const main = document.getElementById('admin-main'); if (!main) return;
   try { await refreshSmartData(); } catch(e) {}
   const users=(DB_CACHE.users||[]).filter(u=>u.role!=='admin'), orders=DB_CACHE.orders||[], tags=DB_CACHE.tags||[], scans=DB_CACHE.scans||[];
-
   const sections = {
-    overview: `<h2 class="mb-8">Admin Dashboard</h2><p class="text-muted mb-24">Date: <b>${todaySmartLF()}</b></p><div class="grid-4 mb-24"><div class="stat-card"><div class="stat-label">Users</div><div class="stat-value text-accent">${users.length}</div></div><div class="stat-card"><div class="stat-label">Orders</div><div class="stat-value">${orders.length}</div></div><div class="stat-card"><div class="stat-label">Tags</div><div class="stat-value" style="color:var(--accent3);">${tags.length}</div></div><div class="stat-card"><div class="stat-label">Scans</div><div class="stat-value" style="color:var(--warn);">${scans.length}</div></div></div><div class="card"><h3 class="mb-16">Admin rules</h3><p class="text-muted">Admin can create users, assign QR/NFC tags, send emails, view scans, and update orders — but cannot buy products.</p></div>`,
-    users: `<div class="flex justify-between items-center mb-24"><h2>Users</h2><button class="btn btn-primary btn-sm" onclick="showAdminCreateUser()">+ Create User</button></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Plan</th><th>Actions</th></tr></thead><tbody>${users.map(u=>`<tr><td><b>${u.name}</b></td><td>${u.email}</td><td>${u.phone||''}</td><td><span class="badge badge-purple">${u.plan||'Starter'}</span></td><td><button class="btn btn-outline btn-sm" onclick="showAdminAssignTag('${u.id}')">Assign Tag</button></td></tr>`).join('') || '<tr><td colspan="5" class="text-muted">No users yet.</td></tr>'}</tbody></table></div>`,
-    orders: `<h2 class="mb-24">All Orders</h2><div class="table-wrap"><table><thead><tr><th>Order</th><th>User</th><th>Items</th><th>Total</th><th>Status</th><th>Received</th><th>Update</th></tr></thead><tbody>${orders.map(o=>{const u=users.find(x=>x.id===o.userId)||{}; return `<tr><td style="color:var(--accent);font-family:var(--font-head);">${o.id}</td><td>${u.name||'Unknown'}</td><td>${(o.items||[]).map(i=>`${i.name} x${i.qty}`).join('<br>')}</td><td>${smartMoney(o.total)}</td><td><span class="badge badge-cyan">${o.status}</span></td><td>${o.userReceived?'✅ Yes':'No'}</td><td><select onchange="adminOrderStatus('${o.id}',this.value)"><option value="">Choose</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></td></tr>`;}).join('') || '<tr><td colspan="7" class="text-muted">No orders yet.</td></tr>'}</tbody></table></div>`,
-    tags: `<div class="flex justify-between items-center mb-24"><h2>Tag Registry</h2><button class="btn btn-primary btn-sm" onclick="showAdminAssignTag()">+ Assign QR/NFC</button></div><div class="table-wrap"><table><thead><tr><th>QR</th><th>Code</th><th>Owner</th><th>Type</th><th>Item</th><th>Status</th></tr></thead><tbody>${tags.map(t=>{const u=users.find(x=>x.id===t.userId)||{}; return `<tr><td>${t.qrDataUrl?`<img src="${t.qrDataUrl}" style="width:70px;background:white;border-radius:8px;padding:4px;">`:''}</td><td><b>${t.code}</b><br><button class="btn btn-ghost btn-sm" onclick="copySmartLink('${t.url}')">Copy Link</button></td><td>${u.name||'Unknown'}</td><td><span class="badge ${t.type.includes('nfc')?'badge-purple':'badge-cyan'}">${t.type.toUpperCase()}</span></td><td>${t.itemName}</td><td>${t.active?'Active':'Inactive'}</td></tr>`;}).join('') || '<tr><td colspan="6" class="text-muted">No tags yet.</td></tr>'}</tbody></table></div>`,
+    overview: `<h2 class="mb-8">Admin Dashboard</h2><p class="text-muted mb-24"><b>${todaySmartLF()}</b></p><div class="grid-4 mb-24"><div class="stat-card"><div class="stat-label">Users</div><div class="stat-value text-accent">${users.length}</div></div><div class="stat-card"><div class="stat-label">Orders</div><div class="stat-value">${orders.length}</div></div><div class="stat-card"><div class="stat-label">Tags</div><div class="stat-value" style="color:var(--accent3);">${tags.length}</div></div><div class="stat-card"><div class="stat-label">Scans</div><div class="stat-value" style="color:var(--warn);">${scans.length}</div></div></div><div class="card"><h3 class="mb-16">Admin rules</h3><p class="text-muted">Admin can create users, assign QR/NFC tags, send emails, view scans, and update orders — but cannot buy products.</p></div>`,
+    users: `<div class="flex justify-between items-center mb-24 flex-wrap gap-12"><h2>Users</h2><button class="btn btn-primary btn-sm" onclick="showAdminCreateUser()">+ Create User</button></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Plan</th><th>Actions</th></tr></thead><tbody>${users.map(u=>`<tr><td><b>${u.name}</b><br><span class="text-muted text-sm">${u.phone||''}</span></td><td>${u.email}</td><td><span class="badge badge-purple">${u.plan||'Starter'}</span></td><td><button class="btn btn-outline btn-sm" onclick="showAdminAssignTag('${u.id}')">Assign Tag</button></td></tr>`).join('') || '<tr><td colspan="4" class="text-muted">No users yet.</td></tr>'}</tbody></table></div>`,
+    orders: `<h2 class="mb-24">All Orders</h2><div class="table-wrap"><table><thead><tr><th>Order</th><th>User</th><th>Total</th><th>Status</th><th>Update</th></tr></thead><tbody>${orders.map(o=>{const u=users.find(x=>x.id===o.userId)||{}; return `<tr><td style="color:var(--accent);font-family:var(--font-head);">${o.id}</td><td>${u.name||'Unknown'}</td><td>${smartMoney(o.total)}</td><td><span class="badge badge-cyan">${o.status}</span></td><td><select onchange="adminOrderStatus('${o.id}',this.value)" style="padding:6px 10px;font-size:0.8rem;"><option value="">Update</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></td></tr>`;}).join('') || '<tr><td colspan="5" class="text-muted">No orders yet.</td></tr>'}</tbody></table></div>`,
+    tags: `<div class="flex justify-between items-center mb-24 flex-wrap gap-12"><h2>Tag Registry</h2><button class="btn btn-primary btn-sm" onclick="showAdminAssignTag()">+ Assign QR/NFC</button></div><div class="table-wrap"><table><thead><tr><th>Code</th><th>Owner</th><th>Type</th><th>Item</th><th>QR</th></tr></thead><tbody>${tags.map(t=>{const u=users.find(x=>x.id===t.userId)||{}; return `<tr><td><b>${t.code}</b><br><button class="btn btn-ghost btn-sm" onclick="copySmartLink('${t.url}')">Copy Link</button></td><td>${u.name||'Unknown'}</td><td><span class="badge ${t.type.includes('nfc')?'badge-purple':'badge-cyan'}">${t.type.toUpperCase()}</span></td><td>${t.itemName}</td><td>${t.qrDataUrl?`<img src="${t.qrDataUrl}" style="width:56px;background:white;border-radius:6px;padding:3px;">`:''}</td></tr>`;}).join('') || '<tr><td colspan="5" class="text-muted">No tags yet.</td></tr>'}</tbody></table></div>`,
     emails: `<h2 class="mb-24">Send Email</h2><div class="card" style="max-width:640px;"><div class="form-group"><label>Recipient</label><select id="admin-email-to">${users.map(u=>`<option value="${u.email}">${u.name} (${u.email})</option>`).join('')}</select></div><div class="form-group"><label>Subject</label><input id="admin-email-subject" placeholder="Your SmartLF details"></div><div class="form-group"><label>Message</label><textarea id="admin-email-message" placeholder="Write message..."></textarea></div><button class="btn btn-primary" onclick="sendAdminEmail()">Send Email</button><p class="form-hint">Configure .env SMTP to actually send. Without SMTP, emails are logged in the database.</p></div>`
   };
   main.innerHTML = sections[section] || sections.overview;
@@ -1018,7 +1396,7 @@ async function showAdminSection(section, btnEl) {
 
 function showAdminCreateUser() {
   const overlay=document.createElement('div'); overlay.className='modal-overlay active';
-  overlay.innerHTML=`<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Create User</h3><div class="form-group"><label>Name</label><input id="au-name"></div><div class="form-group"><label>Email</label><input id="au-email"></div><div class="form-group"><label>Phone</label><input id="au-phone"></div><div class="form-group"><label>Password</label><input id="au-pass" value="demo123"></div><div class="form-group"><label>Plan</label><select id="au-plan"><option>Starter</option><option>Student</option><option>Business</option></select></div><label style="text-transform:none"><input id="au-sub" type="checkbox" style="width:auto"> Active subscription for NFC tracking</label><button class="btn btn-primary btn-full mt-16" onclick="adminCreateUser(this)">Create User</button></div>`;
+  overlay.innerHTML=`<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Create User</h3><div class="form-group"><label>Name</label><input id="au-name"></div><div class="form-group"><label>Email</label><input id="au-email"></div><div class="form-group"><label>Phone</label><input id="au-phone"></div><div class="form-group"><label>Password</label><input id="au-pass" value="demo123"></div><div class="form-group"><label>Plan</label><select id="au-plan"><option>Starter</option><option>Student</option><option>Business</option></select></div><label style="text-transform:none;display:flex;align-items:center;gap:8px;margin-bottom:16px;cursor:pointer;"><input id="au-sub" type="checkbox" style="width:auto;"> Active subscription</label><button class="btn btn-primary btn-full" onclick="adminCreateUser(this)">Create User</button></div>`;
   document.body.appendChild(overlay);
 }
 
@@ -1031,8 +1409,9 @@ async function adminCreateUser(btn) {
 
 function showAdminAssignTag(userId='') {
   const users=(DB_CACHE.users||[]).filter(u=>u.role!=='admin');
+  if(!users.length){showToast('No users to assign to.','error');return;}
   const overlay=document.createElement('div'); overlay.className='modal-overlay active';
-  overlay.innerHTML=`<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Assign QR/NFC Tag</h3><div class="form-group"><label>User</label><select id="at-user">${users.map(u=>`<option value="${u.id}" ${u.id===userId?'selected':''}>${u.name} (${u.email})</option>`).join('')}</select></div><div class="form-group"><label>Equipment Type</label><select id="at-type"><option value="qr">QR only</option><option value="nfc">NFC only</option><option value="nfc+qr">NFC + QR</option></select></div><div class="form-group"><label>Tag Label</label><input id="at-label" placeholder="Wallet Card"></div><div class="form-group"><label>Item Name</label><input id="at-item" placeholder="Wallet / Keys / Laptop"></div><div class="form-group"><label>Public Info</label><textarea id="at-info">Please contact the owner if found.</textarea></div><button class="btn btn-primary btn-full" onclick="adminAssignTag(this)">Generate QR + Assign</button></div>`;
+  overlay.innerHTML=`<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Assign QR/NFC Tag</h3><div class="form-group"><label>User</label><select id="at-user">${users.map(u=>`<option value="${u.id}" ${u.id===userId?'selected':''}>${u.name} (${u.email})</option>`).join('')}</select></div><div class="form-group"><label>Type</label><select id="at-type"><option value="qr">QR only</option><option value="nfc">NFC only</option><option value="nfc+qr">NFC + QR</option></select></div><div class="form-group"><label>Tag Label</label><input id="at-label" placeholder="Wallet Card"></div><div class="form-group"><label>Item Name</label><input id="at-item" placeholder="Wallet / Keys / Laptop"></div><div class="form-group"><label>Public Info</label><textarea id="at-info">Please contact the owner if found.</textarea></div><button class="btn btn-primary btn-full" onclick="adminAssignTag(this)">Generate QR + Assign</button></div>`;
   document.body.appendChild(overlay);
 }
 
@@ -1063,9 +1442,20 @@ async function bootScanPageIfNeeded(){
 function sendScanLocation(code){ if(!navigator.geolocation){ showToast('Location not supported.','error'); return; } navigator.geolocation.getCurrentPosition(async pos=>{ try{ const {trackingAllowed}=await API.call('/api/scan/'+code+'/location',{method:'POST',body:JSON.stringify({lat:pos.coords.latitude,lng:pos.coords.longitude,accuracy:pos.coords.accuracy})}); showToast(trackingAllowed?'Location saved.':'Scan saved, coordinates locked (no NFC subscription).','success'); } catch(e){showToast(e.message,'error');}},()=>showToast('Location permission denied.','error')); }
 async function contactSmartOwner(code){ try{ await API.call('/api/contact-owner/'+code,{method:'POST',body:JSON.stringify({message:document.getElementById('finder-msg').value,contact:document.getElementById('finder-contact').value})}); showToast('Message sent to owner.','success'); }catch(e){showToast(e.message,'error');} }
 
-// ── DARK/BRIGHT TOGGLE ──
-function addSmartModeToggle(){ const nav=document.getElementById('nav-actions'); if(!nav||document.getElementById('mode-toggle')) return; const b=document.createElement('button'); b.id='mode-toggle'; b.className='btn btn-ghost btn-sm'; b.textContent='☀️ Bright'; b.onclick=()=>{ document.body.classList.toggle('bright-mode'); b.textContent=document.body.classList.contains('bright-mode')?'🌙 Dark':'☀️ Bright'; }; nav.prepend(b); }
-const style=document.createElement('style'); style.textContent=`body.bright-mode{--bg:#f7fafc;--surface:#ffffff;--surface2:#eef4f8;--border:#d7e3ea;--text:#0a0a0f;--muted:#51606c;--card:#ffffff;} body.bright-mode nav{background:rgba(255,255,255,.92)} body.bright-mode .product-img{background:#eef4f8}`; document.head.appendChild(style);
+// ── BRIGHT MODE TOGGLE ──
+function addSmartModeToggle(){
+  const nav=document.getElementById('nav-actions'); if(!nav||document.getElementById('mode-toggle')) return;
+  const b=document.createElement('button'); b.id='mode-toggle'; b.className='btn btn-ghost btn-sm'; b.textContent='☀️';
+  b.title='Toggle bright mode';
+  b.onclick=()=>{ document.body.classList.toggle('bright-mode'); b.textContent=document.body.classList.contains('bright-mode')?'🌙':'☀️'; };
+  nav.insertBefore(b, nav.querySelector('.hamburger'));
+}
+
+// ── RESIZE HANDLER ──
+window.addEventListener('resize', () => {
+  if (STATE.currentPage === 'cart') renderCartPage();
+  if (STATE.currentPage === 'checkout') renderCheckout();
+});
 
 setTimeout(()=>{ addSmartModeToggle(); updateNavAuth(); bootScanPageIfNeeded(); }, 50);
 goTo('home');
