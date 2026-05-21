@@ -1,0 +1,331 @@
+{
+  "users": [
+    {
+      "id": "u-admin",
+      "name": "INNOV8 Admin",
+      "email": "admin@innov8.co.za",
+      "phone": "0710000000",
+      "password": "admin123",
+      "role": "admin",
+      "plan": "Business",
+      "subscriptionActive": true,
+      "createdAt": "2026-05-10T00:00:00.000Z"
+    },
+    {
+      "id": "u-demo",
+      "name": "Demo Customer",
+      "email": "user@innov8.co.za",
+      "phone": "0721112222",
+      "password": "demo123",
+      "role": "user",
+      "plan": "Student",
+      "subscriptionActive": true,
+      "createdAt": "2026-05-10T00:00:00.000Z"
+    },
+    {
+      "id": "7cf5f409-fa95-4d37-918b-c4a980fa0a01",
+      "name": "Rea Mashinini",
+      "email": "reamashinini23@gmail.com",
+      "phone": "0123456789",
+      "password": "Rea123456",
+      "role": "user",
+      "plan": "Starter",
+      "subscriptionActive": false,
+      "createdAt": "2026-05-11T09:50:53.513Z"
+    }
+  ],
+  "tags": [
+    {
+      "id": "ce826f78-a04e-4469-9149-817abbfb4c40",
+      "code": "SLF-DX8Q5F",
+      "userId": "u-demo",
+      "label": "Wallet card",
+      "type": "nfc",
+      "itemName": "Wallet",
+      "publicInfo": "Please contact the owner if found.",
+      "privateNote": "",
+      "active": true,
+      "assignedAt": "2026-05-11T09:44:13.456Z",
+      "subscriptionRequiredForTracking": true,
+      "url": "http://localhost:3000/scan/SLF-DX8Q5F",
+      "qrDataUrl": "data:image/png;base64,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"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-1778493137667",
+      "userId": "7cf5f409-fa95-4d37-918b-c4a980fa0a01",
+      "items": [
+        {
+          "id": 2,
+          "name": "NFC Keychain Tag",
+          "qty": 1,
+          "price": 89,
+          "type": "nfc"
+        },
+        {
+          "id": 3,
+          "name": "NFC Card (Business Card Size)",
+          "qty": 1,
+          "price": 45,
+          "type": "nfc"
+        }
+      ],
+      "total": 134,
+      "status": "Processing",
+      "userReceived": false,
+      "placedAt": "2026-05-11T09:52:17.667Z",
+      "expectedDate": "2026-05-12T09:52:17.667Z"
+    },
+    {
+      "id": "ORD-1778492946413",
+      "userId": "u-demo",
+      "items": [
+        {
+          "id": 5,
+          "name": "QR + NFC Combo Sticker (5-pack)",
+          "qty": 1,
+          "price": 199,
+          "type": "combo"
+        }
+      ],
+      "total": 199,
+      "status": "Shipped",
+      "userReceived": false,
+      "placedAt": "2026-05-11T09:49:06.413Z",
+      "expectedDate": "2026-05-12T09:49:06.413Z",
+      "updatedAt": "2026-05-11T09:49:53.345Z"
+    }
+  ],
+  "scans": [
+    {
+      "id": "b21a62f8-f1d3-45c3-92f0-8bdabc0c3133",
+      "tagId": "ce826f78-a04e-4469-9149-817abbfb4c40",
+      "code": "SLF-DX8Q5F",
+      "createdAt": "2026-05-11T09:46:33.075Z",
+      "trackingAllowed": true,
+      "lat": -29.858277916184957,
+      "lng": 31.023682336846058,
+      "accuracy": 99,
+      "note": ""
+    }
+  ],
+  "emails": [
+    {
+      "id": "693bd899-f06c-4908-a947-fdda6abf9876",
+      "to": "reamashinini23@gmail.com",
+      "subject": "INNOV8 SmartLF order confirmed",
+      "html": "<h2>Order confirmed</h2><p>Order <b>ORD-1778493137667</b> is now Processing.</p><p>Total: R134</p>",
+      "createdAt": "2026-05-11T09:52:17.667Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "e32ac068-1c67-40a0-b6eb-5549f9fd76bf",
+      "to": "reamashinini23@gmail.com",
+      "subject": "Welcome to INNOV8 SmartLF",
+      "html": "<h2>Welcome Rea Mashinini</h2><p>Your INNOV8 SmartLF account is ready. Admin can now assign QR/NFC equipment to you.</p>",
+      "createdAt": "2026-05-11T09:50:53.513Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "abbaf67d-4bbd-4aa0-ae43-28aa80504cbf",
+      "to": "user@innov8.co.za",
+      "subject": "Order ORD-1778492946413 updated",
+      "html": "<h2>Order update</h2><p>Your order is now: <b>Shipped</b>.</p>",
+      "createdAt": "2026-05-11T09:49:53.345Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "b0853523-ab1e-48a7-aea3-444b9b816df4",
+      "to": "user@innov8.co.za",
+      "subject": "INNOV8 SmartLF order confirmed",
+      "html": "<h2>Order confirmed</h2><p>Order <b>ORD-1778492946413</b> is now Processing.</p><p>Total: R199</p>",
+      "createdAt": "2026-05-11T09:49:06.413Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "6f6784ef-1f6a-45e8-a7f3-9d381597c64d",
+      "to": "user@innov8.co.za",
+      "subject": "Someone found your SmartLF item",
+      "html": "<h2>Finder message</h2><p>I found your item.</p><p>Reply contact: 0123456789</p>",
+      "createdAt": "2026-05-11T09:46:44.122Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "08610441-2df7-458c-8b51-daa431784d8f",
+      "to": "user@innov8.co.za",
+      "subject": "Your SmartLF tag was scanned",
+      "html": "<h2>Tag scanned</h2><p>Wallet card was scanned.</p><p>Tracking allowed: <b>Yes</b></p>",
+      "createdAt": "2026-05-11T09:46:33.075Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "11644816-b2f6-46b3-9f75-d4c49dc128b6",
+      "to": "user@innov8.co.za",
+      "subject": "A SmartLF tag has been assigned to you",
+      "html": "<h2>New SmartLF tag assigned</h2><p>Tag: <b>Wallet card</b></p><p>Scan/NFC link: <a href=\"http://localhost:3000/scan/SLF-DX8Q5F\">http://localhost:3000/scan/SLF-DX8Q5F</a></p>",
+      "createdAt": "2026-05-11T09:44:13.469Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "a2c29673-98c3-41b8-972a-0bd441f87688",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Someone found your SmartLF item",
+      "html": "<h2>Finder message</h2><p>I found your item.</p><p>Reply contact: 01234567899</p>",
+      "createdAt": "2026-05-10T20:58:36.723Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "60c75d45-9551-4194-849b-ea0313b98a65",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Your SmartLF tag was scanned",
+      "html": "<h2>Tag scanned</h2><p>Water bottle was scanned.</p><p>Tracking allowed: <b>No</b></p>",
+      "createdAt": "2026-05-10T20:58:30.092Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "dad9a8c9-8af3-4f36-8253-afd6821db08b",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Your SmartLF tag was scanned",
+      "html": "<h2>Tag scanned</h2><p>Water bottle was scanned.</p><p>Tracking allowed: <b>No</b></p>",
+      "createdAt": "2026-05-10T20:58:30.088Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "838928ec-4f58-4f83-94f7-48c3c2f00fa5",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "A SmartLF tag has been assigned to you",
+      "html": "<h2>New SmartLF tag assigned</h2><p>Tag: <b>Water bottle</b></p><p>Scan/NFC link: <a href=\"http://localhost:3000/scan/SLF-OATU3X\">http://localhost:3000/scan/SLF-OATU3X</a></p>",
+      "createdAt": "2026-05-10T20:57:32.652Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "a0ac762d-475f-4c56-a123-85d8a65485df",
+      "to": "reamashinini23@gmail.com",
+      "subject": "Order ORD-1778446477036 updated",
+      "html": "<h2>Order update</h2><p>Your order is now: <b>Shipped</b>.</p>",
+      "createdAt": "2026-05-10T20:55:42.607Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "983824d6-48a6-47e7-9805-d9837bd231c4",
+      "to": "reamashinini23@gmail.com",
+      "subject": "INNOV8 SmartLF order confirmed",
+      "html": "<h2>Order confirmed</h2><p>Order <b>ORD-1778446477036</b> is now Processing.</p><p>Total: R344</p>",
+      "createdAt": "2026-05-10T20:54:37.038Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "e2e09fd1-c4ee-4e02-90b1-84888d72883d",
+      "to": "reamashinini23@gmail.com",
+      "subject": "Welcome to INNOV8 SmartLF",
+      "html": "<h2>Welcome Rea Mashinini</h2><p>Your INNOV8 SmartLF account is ready. Admin can now assign QR/NFC equipment to you.</p>",
+      "createdAt": "2026-05-10T20:53:05.800Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "a1c22acf-910b-404e-9c6b-4aafdff38816",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Order ORD-1778436998696 updated",
+      "html": "<h2>Order update</h2><p>Your order is now: <b>Delivered</b>.</p>",
+      "createdAt": "2026-05-10T20:48:25.058Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "f86a8b03-aa2f-4fe4-acfc-78844aa945d6",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Order ORD-1778436998696 updated",
+      "html": "<h2>Order update</h2><p>Your order is now: <b>Processing</b>.</p>",
+      "createdAt": "2026-05-10T20:48:20.372Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "673085fc-d1f6-4475-9d49-b0c74c62ebf8",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Order ORD-1778436998696 updated",
+      "html": "<h2>Order update</h2><p>Your order is now: <b>Delivered</b>.</p>",
+      "createdAt": "2026-05-10T18:24:57.820Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "0d111a41-2b59-4418-a957-d715b3a3311b",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Order ORD-1778436998696 updated",
+      "html": "<h2>Order update</h2><p>Your order is now: <b>Processing</b>.</p>",
+      "createdAt": "2026-05-10T18:24:55.275Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "5ddd9070-7733-4aa4-9a05-72b8ace39c20",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Someone found your SmartLF item",
+      "html": "<h2>Finder message</h2><p>I found your item.</p><p>Reply contact: 0648022775</p>",
+      "createdAt": "2026-05-10T18:23:19.227Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "a87ecc5e-a153-449d-bb5e-43a8a02ecf9d",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Your SmartLF tag was scanned",
+      "html": "<h2>Tag scanned</h2><p>Wallet was scanned.</p><p>Tracking allowed: <b>No</b></p>",
+      "createdAt": "2026-05-10T18:23:19.112Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "6e28e9b7-4c09-4cb8-b16a-3745ef7c47bb",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Your SmartLF tag was scanned",
+      "html": "<h2>Tag scanned</h2><p>Wallet was scanned.</p><p>Tracking allowed: <b>No</b></p>",
+      "createdAt": "2026-05-10T18:23:19.111Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "915fef4f-c9e7-4db8-bd80-f89ed89d8fd0",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Someone found your SmartLF item",
+      "html": "<h2>Finder message</h2><p>I found your item.</p><p>Reply contact: 0648022775</p>",
+      "createdAt": "2026-05-10T18:20:45.254Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "087c1567-ae1c-4b4e-bcc0-37516be06b53",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Your SmartLF tag was scanned",
+      "html": "<h2>Tag scanned</h2><p>Wallet was scanned.</p><p>Tracking allowed: <b>No</b></p>",
+      "createdAt": "2026-05-10T18:20:17.591Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "c17185b1-663b-447e-810a-2d9c502743a3",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Order ORD-1778436998696 updated",
+      "html": "<h2>Order update</h2><p>Your order is now: <b>Delivered</b>.</p>",
+      "createdAt": "2026-05-10T18:17:47.820Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "cd34004a-7493-4ee8-8902-9a0241299a16",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Order ORD-1778436998696 updated",
+      "html": "<h2>Order update</h2><p>Your order is now: <b>Shipped</b>.</p>",
+      "createdAt": "2026-05-10T18:17:24.069Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "30798903-fa50-41ae-9025-8d82053639e3",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "INNOV8 SmartLF order confirmed",
+      "html": "<h2>Order confirmed</h2><p>Order <b>ORD-1778436998696</b> is now Processing.</p><p>Total: R244</p>",
+      "createdAt": "2026-05-10T18:16:38.698Z",
+      "status": "logged-only"
+    },
+    {
+      "id": "82c4fb85-8614-40da-8125-aba7b5d1473d",
+      "to": "reamashinini2003@gmail.com",
+      "subject": "Welcome to INNOV8 SmartLF",
+      "html": "<h2>Welcome Rea Mashinini</h2><p>Your INNOV8 SmartLF account is ready. Admin can now assign QR/NFC equipment to you.</p>",
+      "createdAt": "2026-05-10T18:15:05.881Z",
+      "status": "logged-only"
+    }
+  ]
+}
