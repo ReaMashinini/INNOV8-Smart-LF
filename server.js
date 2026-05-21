@@ -7,7 +7,10 @@ const nodemailer = require('nodemailer');
 const QRCode = require('qrcode');
 const { v4: uuidv4 } = require('uuid');
 
-
+const app = express();
+const PORT = process.env.PORT || 3000;
+const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+const DB_FILE = path.join(__dirname, 'data', 'db.json');
 
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
