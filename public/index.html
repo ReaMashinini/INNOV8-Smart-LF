@@ -1,3 +1,4 @@
+cat > /mnt/user-data/outputs/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,11 +35,9 @@ body {
   min-height: 100vh;
 }
 
-/* ─── PAGE SYSTEM ─── */
 .page { display:none; min-height:100vh; }
 .page.active { display:block; }
 
-/* ─── NAV ─── */
 nav {
   position: fixed; top:0; left:0; right:0; z-index: 999;
   background: rgba(10,10,15,0.92);
@@ -76,7 +75,6 @@ nav {
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
 .nav-actions { display:flex; align-items:center; gap:12px; }
 
-/* ─── BUTTONS ─── */
 .btn {
   display: inline-flex; align-items:center; gap:6px;
   padding: 9px 20px; border-radius: 8px;
@@ -100,7 +98,6 @@ nav {
 .btn-sm { padding: 6px 14px; font-size: 0.8rem; border-radius: 6px; }
 .btn-full { width:100%; justify-content:center; }
 
-/* ─── FORMS ─── */
 .form-group { margin-bottom: 18px; }
 label { display:block; font-size:0.82rem; color:var(--muted); margin-bottom:6px; font-weight:500; letter-spacing:0.04em; text-transform:uppercase; }
 input, select, textarea {
@@ -114,7 +111,6 @@ textarea { resize:vertical; min-height:80px; }
 .form-error { color: var(--danger); font-size:0.8rem; margin-top:4px; }
 .form-hint { color: var(--muted); font-size:0.8rem; margin-top:4px; }
 
-/* ─── CARDS ─── */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -124,7 +120,6 @@ textarea { resize:vertical; min-height:80px; }
 .card-hover { transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
 .card-hover:hover { border-color: var(--accent); transform:translateY(-3px); box-shadow: 0 8px 32px rgba(0,229,255,0.08); }
 
-/* ─── BADGES ─── */
 .badge {
   display:inline-flex; align-items:center;
   padding: 3px 10px; border-radius:20px;
@@ -136,7 +131,6 @@ textarea { resize:vertical; min-height:80px; }
 .badge-warn { background:rgba(245,158,11,0.12); color:var(--warn); }
 .badge-red { background:rgba(239,68,68,0.12); color:var(--danger); }
 
-/* ─── SECTION BASICS ─── */
 .section { padding: 80px 5%; }
 .section-sm { padding: 40px 5%; }
 .container { max-width: 1200px; margin: 0 auto; }
@@ -182,7 +176,6 @@ h4 { font-size:1rem; font-weight:600; }
 .icon-lg { font-size:2rem; }
 .icon-xl { font-size:2.8rem; }
 
-/* ─── TOAST ─── */
 .toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:10px; }
 .toast {
   background:var(--surface2); border:1px solid var(--border);
@@ -197,7 +190,6 @@ h4 { font-size:1rem; font-weight:600; }
 .toast.info { border-color: var(--accent); }
 @keyframes slideIn { from{transform:translateX(100px);opacity:0} to{transform:translateX(0);opacity:1} }
 
-/* ─── MODAL ─── */
 .modal-overlay {
   display:none; position:fixed; inset:0;
   background:rgba(0,0,0,0.7); z-index:1000;
@@ -221,7 +213,6 @@ h4 { font-size:1rem; font-weight:600; }
 }
 .modal-close:hover { color:var(--text); }
 
-/* ─── TABS ─── */
 .tabs { display:flex; gap:4px; background:var(--surface2); border-radius:10px; padding:4px; margin-bottom:28px; }
 .tab-btn {
   flex:1; padding:9px; border-radius:8px; border:none;
@@ -231,7 +222,6 @@ h4 { font-size:1rem; font-weight:600; }
 }
 .tab-btn.active { background:var(--surface); color:var(--text); box-shadow:0 1px 4px rgba(0,0,0,0.3); }
 
-/* ─── SIDEBAR ─── */
 .dashboard-layout { display:flex; min-height:100vh; padding-top:64px; }
 .sidebar {
   width:240px; flex-shrink:0;
@@ -254,7 +244,6 @@ h4 { font-size:1rem; font-weight:600; }
 .dashboard-main { flex:1; padding:32px 40px; overflow-x:hidden; }
 @media(max-width:768px){ .sidebar{display:none;} .dashboard-main{padding:20px;} }
 
-/* ─── STAT CARDS ─── */
 .stat-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:14px; padding:20px;
@@ -263,14 +252,12 @@ h4 { font-size:1rem; font-weight:600; }
 .stat-value { font-family:var(--font-head); font-size:2rem; font-weight:800; line-height:1; }
 .stat-change { font-size:0.8rem; color:var(--accent3); margin-top:4px; }
 
-/* ─── TABLE ─── */
 .table-wrap { overflow-x:auto; border-radius:12px; border:1px solid var(--border); }
 table { width:100%; border-collapse:collapse; }
 th { background:var(--surface2); color:var(--muted); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; padding:12px 16px; text-align:left; font-weight:600; }
 td { padding:14px 16px; font-size:0.88rem; border-top:1px solid var(--border); }
 tr:hover td { background:rgba(255,255,255,0.015); }
 
-/* ─── CART BADGE ─── */
 .cart-btn { position:relative; cursor:pointer; }
 .cart-count {
   position:absolute; top:-6px; right:-6px;
@@ -280,7 +267,6 @@ tr:hover td { background:rgba(255,255,255,0.015); }
   display:flex; align-items:center; justify-content:center;
 }
 
-/* ─── HERO SPECIFIC ─── */
 .hero-grid-bg {
   position:absolute; inset:0; pointer-events:none;
   background-image: linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
@@ -295,7 +281,6 @@ tr:hover td { background:rgba(255,255,255,0.015); }
   pointer-events:none;
 }
 
-/* ─── PRICING CARDS ─── */
 .pricing-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:20px; padding:32px;
@@ -312,7 +297,6 @@ tr:hover td { background:rgba(255,255,255,0.015); }
 .check { color:var(--accent3); }
 .cross { color:var(--danger); }
 
-/* ─── PRODUCT CARDS ─── */
 .product-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:16px; overflow:hidden;
@@ -336,7 +320,6 @@ tr:hover td { background:rgba(255,255,255,0.015); }
 .product-price { font-family:var(--font-head); font-weight:800; font-size:1.3rem; color:var(--accent); margin-bottom:12px; }
 .product-price span { font-size:0.82rem; font-weight:400; color:var(--muted); }
 
-/* ─── STEP INDICATOR ─── */
 .steps { display:flex; gap:0; margin-bottom:32px; }
 .step-item { flex:1; display:flex; flex-direction:column; align-items:center; position:relative; }
 .step-item:not(:last-child)::after {
@@ -355,10 +338,8 @@ tr:hover td { background:rgba(255,255,255,0.015); }
 .step-item.done .step-circle { background:var(--accent); border-color:var(--accent); color:#0a0a0f; }
 .step-label { font-size:0.72rem; color:var(--muted); margin-top:6px; text-align:center; }
 
-/* ─── NOTIFICATION DOT ─── */
 .notif-dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
 
-/* ─── FOOTER ─── */
 footer {
   background:var(--surface); border-top:1px solid var(--border);
   padding:40px 5% 24px;
@@ -371,7 +352,6 @@ footer {
 .footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; align-items:center; }
 .footer-bottom p { font-size:0.8rem; color:var(--muted); }
 
-/* ─── HOW IT WORKS ─── */
 .how-step { display:flex; gap:20px; align-items:flex-start; }
 .how-num {
   width:40px; height:40px; border-radius:50%; flex-shrink:0;
@@ -380,14 +360,6 @@ footer {
   font-family:var(--font-head); font-weight:800; color:var(--accent); font-size:0.95rem;
 }
 
-/* ─── QR DISPLAY MOCK ─── */
-.qr-mock {
-  background:white; width:120px; height:120px;
-  border-radius:12px; display:flex; align-items:center; justify-content:center;
-  font-size:3rem;
-}
-
-/* ─── TESTIMONIALS ─── */
 .testimonial-card {
   background:var(--card); border:1px solid var(--border);
   border-radius:16px; padding:24px;
@@ -404,7 +376,6 @@ footer {
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
 <nav>
   <div class="nav-logo" onclick="goTo('home')">
     <div class="nav-logo-dot"></div>
@@ -428,28 +399,17 @@ footer {
   </div>
 </nav>
 
-<!-- ─── TOAST CONTAINER ─── -->
 <div class="toast-container" id="toasts"></div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: HOME
-════════════════════════════════════════════════ -->
 <div id="page-home" class="page">
-  <!-- Hero -->
   <div style="position:relative; overflow:hidden; padding:120px 5% 80px; min-height:92vh; display:flex; align-items:center;">
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
     <div class="container" style="position:relative; z-index:1;">
       <div style="max-width:680px;">
         <div class="badge badge-cyan mb-16">🇿🇦 Made for South African students & professionals</div>
-        <h1 class="mb-24">
-          Tap to return.<br>
-          <span style="color:var(--accent)">Never lose</span> anything again.
-        </h1>
-        <p class="text-lg text-muted mb-32" style="max-width:520px; line-height:1.8;">
-          INNOV8 NFC & QR tags turn any item into a smart, recoverable asset. 
-          One tap. One scan. You're reunited with your belongings instantly.
-        </p>
+        <h1 class="mb-24">Tap to return.<br><span style="color:var(--accent)">Never lose</span> anything again.</h1>
+        <p class="text-lg text-muted mb-32" style="max-width:520px; line-height:1.8;">INNOV8 NFC & QR tags turn any item into a smart, recoverable asset. One tap. One scan. You're reunited with your belongings instantly.</p>
         <div class="flex gap-16 flex-wrap">
           <button class="btn btn-primary btn-lg" onclick="goTo('signup')">Start for free →</button>
           <button class="btn btn-ghost btn-lg" onclick="goTo('how')">See how it works</button>
@@ -463,7 +423,6 @@ footer {
         </div>
       </div>
     </div>
-    <!-- Floating tag mock -->
     <div style="position:absolute; right:6%; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:16px; opacity:0.9;">
       <div class="card" style="width:220px; animation: float 3s ease-in-out infinite;">
         <div style="font-size:2rem; margin-bottom:8px;">📱</div>
@@ -477,11 +436,8 @@ footer {
       </div>
     </div>
   </div>
-  <style>
-  @keyframes float { 0%,100%{transform:translateY(-50%) translateY(0)} 50%{transform:translateY(-50%) translateY(-12px)} }
-  </style>
+  <style>@keyframes float { 0%,100%{transform:translateY(-50%) translateY(0)} 50%{transform:translateY(-50%) translateY(-12px)} }</style>
 
-  <!-- Feature Strips -->
   <div class="section-sm" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
       <div class="grid-4">
@@ -493,7 +449,6 @@ footer {
     </div>
   </div>
 
-  <!-- Featured Products Preview -->
   <div class="section">
     <div class="container">
       <div class="section-tag">Products</div>
@@ -505,41 +460,18 @@ footer {
     </div>
   </div>
 
-  <!-- Testimonials -->
   <div class="section" style="background:var(--surface);">
     <div class="container">
       <div class="section-tag">Testimonials</div>
       <h2 class="mb-32">Students love SmartLF</h2>
       <div class="grid-3">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Lost my bag at the UKZN library and got it back in 20 minutes because of SmartLF. Life saver!"</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(0,229,255,0.15);color:var(--accent);">R</div>
-            <div><div style="font-weight:600;font-size:0.88rem;">Rethabile M.</div><div class="text-muted text-sm">UKZN Student</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Put tags on everything. Keys, charger, water bottle. Already recovered my keys twice this semester."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(124,58,237,0.15);color:#a78bfa;">S</div>
-            <div><div style="font-weight:600;font-size:0.88rem;">Sipho N.</div><div class="text-muted text-sm">DUT Student</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"The NFC tap feels so professional. The gym uses it for member tracking now too. Amazing tech."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(16,185,129,0.15);color:var(--accent3);">A</div>
-            <div><div style="font-weight:600;font-size:0.88rem;">Amahle D.</div><div class="text-muted text-sm">Gym Owner, Pinetown</div></div>
-          </div>
-        </div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Lost my bag at the UKZN library and got it back in 20 minutes because of SmartLF. Life saver!"</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:rgba(0,229,255,0.15);color:var(--accent);">R</div><div><div style="font-weight:600;font-size:0.88rem;">Rethabile M.</div><div class="text-muted text-sm">UKZN Student</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Put tags on everything. Keys, charger, water bottle. Already recovered my keys twice this semester."</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:rgba(124,58,237,0.15);color:#a78bfa;">S</div><div><div style="font-weight:600;font-size:0.88rem;">Sipho N.</div><div class="text-muted text-sm">DUT Student</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"The NFC tap feels so professional. The gym uses it for member tracking now too. Amazing tech."</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:rgba(16,185,129,0.15);color:var(--accent3);">A</div><div><div style="font-weight:600;font-size:0.88rem;">Amahle D.</div><div class="text-muted text-sm">Gym Owner, Pinetown</div></div></div></div>
       </div>
     </div>
   </div>
 
-  <!-- CTA -->
   <div class="section text-center">
     <div class="container" style="max-width:600px;">
       <h2 class="mb-16">Start protecting your items today</h2>
@@ -550,112 +482,39 @@ footer {
       </div>
     </div>
   </div>
-
   <div id="home-footer"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: HOW IT WORKS
-════════════════════════════════════════════════ -->
 <div id="page-how" class="page pt-64">
   <div class="section">
     <div class="container">
       <div class="section-tag text-center">The Process</div>
       <h2 class="text-center mb-12">How INNOV8 works</h2>
       <p class="text-muted text-center mb-48" style="max-width:500px;margin-left:auto;margin-right:auto;">Simple, fast, and safe. No app required for the finder. No complex setup for you.</p>
-
       <div class="grid-2" style="gap:48px; align-items:center; margin-bottom:80px;">
         <div>
           <div class="flex gap-24 flex-col">
-            <div class="how-step">
-              <div class="how-num">1</div>
-              <div>
-                <h3 class="mb-8">Register your account</h3>
-                <p class="text-muted text-sm">Sign up and complete your profile with your name, contact details, and emergency contacts. Takes 2 minutes.</p>
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-num">2</div>
-              <div>
-                <h3 class="mb-8">Order your tags</h3>
-                <p class="text-muted text-sm">Choose from NFC stickers, QR cards, keychains, or bulk packs. We ship to your door within 3–5 business days.</p>
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-num">3</div>
-              <div>
-                <h3 class="mb-8">Attach & activate</h3>
-                <p class="text-muted text-sm">Each tag has a unique code. Log in, activate it, and link it to any item — bag, keys, laptop, water bottle.</p>
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-num">4</div>
-              <div>
-                <h3 class="mb-8">Finder scans or taps</h3>
-                <p class="text-muted text-sm">Someone finds your item. They tap their phone on the NFC or scan the QR. Your profile page opens instantly.</p>
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-num">5</div>
-              <div>
-                <h3 class="mb-8">You're reunited! 🎉</h3>
-                <p class="text-muted text-sm">The finder contacts you directly or sends an anonymous message. You get notified and recover your item.</p>
-              </div>
-            </div>
+            <div class="how-step"><div class="how-num">1</div><div><h3 class="mb-8">Register your account</h3><p class="text-muted text-sm">Sign up and complete your profile with your name, contact details, and emergency contacts. Takes 2 minutes.</p></div></div>
+            <div class="how-step"><div class="how-num">2</div><div><h3 class="mb-8">Order your tags</h3><p class="text-muted text-sm">Choose from NFC stickers, QR cards, keychains, or bulk packs. We ship to your door within 3–5 business days.</p></div></div>
+            <div class="how-step"><div class="how-num">3</div><div><h3 class="mb-8">Attach & activate</h3><p class="text-muted text-sm">Each tag has a unique code. Log in, activate it, and link it to any item — bag, keys, laptop, water bottle.</p></div></div>
+            <div class="how-step"><div class="how-num">4</div><div><h3 class="mb-8">Finder scans or taps</h3><p class="text-muted text-sm">Someone finds your item. They tap their phone on the NFC or scan the QR. Your profile page opens instantly.</p></div></div>
+            <div class="how-step"><div class="how-num">5</div><div><h3 class="mb-8">You're reunited! 🎉</h3><p class="text-muted text-sm">The finder contacts you directly or sends an anonymous message. You get notified and recover your item.</p></div></div>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:16px;align-items:center;">
-          <div class="card" style="width:280px;text-align:center;">
-            <div style="font-size:3rem;margin-bottom:12px;">🏷️</div>
-            <h4 class="mb-8">Your Tag</h4>
-            <p class="text-muted text-sm">Waterproof NFC + QR sticker on your backpack</p>
-          </div>
+          <div class="card" style="width:280px;text-align:center;"><div style="font-size:3rem;margin-bottom:12px;">🏷️</div><h4 class="mb-8">Your Tag</h4><p class="text-muted text-sm">Waterproof NFC + QR sticker on your backpack</p></div>
           <div style="font-size:1.5rem;color:var(--muted);">↓</div>
-          <div class="card" style="width:280px;text-align:center;">
-            <div style="font-size:3rem;margin-bottom:12px;">📱</div>
-            <h4 class="mb-8">Finder Scans</h4>
-            <p class="text-muted text-sm">No app needed. Works with any modern phone camera or NFC.</p>
-          </div>
+          <div class="card" style="width:280px;text-align:center;"><div style="font-size:3rem;margin-bottom:12px;">📱</div><h4 class="mb-8">Finder Scans</h4><p class="text-muted text-sm">No app needed. Works with any modern phone camera or NFC.</p></div>
           <div style="font-size:1.5rem;color:var(--muted);">↓</div>
-          <div class="card" style="width:280px;border-color:var(--accent);">
-            <div style="color:var(--accent);font-weight:700;margin-bottom:4px;font-size:0.8rem;">TAPBACK PROFILE</div>
-            <div style="font-weight:700;margin-bottom:2px;">Sipho Nkosi's Bag</div>
-            <div class="text-muted text-sm mb-12">Item registered in Durban, KZN</div>
-            <div class="flex gap-8">
-              <button class="btn btn-primary btn-sm btn-full">Contact Owner</button>
-            </div>
-            <button class="btn btn-ghost btn-sm btn-full mt-8">Send anonymous message</button>
-          </div>
+          <div class="card" style="width:280px;border-color:var(--accent);"><div style="color:var(--accent);font-weight:700;margin-bottom:4px;font-size:0.8rem;">TAPBACK PROFILE</div><div style="font-weight:700;margin-bottom:2px;">Sipho Nkosi's Bag</div><div class="text-muted text-sm mb-12">Item registered in Durban, KZN</div><div class="flex gap-8"><button class="btn btn-primary btn-sm btn-full">Contact Owner</button></div><button class="btn btn-ghost btn-sm btn-full mt-8">Send anonymous message</button></div>
         </div>
       </div>
-
-      <!-- Tech section -->
       <div style="border-top:1px solid var(--border);padding-top:60px;">
         <h2 class="mb-8 text-center">NFC vs QR — We use both</h2>
         <p class="text-muted text-center mb-32">Every SmartLF tag includes both technologies for maximum compatibility.</p>
         <div class="grid-2" style="gap:24px;">
-          <div class="card" style="border-color:var(--accent2);">
-            <div style="font-size:2.5rem;margin-bottom:12px;">📡</div>
-            <h3 class="mb-8" style="color:#a78bfa;">NFC Technology</h3>
-            <p class="text-muted text-sm mb-16">Near Field Communication — the same tech in your bank card and Apple Pay.</p>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-              <li class="text-sm">✅ No camera needed</li>
-              <li class="text-sm">✅ Works in 0.5 seconds</li>
-              <li class="text-sm">✅ Very intuitive ("tap and go")</li>
-              <li class="text-sm text-muted">⚠️ Older phones may not support</li>
-            </ul>
-          </div>
-          <div class="card" style="border-color:var(--accent);">
-            <div style="font-size:2.5rem;margin-bottom:12px;">🔲</div>
-            <h3 class="mb-8" style="color:var(--accent);">QR Technology</h3>
-            <p class="text-muted text-sm mb-16">Quick Response codes — scannable with any smartphone camera. Universal.</p>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-              <li class="text-sm">✅ Works on ALL smartphones</li>
-              <li class="text-sm">✅ No special hardware</li>
-              <li class="text-sm">✅ Universal fallback</li>
-              <li class="text-sm text-muted">⚠️ Needs camera + lighting</li>
-            </ul>
-          </div>
+          <div class="card" style="border-color:var(--accent2);"><div style="font-size:2.5rem;margin-bottom:12px;">📡</div><h3 class="mb-8" style="color:#a78bfa;">NFC Technology</h3><p class="text-muted text-sm mb-16">Near Field Communication — the same tech in your bank card and Apple Pay.</p><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;"><li class="text-sm">✅ No camera needed</li><li class="text-sm">✅ Works in 0.5 seconds</li><li class="text-sm">✅ Very intuitive ("tap and go")</li><li class="text-sm text-muted">⚠️ Older phones may not support</li></ul></div>
+          <div class="card" style="border-color:var(--accent);"><div style="font-size:2.5rem;margin-bottom:12px;">🔲</div><h3 class="mb-8" style="color:var(--accent);">QR Technology</h3><p class="text-muted text-sm mb-16">Quick Response codes — scannable with any smartphone camera. Universal.</p><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;"><li class="text-sm">✅ Works on ALL smartphones</li><li class="text-sm">✅ No special hardware</li><li class="text-sm">✅ Universal fallback</li><li class="text-sm text-muted">⚠️ Needs camera + lighting</li></ul></div>
         </div>
       </div>
     </div>
@@ -663,18 +522,12 @@ footer {
   <div id="how-footer"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: PRODUCTS
-════════════════════════════════════════════════ -->
 <div id="page-products" class="page pt-64">
   <div class="section">
     <div class="container">
       <div class="section-tag">Shop</div>
       <div class="flex justify-between items-center mb-32 flex-wrap gap-16">
-        <div>
-          <h2 class="mb-8">Our Products</h2>
-          <p class="text-muted">All tags include 1 year of profile hosting. Bulk discounts available.</p>
-        </div>
+        <div><h2 class="mb-8">Our Products</h2><p class="text-muted">All tags include 1 year of profile hosting. Bulk discounts available.</p></div>
         <div class="flex gap-12 items-center">
           <select id="product-filter" onchange="filterProducts()" style="width:auto;padding:8px 14px;">
             <option value="all">All Categories</option>
@@ -692,9 +545,6 @@ footer {
   <div id="products-footer"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: PRICING / SUBSCRIPTIONS
-════════════════════════════════════════════════ -->
 <div id="page-pricing" class="page pt-64">
   <div class="section">
     <div class="container">
@@ -702,88 +552,36 @@ footer {
       <h2 class="text-center mb-12">Simple, affordable pricing</h2>
       <p class="text-muted text-center mb-48">Choose a plan that works for you. Cancel anytime. All plans include free tags on sign-up.</p>
       <div class="grid-3" style="gap:28px;align-items:start;">
-
         <div class="pricing-card">
           <div class="badge badge-cyan mb-16">Free</div>
           <h3 class="mb-8">Starter</h3>
           <p class="text-muted text-sm mb-20">Perfect to try out SmartLF.</p>
-          <div class="flex items-end gap-8 mb-20">
-            <div class="price-amount">R0</div>
-            <div class="price-period">/month</div>
-          </div>
-          <ul class="price-features">
-            <li><span class="check">✓</span> 1 active tag</li>
-            <li><span class="check">✓</span> Basic contact page</li>
-            <li><span class="check">✓</span> Contact form</li>
-            <li><span class="cross">✗</span> Anonymous messages</li>
-            <li><span class="cross">✗</span> Scan location logging</li>
-            <li><span class="cross">✗</span> Reward feature</li>
-            <li><span class="cross">✗</span> Multiple items</li>
-          </ul>
+          <div class="flex items-end gap-8 mb-20"><div class="price-amount">R0</div><div class="price-period">/month</div></div>
+          <ul class="price-features"><li><span class="check">✓</span> 1 active tag</li><li><span class="check">✓</span> Basic contact page</li><li><span class="check">✓</span> Contact form</li><li><span class="cross">✗</span> Anonymous messages</li><li><span class="cross">✗</span> Scan location logging</li><li><span class="cross">✗</span> Reward feature</li><li><span class="cross">✗</span> Multiple items</li></ul>
           <button class="btn btn-outline btn-full mt-auto" onclick="subscribePlan('Starter','R0')">Get Started Free</button>
         </div>
-
         <div class="pricing-card featured">
           <div class="badge badge-purple mb-16">Most Popular ⭐</div>
           <h3 class="mb-8">Student</h3>
           <p class="text-muted text-sm mb-20">Built for campus life.</p>
-          <div class="flex items-end gap-8 mb-20">
-            <div class="price-amount" style="color:var(--accent);">R49</div>
-            <div class="price-period">/month</div>
-          </div>
-          <ul class="price-features">
-            <li><span class="check">✓</span> Up to 5 active tags</li>
-            <li><span class="check">✓</span> Custom profile page</li>
-            <li><span class="check">✓</span> Anonymous messaging</li>
-            <li><span class="check">✓</span> Scan location logging</li>
-            <li><span class="check">✓</span> Reward feature</li>
-            <li><span class="check">✓</span> 2 emergency contacts</li>
-            <li><span class="cross">✗</span> Bulk management</li>
-          </ul>
+          <div class="flex items-end gap-8 mb-20"><div class="price-amount" style="color:var(--accent);">R49</div><div class="price-period">/month</div></div>
+          <ul class="price-features"><li><span class="check">✓</span> Up to 5 active tags</li><li><span class="check">✓</span> Custom profile page</li><li><span class="check">✓</span> Anonymous messaging</li><li><span class="check">✓</span> Scan location logging</li><li><span class="check">✓</span> Reward feature</li><li><span class="check">✓</span> 2 emergency contacts</li><li><span class="cross">✗</span> Bulk management</li></ul>
           <button class="btn btn-primary btn-full mt-auto" onclick="subscribePlan('Student','R49/mo')">Subscribe — R49/mo</button>
         </div>
-
         <div class="pricing-card">
           <div class="badge badge-green mb-16">Pro</div>
           <h3 class="mb-8">Business</h3>
           <p class="text-muted text-sm mb-20">For gyms, offices & schools.</p>
-          <div class="flex items-end gap-8 mb-20">
-            <div class="price-amount">R199</div>
-            <div class="price-period">/month</div>
-          </div>
-          <ul class="price-features">
-            <li><span class="check">✓</span> Unlimited tags</li>
-            <li><span class="check">✓</span> Branded profile pages</li>
-            <li><span class="check">✓</span> Full analytics dashboard</li>
-            <li><span class="check">✓</span> Bulk tag management</li>
-            <li><span class="check">✓</span> Priority support</li>
-            <li><span class="check">✓</span> Custom domain</li>
-            <li><span class="check">✓</span> API access</li>
-          </ul>
+          <div class="flex items-end gap-8 mb-20"><div class="price-amount">R199</div><div class="price-period">/month</div></div>
+          <ul class="price-features"><li><span class="check">✓</span> Unlimited tags</li><li><span class="check">✓</span> Branded profile pages</li><li><span class="check">✓</span> Full analytics dashboard</li><li><span class="check">✓</span> Bulk tag management</li><li><span class="check">✓</span> Priority support</li><li><span class="check">✓</span> Custom domain</li><li><span class="check">✓</span> API access</li></ul>
           <button class="btn btn-green btn-full mt-auto" onclick="subscribePlan('Business','R199/mo')">Subscribe — R199/mo</button>
         </div>
       </div>
-
-      <!-- One-time vs subscription -->
       <div style="margin-top:60px;padding:32px;background:var(--surface2);border-radius:20px;border:1px solid var(--border);">
         <h3 class="mb-16">One-time purchase or subscription?</h3>
         <div class="grid-2" style="gap:24px;">
-          <div>
-            <h4 class="mb-8">💰 One-Time Purchase</h4>
-            <p class="text-muted text-sm mb-12">Buy tags once. Profile hosting is included for 12 months. After that, renew at R15/tag/year.</p>
-            <div class="flex gap-12 flex-wrap">
-              <div class="badge badge-cyan">No recurring charge</div>
-              <div class="badge badge-cyan">Simple</div>
-            </div>
-          </div>
-          <div>
-            <h4 class="mb-8">🔄 Subscription</h4>
-            <p class="text-muted text-sm mb-12">Monthly plan includes all platform features, unlimited tag activations, and premium profile customisation.</p>
-            <div class="flex gap-12 flex-wrap">
-              <div class="badge badge-purple">More features</div>
-              <div class="badge badge-purple">Cancel anytime</div>
-            </div>
-          </div>
+          <div><h4 class="mb-8">💰 One-Time Purchase</h4><p class="text-muted text-sm mb-12">Buy tags once. Profile hosting is included for 12 months. After that, renew at R15/tag/year.</p><div class="flex gap-12 flex-wrap"><div class="badge badge-cyan">No recurring charge</div><div class="badge badge-cyan">Simple</div></div></div>
+          <div><h4 class="mb-8">🔄 Subscription</h4><p class="text-muted text-sm mb-12">Monthly plan includes all platform features, unlimited tag activations, and premium profile customisation.</p><div class="flex gap-12 flex-wrap"><div class="badge badge-purple">More features</div><div class="badge badge-purple">Cancel anytime</div></div></div>
         </div>
       </div>
     </div>
@@ -791,9 +589,6 @@ footer {
   <div id="pricing-footer"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: ABOUT
-════════════════════════════════════════════════ -->
 <div id="page-about" class="page pt-64">
   <div class="section">
     <div class="container">
@@ -801,92 +596,22 @@ footer {
       <div class="grid-2" style="gap:60px;align-items:center;margin-bottom:60px;">
         <div>
           <h2 class="mb-20">Built by students, for students</h2>
-          <p class="text-muted mb-16" style="line-height:1.9;">SmartLF was born at a university campus in Durban, KwaZulu-Natal after one too many items went missing in residences, libraries, and taxi ranks. We asked: why is there no simple tech solution for this?</p>
-          <p class="text-muted mb-16" style="line-height:1.9;">Traditional lost-and-found systems are slow, location-limited, and often never reunite owners with their belongings. AirTags and GPS trackers are expensive and battery-dependent. We wanted something cheap, durable, and instantly effective.</p>
+          <p class="text-muted mb-16" style="line-height:1.9;">SmartLF was born at a university campus in Durban, KwaZulu-Natal after one too many items went missing in residences, libraries, and taxi ranks.</p>
+          <p class="text-muted mb-16" style="line-height:1.9;">Traditional lost-and-found systems are slow, location-limited, and often never reunite owners with their belongings. AirTags and GPS trackers are expensive and battery-dependent.</p>
           <p class="text-muted" style="line-height:1.9;">SmartLF uses NFC + QR technology — the same tech in your bank card — to create a digital identity for physical objects. Affordable. Battery-free. Works anywhere there's a phone.</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:16px;">
-          <div class="card" style="border-color:var(--accent);">
-            <div style="font-size:2rem;margin-bottom:8px;">🎯</div>
-            <h4 class="mb-8">Our Mission</h4>
-            <p class="text-muted text-sm">To make losing things temporary — and returning them simple, safe, and instant.</p>
-          </div>
-          <div class="card">
-            <div style="font-size:2rem;margin-bottom:8px;">🌱</div>
-            <h4 class="mb-8">Sustainability</h4>
-            <p class="text-muted text-sm">Eco-friendly packaging. Recycled sticker materials. Reducing unnecessary replacements of lost items reduces waste.</p>
-          </div>
-          <div class="card">
-            <div style="font-size:2rem;margin-bottom:8px;">🔐</div>
-            <h4 class="mb-8">Privacy & Safety</h4>
-            <p class="text-muted text-sm">We never expose your number directly. Anonymous contact forms protect both owners and finders.</p>
-          </div>
+          <div class="card" style="border-color:var(--accent);"><div style="font-size:2rem;margin-bottom:8px;">🎯</div><h4 class="mb-8">Our Mission</h4><p class="text-muted text-sm">To make losing things temporary — and returning them simple, safe, and instant.</p></div>
+          <div class="card"><div style="font-size:2rem;margin-bottom:8px;">🌱</div><h4 class="mb-8">Sustainability</h4><p class="text-muted text-sm">Eco-friendly packaging. Recycled sticker materials. Reducing unnecessary replacements of lost items reduces waste.</p></div>
+          <div class="card"><div style="font-size:2rem;margin-bottom:8px;">🔐</div><h4 class="mb-8">Privacy & Safety</h4><p class="text-muted text-sm">We never expose your number directly. Anonymous contact forms protect both owners and finders.</p></div>
         </div>
       </div>
-
-      <!-- Team -->
       <div style="border-top:1px solid var(--border);padding-top:60px;">
         <h2 class="mb-32 text-center">The team</h2>
         <div class="grid-3" style="gap:24px;">
-          <div class="card text-center">
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(0,229,255,0.1);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--accent);margin:0 auto 16px;">T</div>
-            <h4 class="mb-4">Rea Mashinini</h4>
-            <div class="text-muted text-sm mb-8">CEO</div>
-            <p class="text-muted text-sm">ICT student </p>
-          </div>
-          <div class="card text-center">
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(124,58,237,0.1);border:2px solid var(--accent2);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#a78bfa;margin:0 auto 16px;">N</div>
-            <h4 class="mb-4">Lungelo Ngwane</h4>
-            <div class="text-muted text-sm mb-8">COO</div>
-            <p class="text-muted text-sm">ICT student turned</p>
-          </div>
-          <div class="card text-center">
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(16,185,129,0.1);border:2px solid var(--accent3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--accent3);margin:0 auto 16px;">L</div>
-            <h4 class="mb-4">Lwandle Sishi</h4>
-            <div class="text-muted text-sm mb-8">Designer</div>
-            <p class="text-muted text-sm">ICT student turned</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- SWOT -->
-      <div style="margin-top:60px;border-top:1px solid var(--border);padding-top:60px;">
-        <h2 class="mb-32 text-center">Our competitive edge</h2>
-        <div class="grid-2" style="gap:16px;">
-          <div class="card" style="border-color:var(--accent3);">
-            <h4 class="mb-12" style="color:var(--accent3);">💪 Strengths</h4>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-              <li class="text-sm">✅ Very low cost (affordable for students)</li>
-              <li class="text-sm">✅ No batteries or charging needed</li>
-              <li class="text-sm">✅ Works on all smartphones</li>
-              <li class="text-sm">✅ Dual NFC + QR technology</li>
-            </ul>
-          </div>
-          <div class="card" style="border-color:var(--accent);">
-            <h4 class="mb-12" style="color:var(--accent);">🚀 Opportunities</h4>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-              <li class="text-sm">🎯 University campus partnerships</li>
-              <li class="text-sm">🎯 Gym & corporate bulk deals</li>
-              <li class="text-sm">🎯 Mobile app development</li>
-              <li class="text-sm">🎯 Government & school integration</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4 class="mb-12" style="color:var(--warn);">⚠️ Weaknesses (being addressed)</h4>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-              <li class="text-sm">🔧 Requires internet to view profiles</li>
-              <li class="text-sm">🔧 Depends on honest finders</li>
-              <li class="text-sm">🔧 No live GPS tracking (yet)</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4 class="mb-12" style="color:var(--danger);">🛡️ Threats (our response)</h4>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-              <li class="text-sm">🔲 vs AirTags — we're cheaper, battery-free</li>
-              <li class="text-sm">🔲 vs Copycats — brand & partnerships</li>
-              <li class="text-sm">🔲 vs Sticker damage — durable laminate</li>
-            </ul>
-          </div>
+          <div class="card text-center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(0,229,255,0.1);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--accent);margin:0 auto 16px;">R</div><h4 class="mb-4">Rea Mashinini</h4><div class="text-muted text-sm mb-8">CEO</div><p class="text-muted text-sm">ICT student</p></div>
+          <div class="card text-center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(124,58,237,0.1);border:2px solid var(--accent2);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#a78bfa;margin:0 auto 16px;">L</div><h4 class="mb-4">Lungelo Ngwane</h4><div class="text-muted text-sm mb-8">COO</div><p class="text-muted text-sm">ICT student</p></div>
+          <div class="card text-center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(16,185,129,0.1);border:2px solid var(--accent3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--accent3);margin:0 auto 16px;">L</div><h4 class="mb-4">Lwandle Sishi</h4><div class="text-muted text-sm mb-8">Designer</div><p class="text-muted text-sm">ICT student</p></div>
         </div>
       </div>
     </div>
@@ -894,9 +619,6 @@ footer {
   <div id="about-footer"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: SIGN UP
-════════════════════════════════════════════════ -->
 <div id="page-signup" class="page pt-64">
   <div class="section" style="display:flex;justify-content:center;">
     <div style="width:100%;max-width:480px;">
@@ -906,39 +628,13 @@ footer {
         <p class="text-muted">Join SmartLF and protect what matters to you.</p>
       </div>
       <div class="card">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" id="su-name" placeholder="Sipho Nkosi">
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="su-email" placeholder="sipho@email.com">
-        </div>
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" id="su-phone" placeholder="071 XXX XXXX">
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="su-pass" placeholder="Minimum 8 characters">
-        </div>
-        <div class="form-group">
-          <label>Confirm Password</label>
-          <input type="password" id="su-pass2" placeholder="Repeat password">
-        </div>
-        <div class="form-group">
-          <label>I am a...</label>
-          <select id="su-role">
-            <option value="student">Student</option>
-            <option value="professional">Professional / Office worker</option>
-            <option value="gym">Gym member</option>
-            <option value="business">Business / School</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div style="background:var(--surface2);border-radius:10px;padding:14px;margin-bottom:18px;font-size:0.82rem;color:var(--muted);">
-          📧 By signing up, you'll receive a welcome email with your first QR tag setup guide.
-        </div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="su-name" placeholder="Sipho Nkosi"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="su-email" placeholder="sipho@email.com"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="su-phone" placeholder="071 XXX XXXX"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="su-pass" placeholder="Minimum 8 characters"></div>
+        <div class="form-group"><label>Confirm Password</label><input type="password" id="su-pass2" placeholder="Repeat password"></div>
+        <div class="form-group"><label>I am a...</label><select id="su-role"><option value="student">Student</option><option value="professional">Professional / Office worker</option><option value="gym">Gym member</option><option value="business">Business / School</option><option value="other">Other</option></select></div>
+        <div style="background:var(--surface2);border-radius:10px;padding:14px;margin-bottom:18px;font-size:0.82rem;color:var(--muted);">📧 By signing up, you'll receive a welcome email with your first QR tag setup guide.</div>
         <button class="btn btn-primary btn-full btn-lg" onclick="signupUser()">Create Account</button>
         <div class="separator"></div>
         <p class="text-center text-sm text-muted">Already have an account? <a style="color:var(--accent);cursor:pointer;" onclick="goTo('signin')">Sign in</a></p>
@@ -947,9 +643,6 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: SIGN IN
-════════════════════════════════════════════════ -->
 <div id="page-signin" class="page pt-64">
   <div class="section" style="display:flex;justify-content:center;">
     <div style="width:100%;max-width:420px;">
@@ -963,63 +656,28 @@ footer {
           <button class="tab-btn active" onclick="setSigninTab('user',this)">Customer</button>
           <button class="tab-btn" onclick="setSigninTab('admin',this)">Admin</button>
         </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="si-email" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="si-pass" placeholder="Your password">
-        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="si-email" placeholder="your@email.com"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="si-pass" placeholder="Your password"></div>
         <div class="flex justify-between items-center mb-18" style="margin-bottom:18px;">
-          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;text-transform:none;font-size:0.85rem;">
-            <input type="checkbox" style="width:auto;"> Remember me
-          </label>
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;text-transform:none;font-size:0.85rem;"><input type="checkbox" style="width:auto;"> Remember me</label>
           <a style="color:var(--accent);font-size:0.85rem;cursor:pointer;">Forgot password?</a>
         </div>
         <button class="btn btn-primary btn-full btn-lg" onclick="signinUser()">Sign In</button>
         <div class="separator"></div>
         <p class="text-center text-sm text-muted">Don't have an account? <a style="color:var(--accent);cursor:pointer;" onclick="goTo('signup')">Sign up free</a></p>
-        <div style="margin-top:16px;background:var(--surface2);border-radius:8px;padding:10px 14px;font-size:0.78rem;color:var(--muted);">
-          💡 Demo: use <strong style="color:var(--text);">user@innov8.co.za</strong> / <strong style="color:var(--text);">demo123</strong> or <strong style="color:var(--text);">admin@innov8.co.za</strong> / <strong style="color:var(--text);">admin123</strong>
-        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: CART
-════════════════════════════════════════════════ -->
 <div id="page-cart" class="page pt-64">
-  <div class="section">
-    <div class="container">
-      <h2 class="mb-32">Your Cart</h2>
-      <div id="cart-content" class="grid-2" style="gap:32px;align-items:start;"></div>
-    </div>
-  </div>
+  <div class="section"><div class="container"><h2 class="mb-32">Your Cart</h2><div id="cart-content" class="grid-2" style="gap:32px;align-items:start;"></div></div></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: CHECKOUT
-════════════════════════════════════════════════ -->
 <div id="page-checkout" class="page pt-64">
-  <div class="section">
-    <div class="container" style="max-width:800px;">
-      <h2 class="mb-32">Checkout</h2>
-      <div class="steps mb-32" id="checkout-steps">
-        <div class="step-item active" id="step-1"><div class="step-circle">1</div><div class="step-label">Delivery</div></div>
-        <div class="step-item" id="step-2"><div class="step-circle">2</div><div class="step-label">Payment</div></div>
-        <div class="step-item" id="step-3"><div class="step-circle">3</div><div class="step-label">Confirm</div></div>
-      </div>
-      <div id="checkout-content"></div>
-    </div>
-  </div>
+  <div class="section"><div class="container" style="max-width:800px;"><h2 class="mb-32">Checkout</h2><div class="steps mb-32" id="checkout-steps"><div class="step-item active" id="step-1"><div class="step-circle">1</div><div class="step-label">Delivery</div></div><div class="step-item" id="step-2"><div class="step-circle">2</div><div class="step-label">Payment</div></div><div class="step-item" id="step-3"><div class="step-circle">3</div><div class="step-label">Confirm</div></div></div><div id="checkout-content"></div></div></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: USER DASHBOARD
-════════════════════════════════════════════════ -->
 <div id="page-dashboard" class="page">
   <div class="dashboard-layout">
     <aside class="sidebar">
@@ -1043,15 +701,10 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PAGE: ADMIN DASHBOARD
-════════════════════════════════════════════════ -->
 <div id="page-admin" class="page">
   <div class="dashboard-layout">
     <aside class="sidebar">
-      <div style="padding:12px;margin-bottom:20px;">
-        <div class="badge badge-red">ADMIN PANEL</div>
-      </div>
+      <div style="padding:12px;margin-bottom:20px;"><div class="badge badge-red">ADMIN PANEL</div></div>
       <div class="sidebar-section">
         <div class="sidebar-label">Manage</div>
         <div class="sidebar-link active" onclick="showAdminSection('overview',this)">📊 Overview</div>
@@ -1060,45 +713,23 @@ footer {
         <div class="sidebar-link" onclick="showAdminSection('tags',this)">🏷️ Tag Registry</div>
         <div class="sidebar-link" onclick="showAdminSection('emails',this)">📧 Send Email</div>
       </div>
-      <div class="sidebar-section">
-        <div class="sidebar-link" onclick="logoutUser()">🚪 Logout</div>
-      </div>
+      <div class="sidebar-section"><div class="sidebar-link" onclick="logoutUser()">🚪 Logout</div></div>
     </aside>
     <main class="dashboard-main" id="admin-main"></main>
   </div>
 </div>
 
-<!-- ─── FOOTER TEMPLATE (injected into pages) ─── -->
 <template id="footer-template">
   <footer>
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <div class="nav-logo mb-16">
-            <div class="nav-logo-dot"></div>
-            Tap<span style="color:var(--accent)">Back</span>
-          </div>
+          <div class="nav-logo mb-16"><div class="nav-logo-dot"></div>INNOV<span style="color:var(--accent)">8</span></div>
           <p style="color:var(--muted);font-size:0.85rem;line-height:1.7;max-width:260px;">Smart NFC & QR recovery tags for students, professionals, and businesses across South Africa.</p>
         </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a onclick="goTo('how')">How It Works</a>
-          <a onclick="goTo('products')">Products</a>
-          <a onclick="goTo('pricing')">Pricing</a>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <a onclick="goTo('about')">About Us</a>
-          <a>Press Kit</a>
-          <a>Careers</a>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <a>Help Centre</a>
-          <a>Contact Us</a>
-          <a>Privacy Policy</a>
-          <a>Terms of Service</a>
-        </div>
+        <div class="footer-col"><h4>Product</h4><a onclick="goTo('how')">How It Works</a><a onclick="goTo('products')">Products</a><a onclick="goTo('pricing')">Pricing</a></div>
+        <div class="footer-col"><h4>Company</h4><a onclick="goTo('about')">About Us</a><a>Press Kit</a><a>Careers</a></div>
+        <div class="footer-col"><h4>Support</h4><a>Help Centre</a><a>Contact Us</a><a>Privacy Policy</a><a>Terms of Service</a></div>
       </div>
       <div class="footer-bottom">
         <p>© 2025 INNOV8 SmartLF (Pty) Ltd. Durban, KwaZulu-Natal. All rights reserved.</p>
@@ -1109,29 +740,12 @@ footer {
 </template>
 
 <script>
-// ═══════════════════════════════════════════════
-// GLOBAL STATE
-// ═══════════════════════════════════════════════
 const STATE = {
-  currentPage: 'home',
-  user: null, // null = logged out
-  isAdmin: false,
-  cart: [],
-  signinTab: 'user',
-  dashSection: 'overview',
-  adminSection: 'overview',
-  checkoutStep: 1,
-  orders: [],
-  subscription: null,
+  currentPage: 'home', user: null, isAdmin: false,
+  cart: [], signinTab: 'user', dashSection: 'overview',
+  adminSection: 'overview', checkoutStep: 1, orders: [], subscription: null,
 };
 
-// Demo users
-const DEMO_USERS = {
-  'user@innov8.co.za': { pass: 'demo123', name: 'Sipho Nkosi', phone: '071 234 5678', role: 'student', plan: 'Student' },
-  'admin@innov8.co.za': { pass: 'admin123', name: 'Admin User', role: 'admin', plan: 'Business' },
-};
-
-// ─── PRODUCTS DATA ───
 const PRODUCTS = [
   { id:1, name:'NFC Sticker (5-pack)', emoji:'📡', category:'nfc', price:149, desc:'Waterproof NFC stickers. 25mm round. Works on any surface. Programme once.', badge:'Best Seller' },
   { id:2, name:'NFC Keychain Tag', emoji:'🔑', category:'nfc', price:89, desc:'Durable ABS keychain with embedded NFC chip. Attach to keys or bags.' },
@@ -1143,58 +757,31 @@ const PRODUCTS = [
   { id:8, name:'Business Bulk Pack (50 tags)', emoji:'🏢', category:'bulk', price:1490, desc:'50x NFC+QR combo tags. Branded with your company name. For gyms & schools.' },
 ];
 
-// ═══════════════════════════════════════════════
-// ROUTING
-// ═══════════════════════════════════════════════
 function goTo(page) {
-  // Auth guard for dashboard pages
   if (page === 'dashboard' && !STATE.user) { goTo('signin'); return; }
   if (page === 'admin' && !STATE.isAdmin) { goTo('signin'); return; }
   if (page === 'checkout' && STATE.cart.length === 0) { showToast('Your cart is empty!','error'); return; }
-
-  // Redirect admin user to admin panel
   if (page === 'dashboard' && STATE.isAdmin) { page = 'admin'; }
-
+  if ((page === 'cart' || page === 'checkout') && STATE.isAdmin) { showToast('Admin dashboard has no cart or checkout.','error'); page = 'admin'; }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById('page-' + page);
   if (!target) return;
   target.classList.add('active');
   STATE.currentPage = page;
   window.scrollTo(0,0);
-
-  // Highlight nav
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const navEl = document.getElementById('nav-' + page);
   if (navEl) navEl.classList.add('active');
-
-  // Page-specific init
-  const inits = {
-    home: renderHomePage,
-    products: renderProductsPage,
-    cart: renderCartPage,
-    checkout: renderCheckout,
-    dashboard: renderDashboard,
-    admin: renderAdmin,
-    pricing: () => { injectFooter('pricing-footer'); },
-    about: () => { injectFooter('about-footer'); },
-    how: () => { injectFooter('how-footer'); },
-  };
+  const inits = { home: renderHomePage, products: renderProductsPage, cart: renderCartPage, checkout: renderCheckout, dashboard: renderDashboard, admin: renderAdmin, pricing: () => injectFooter('pricing-footer'), about: () => injectFooter('about-footer'), how: () => injectFooter('how-footer') };
   if (inits[page]) inits[page]();
 }
 
-// ═══════════════════════════════════════════════
-// FOOTER INJECT
-// ═══════════════════════════════════════════════
 function injectFooter(id) {
   const el = document.getElementById(id);
   if (!el || el.innerHTML.trim()) return;
-  const tmpl = document.getElementById('footer-template');
-  el.appendChild(tmpl.content.cloneNode(true));
+  el.appendChild(document.getElementById('footer-template').content.cloneNode(true));
 }
 
-// ═══════════════════════════════════════════════
-// TOAST
-// ═══════════════════════════════════════════════
 function showToast(msg, type = 'info') {
   const icons = { success:'✅', error:'❌', info:'ℹ️' };
   const el = document.createElement('div');
@@ -1204,9 +791,6 @@ function showToast(msg, type = 'info') {
   setTimeout(() => el.remove(), 4000);
 }
 
-// ═══════════════════════════════════════════════
-// AUTH
-// ═══════════════════════════════════════════════
 let signinTabValue = 'user';
 function setSigninTab(tab, btn) {
   signinTabValue = tab;
@@ -1214,834 +798,75 @@ function setSigninTab(tab, btn) {
   btn.classList.add('active');
 }
 
-function signupUser() {
-  const name = document.getElementById('su-name').value.trim();
-  const email = document.getElementById('su-email').value.trim();
-  const phone = document.getElementById('su-phone').value.trim();
-  const pass = document.getElementById('su-pass').value;
-  const pass2 = document.getElementById('su-pass2').value;
-  const role = document.getElementById('su-role').value;
-  if (!name || !email || !pass) { showToast('Please fill in all required fields.','error'); return; }
-  if (pass !== pass2) { showToast('Passwords do not match.','error'); return; }
-  if (pass.length < 8) { showToast('Password must be at least 8 characters.','error'); return; }
-
-  // Register and login
-  DEMO_USERS[email] = { pass, name, phone, role, plan: 'Starter' };
-  STATE.user = { email, name, phone, role, plan: 'Starter' };
-  STATE.isAdmin = false;
-  updateNavAuth();
-  sendWelcomeEmail(name, email);
-  showToast(`Welcome, ${name}! Your account has been created. 🎉`, 'success');
-  goTo('dashboard');
+function renderProductCard(p) {
+  return `<div class="product-card"><div class="product-img">${p.emoji}${p.badge ? `<div style="position:absolute;top:12px;right:12px;z-index:2;" class="badge badge-cyan">${p.badge}</div>` : ''}</div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-desc">${p.desc}</div><div class="product-price">R${p.price} <span>once-off</span></div><div class="flex gap-8"><button class="btn btn-primary btn-sm" onclick="addToCart(${p.id})">+ Add to Cart</button><button class="btn btn-ghost btn-sm" onclick="goTo('pricing')">Subscribe</button></div></div></div>`;
 }
 
-function signinUser() {
-  const email = document.getElementById('si-email').value.trim();
-  const pass = document.getElementById('si-pass').value;
-  if (!email || !pass) { showToast('Please enter your credentials.','error'); return; }
-  const u = DEMO_USERS[email];
-  if (!u || u.pass !== pass) { showToast('Invalid email or password.','error'); return; }
+function renderHomePage() { injectFooter('home-footer'); const c = document.getElementById('home-products'); if (c) c.innerHTML = PRODUCTS.slice(0,4).map(renderProductCard).join(''); }
+function renderProductsPage() { injectFooter('products-footer'); updateCartUI(); filterProducts(); }
+function filterProducts() { const filter = document.getElementById('product-filter')?.value || 'all'; const filtered = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === filter); const c = document.getElementById('products-grid'); if (c) c.innerHTML = filtered.map(renderProductCard).join(''); }
 
-  STATE.user = { email, ...u };
-  STATE.isAdmin = u.role === 'admin';
-  updateNavAuth();
-  showToast(`Welcome back, ${u.name}! 👋`, 'success');
-  goTo(STATE.isAdmin ? 'admin' : 'dashboard');
-}
-
-function logoutUser() {
-  STATE.user = null;
-  STATE.isAdmin = false;
-  updateNavAuth();
-  showToast('You have been logged out.','info');
-  goTo('home');
-}
-
-function updateNavAuth() {
-  const loggedIn = !!STATE.user;
-  document.getElementById('nav-logout-btn').style.display = loggedIn ? '' : 'none';
-  document.getElementById('nav-dashboard-btn').style.display = loggedIn ? '' : 'none';
-  document.getElementById('nav-cart-btn').style.display = loggedIn ? '' : 'none';
-  // Show/hide sign in/up buttons
-  const actions = document.getElementById('nav-actions');
-  const signInBtn = actions.querySelector('.btn-ghost');
-  const signUpBtn = actions.querySelector('.btn-primary');
-  if (signInBtn) signInBtn.style.display = loggedIn ? 'none' : '';
-  if (signUpBtn) signUpBtn.style.display = loggedIn ? 'none' : '';
-}
-
-// ─── SIMULATE EMAIL ───
-function sendWelcomeEmail(name, email) {
-  // Simulated email — shows a visual modal
-  setTimeout(() => {
-    const emailBody = `
-      <div style="background:var(--surface2);border-radius:12px;padding:24px;margin-top:16px;font-size:0.88rem;">
-        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-          <span class="text-muted">From:</span><span>hello@innov8.co.za</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-          <span class="text-muted">To:</span><span>${email}</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:16px;">
-          <span class="text-muted">Subject:</span><span>🎉 Welcome to INNOV8 SmartLF, ${name}!</span>
-        </div>
-        <hr class="separator">
-        <p style="margin-bottom:12px;">Hi ${name},</p>
-        <p style="margin-bottom:12px;color:var(--muted);">Welcome to INNOV8 SmartLF! Your account has been created successfully. You can now order your smart NFC & QR tags and start protecting your belongings.</p>
-        <p style="margin-bottom:12px;color:var(--muted);">Your first tag setup is quick — just attach, activate in your dashboard, and you're protected. 🏷️</p>
-        <p style="margin-bottom:12px;color:var(--muted);">As a welcome gift, use code <strong style="color:var(--accent);">WELCOME20</strong> for 20% off your first order.</p>
-        <p>The SmartLF Team 🇿🇦</p>
-      </div>
-    `;
-    showEmailModal(`Welcome Email Sent to ${email}`, emailBody);
-  }, 800);
-}
-
-function showEmailModal(title, content) {
-  const overlay = document.createElement('div');
-  overlay.className = 'modal-overlay active';
-  overlay.innerHTML = `
-    <div class="modal">
-      <div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-        <span style="font-size:1.5rem;">📧</span>
-        <h3>${title}</h3>
-      </div>
-      <div class="badge badge-green mb-16">✅ Email simulated successfully</div>
-      ${content}
-      <button class="btn btn-primary btn-full mt-24" onclick="this.closest('.modal-overlay').remove()">Close</button>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-}
-
-// ═══════════════════════════════════════════════
-// PRODUCTS
-// ═══════════════════════════════════════════════
-function renderProductCard(p, containerId) {
-  return `
-    <div class="product-card">
-      <div class="product-img">${p.emoji}
-        ${p.badge ? `<div style="position:absolute;top:12px;right:12px;z-index:2;" class="badge badge-cyan">${p.badge}</div>` : ''}
-      </div>
-      <div class="product-info">
-        <div class="product-name">${p.name}</div>
-        <div class="product-desc">${p.desc}</div>
-        <div class="product-price">R${p.price} <span>once-off</span></div>
-        <div class="flex gap-8">
-          <button class="btn btn-primary btn-sm" onclick="addToCart(${p.id})">+ Add to Cart</button>
-          <button class="btn btn-ghost btn-sm" onclick="goTo('pricing')">Subscribe</button>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function renderHomePage() {
-  injectFooter('home-footer');
-  const container = document.getElementById('home-products');
-  if (!container) return;
-  container.innerHTML = PRODUCTS.slice(0,4).map(p => renderProductCard(p)).join('');
-}
-
-function renderProductsPage() {
-  injectFooter('products-footer');
-  updateCartUI();
-  filterProducts();
-}
-
-function filterProducts() {
-  const filter = document.getElementById('product-filter')?.value || 'all';
-  const filtered = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === filter);
-  const container = document.getElementById('products-grid');
-  if (!container) return;
-  container.innerHTML = filtered.map(p => renderProductCard(p)).join('');
-}
-
-// ═══════════════════════════════════════════════
-// CART
-// ═══════════════════════════════════════════════
 function addToCart(productId) {
-  const p = PRODUCTS.find(x => x.id === productId);
-  if (!p) return;
+  if (STATE.isAdmin) { showToast('Admin accounts cannot use the cart.','error'); return; }
+  if (!STATE.user) { showToast('Please sign in before buying.','info'); goTo('signin'); return; }
+  const p = PRODUCTS.find(x => x.id === productId); if (!p) return;
   const existing = STATE.cart.find(x => x.id === productId);
-  if (existing) { existing.qty++; }
-  else { STATE.cart.push({ ...p, qty: 1 }); }
+  existing ? existing.qty++ : STATE.cart.push({ ...p, qty: 1 });
   updateCartUI();
-  showToast(`${p.name} added to cart! 🛒`, 'success');
+  showToast(`${p.name} added to cart!`, 'success');
 }
 
-function removeFromCart(productId) {
-  STATE.cart = STATE.cart.filter(x => x.id !== productId);
-  updateCartUI();
-  if (STATE.currentPage === 'cart') renderCartPage();
-}
-
-function updateQty(productId, delta) {
-  const item = STATE.cart.find(x => x.id === productId);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) removeFromCart(productId);
-  else {
-    updateCartUI();
-    if (STATE.currentPage === 'cart') renderCartPage();
-  }
-}
-
-function updateCartUI() {
-  const count = STATE.cart.reduce((a,b) => a+b.qty, 0);
-  document.getElementById('cart-count').textContent = count;
-  const pcc = document.getElementById('products-cart-count');
-  if (pcc) pcc.textContent = count;
-}
-
+function removeFromCart(productId) { STATE.cart = STATE.cart.filter(x => x.id !== productId); updateCartUI(); if (STATE.currentPage === 'cart') renderCartPage(); }
+function updateQty(productId, delta) { const item = STATE.cart.find(x => x.id === productId); if (!item) return; item.qty += delta; if (item.qty <= 0) removeFromCart(productId); else { updateCartUI(); if (STATE.currentPage === 'cart') renderCartPage(); } }
+function updateCartUI() { const count = STATE.cart.reduce((a,b) => a+b.qty, 0); document.getElementById('cart-count').textContent = count; const pcc = document.getElementById('products-cart-count'); if (pcc) pcc.textContent = count; }
 function cartTotal() { return STATE.cart.reduce((a,b) => a + b.price*b.qty, 0); }
 
 function renderCartPage() {
-  const c = document.getElementById('cart-content');
-  if (!c) return;
-  if (STATE.cart.length === 0) {
-    c.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:60px 0;">
-        <div style="font-size:4rem;margin-bottom:16px;">🛒</div>
-        <h3 class="mb-8">Your cart is empty</h3>
-        <p class="text-muted mb-24">Add some smart tags to get started.</p>
-        <button class="btn btn-primary" onclick="goTo('products')">Browse Products</button>
-      </div>`;
-    return;
-  }
-  const itemsHtml = STATE.cart.map(item => `
-    <div class="flex justify-between items-center" style="padding:14px 0;border-bottom:1px solid var(--border);">
-      <div class="flex gap-12 items-center">
-        <div style="font-size:2rem;">${item.emoji}</div>
-        <div>
-          <div style="font-weight:600;font-size:0.9rem;">${item.name}</div>
-          <div class="text-muted text-sm">R${item.price} each</div>
-        </div>
-      </div>
-      <div class="flex gap-8 items-center">
-        <button class="btn btn-ghost btn-sm" onclick="updateQty(${item.id},-1)">−</button>
-        <span style="width:24px;text-align:center;font-weight:600;">${item.qty}</span>
-        <button class="btn btn-ghost btn-sm" onclick="updateQty(${item.id},1)">+</button>
-        <span style="width:60px;text-align:right;font-family:var(--font-head);font-weight:700;">R${item.price*item.qty}</span>
-        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">✕</button>
-      </div>
-    </div>
-  `).join('');
-  c.innerHTML = `
-    <div>
-      <div class="card">
-        <h3 class="mb-20">Cart Items (${STATE.cart.reduce((a,b)=>a+b.qty,0)})</h3>
-        ${itemsHtml}
-      </div>
-    </div>
-    <div>
-      <div class="card" style="position:sticky;top:80px;">
-        <h3 class="mb-20">Order Summary</h3>
-        ${STATE.cart.map(i=>`
-          <div class="flex justify-between text-sm mb-8">
-            <span class="text-muted">${i.name} x${i.qty}</span>
-            <span>R${i.price*i.qty}</span>
-          </div>`).join('')}
-        <div class="separator"></div>
-        <div class="flex justify-between mb-8">
-          <span class="text-muted text-sm">Subtotal</span>
-          <span>R${cartTotal()}</span>
-        </div>
-        <div class="flex justify-between mb-8">
-          <span class="text-muted text-sm">Shipping</span>
-          <span class="text-accent text-sm">Free</span>
-        </div>
-        <div class="flex justify-between mb-20" style="font-family:var(--font-head);font-weight:800;font-size:1.1rem;">
-          <span>Total</span>
-          <span>R${cartTotal()}</span>
-        </div>
-        <div class="form-group">
-          <input placeholder="Promo code (try WELCOME20)" id="promo-input">
-        </div>
-        <button class="btn btn-ghost btn-sm btn-full mb-12" onclick="applyPromo()">Apply Code</button>
-        <button class="btn btn-primary btn-lg btn-full" onclick="proceedCheckout()">Proceed to Checkout →</button>
-        <button class="btn btn-ghost btn-sm btn-full mt-8" onclick="goTo('products')">← Continue shopping</button>
-      </div>
-    </div>
-  `;
+  const c = document.getElementById('cart-content'); if (!c) return;
+  if (STATE.cart.length === 0) { c.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 0;"><div style="font-size:4rem;margin-bottom:16px;">🛒</div><h3 class="mb-8">Your cart is empty</h3><p class="text-muted mb-24">Add some smart tags to get started.</p><button class="btn btn-primary" onclick="goTo('products')">Browse Products</button></div>`; return; }
+  const itemsHtml = STATE.cart.map(item => `<div class="flex justify-between items-center" style="padding:14px 0;border-bottom:1px solid var(--border);"><div class="flex gap-12 items-center"><div style="font-size:2rem;">${item.emoji}</div><div><div style="font-weight:600;font-size:0.9rem;">${item.name}</div><div class="text-muted text-sm">R${item.price} each</div></div></div><div class="flex gap-8 items-center"><button class="btn btn-ghost btn-sm" onclick="updateQty(${item.id},-1)">−</button><span style="width:24px;text-align:center;font-weight:600;">${item.qty}</span><button class="btn btn-ghost btn-sm" onclick="updateQty(${item.id},1)">+</button><span style="width:60px;text-align:right;font-family:var(--font-head);font-weight:700;">R${item.price*item.qty}</span><button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">✕</button></div></div>`).join('');
+  c.innerHTML = `<div><div class="card"><h3 class="mb-20">Cart Items (${STATE.cart.reduce((a,b)=>a+b.qty,0)})</h3>${itemsHtml}</div></div><div><div class="card" style="position:sticky;top:80px;"><h3 class="mb-20">Order Summary</h3>${STATE.cart.map(i=>`<div class="flex justify-between text-sm mb-8"><span class="text-muted">${i.name} x${i.qty}</span><span>R${i.price*i.qty}</span></div>`).join('')}<div class="separator"></div><div class="flex justify-between mb-8"><span class="text-muted text-sm">Subtotal</span><span>R${cartTotal()}</span></div><div class="flex justify-between mb-8"><span class="text-muted text-sm">Shipping</span><span class="text-accent text-sm">Free</span></div><div class="flex justify-between mb-20" style="font-family:var(--font-head);font-weight:800;font-size:1.1rem;"><span>Total</span><span>R${cartTotal()}</span></div><div class="form-group"><input placeholder="Promo code (try WELCOME20)" id="promo-input"></div><button class="btn btn-ghost btn-sm btn-full mb-12" onclick="applyPromo()">Apply Code</button><button class="btn btn-primary btn-lg btn-full" onclick="proceedCheckout()">Proceed to Checkout →</button><button class="btn btn-ghost btn-sm btn-full mt-8" onclick="goTo('products')">← Continue shopping</button></div></div>`;
 }
 
-function applyPromo() {
-  const code = document.getElementById('promo-input')?.value.trim().toUpperCase();
-  if (code === 'WELCOME20') showToast('🎉 20% discount applied! (simulated)', 'success');
-  else showToast('Invalid promo code.', 'error');
-}
+function applyPromo() { const code = document.getElementById('promo-input')?.value.trim().toUpperCase(); if (code === 'WELCOME20') showToast('🎉 20% discount applied!','success'); else showToast('Invalid promo code.','error'); }
+function proceedCheckout() { if (STATE.isAdmin) { showToast('Admin cannot checkout.','error'); return; } if (!STATE.user) { goTo('signin'); return; } if (STATE.cart.length === 0) { showToast('Your cart is empty.','error'); return; } STATE.checkoutStep = 1; goTo('checkout'); }
 
-function proceedCheckout() {
-  if (!STATE.user) { showToast('Please sign in to checkout.','info'); goTo('signin'); return; }
-  STATE.checkoutStep = 1;
-  goTo('checkout');
-}
-
-// ═══════════════════════════════════════════════
-// CHECKOUT
-// ═══════════════════════════════════════════════
 function renderCheckout() {
   updateCheckoutSteps();
-  const c = document.getElementById('checkout-content');
-  if (!c) return;
+  const c = document.getElementById('checkout-content'); if (!c) return;
   if (STATE.checkoutStep === 1) {
-    c.innerHTML = `
-      <div class="grid-2" style="gap:32px;align-items:start;">
-        <div class="card">
-          <h3 class="mb-20">Delivery Details</h3>
-          <div class="form-group"><label>Full Name</label><input id="co-name" value="${STATE.user?.name||''}" placeholder="Full Name"></div>
-          <div class="form-group"><label>Phone</label><input id="co-phone" value="${STATE.user?.phone||''}" placeholder="071 XXX XXXX"></div>
-          <div class="form-group"><label>Street Address</label><input id="co-addr" placeholder="123 Main Street, Musgrave"></div>
-          <div class="form-group"><label>City</label><input id="co-city" value="Durban" placeholder="City"></div>
-          <div class="form-group"><label>Province</label>
-            <select id="co-prov">
-              <option>KwaZulu-Natal</option><option>Gauteng</option><option>Western Cape</option><option>Eastern Cape</option><option>Free State</option><option>Limpopo</option><option>Mpumalanga</option><option>North West</option><option>Northern Cape</option>
-            </select>
-          </div>
-          <div class="form-group"><label>Postal Code</label><input id="co-postal" placeholder="4001"></div>
-          <button class="btn btn-primary btn-full btn-lg" onclick="checkoutNext(2)">Continue to Payment →</button>
-        </div>
-        <div class="card">
-          <h3 class="mb-16">Order Summary</h3>
-          ${STATE.cart.map(i=>`<div class="flex justify-between mb-12"><div class="flex gap-10 items-center"><span>${i.emoji}</span><span class="text-sm">${i.name} x${i.qty}</span></div><span class="text-sm font-600">R${i.price*i.qty}</span></div>`).join('')}
-          <div class="separator"></div>
-          <div class="flex justify-between" style="font-family:var(--font-head);font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div>
-          <div class="badge badge-green mt-16">🚚 Free delivery nationwide</div>
-        </div>
-      </div>`;
+    c.innerHTML = `<div class="grid-2" style="gap:32px;align-items:start;"><div class="card"><h3 class="mb-20">Delivery Details</h3><div class="form-group"><label>Full Name</label><input id="co-name" value="${STATE.user?.name||''}"></div><div class="form-group"><label>Phone</label><input id="co-phone" value="${STATE.user?.phone||''}"></div><div class="form-group"><label>Street Address</label><input id="co-addr" placeholder="123 Main Street"></div><div class="form-group"><label>City</label><input id="co-city" value="Durban"></div><div class="form-group"><label>Province</label><select id="co-prov"><option>KwaZulu-Natal</option><option>Gauteng</option><option>Western Cape</option><option>Eastern Cape</option></select></div><div class="form-group"><label>Postal Code</label><input id="co-postal" placeholder="4001"></div><button class="btn btn-primary btn-full btn-lg" onclick="checkoutNext(2)">Continue to Payment →</button></div><div class="card"><h3 class="mb-16">Order Summary</h3>${STATE.cart.map(i=>`<div class="flex justify-between mb-12"><div class="flex gap-10 items-center"><span>${i.emoji}</span><span class="text-sm">${i.name} x${i.qty}</span></div><span class="text-sm">R${i.price*i.qty}</span></div>`).join('')}<div class="separator"></div><div class="flex justify-between" style="font-family:var(--font-head);font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div><div class="badge badge-green mt-16">🚚 Free delivery nationwide</div></div></div>`;
   } else if (STATE.checkoutStep === 2) {
-    c.innerHTML = `
-      <div class="grid-2" style="gap:32px;align-items:start;">
-        <div class="card">
-          <h3 class="mb-20">Payment Method</h3>
-          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
-            <label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--accent);">
-              <input type="radio" name="pay" value="card" checked style="width:auto;"> 💳 Credit/Debit Card
-            </label>
-            <label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);">
-              <input type="radio" name="pay" value="eft" style="width:auto;"> 🏦 EFT / Bank Transfer
-            </label>
-            <label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);">
-              <input type="radio" name="pay" value="snapscan" style="width:auto;"> 📱 SnapScan / Zapper
-            </label>
-          </div>
-          <div class="form-group"><label>Card Number</label><input placeholder="4242 4242 4242 4242" maxlength="19"></div>
-          <div class="grid-2" style="gap:12px;">
-            <div class="form-group"><label>Expiry</label><input placeholder="MM/YY"></div>
-            <div class="form-group"><label>CVV</label><input placeholder="123" maxlength="3"></div>
-          </div>
-          <div class="form-group"><label>Name on Card</label><input value="${STATE.user?.name||''}" placeholder="Card holder name"></div>
-          <div class="flex gap-12">
-            <button class="btn btn-ghost" onclick="checkoutNext(1)">← Back</button>
-            <button class="btn btn-primary btn-full btn-lg" onclick="checkoutNext(3)">Review Order →</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3 class="mb-16">Order Summary</h3>
-          ${STATE.cart.map(i=>`<div class="flex justify-between mb-12"><div class="flex gap-10 items-center"><span>${i.emoji}</span><span class="text-sm">${i.name} x${i.qty}</span></div><span class="text-sm">R${i.price*i.qty}</span></div>`).join('')}
-          <div class="separator"></div>
-          <div class="flex justify-between" style="font-family:var(--font-head);font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div>
-        </div>
-      </div>`;
+    c.innerHTML = `<div class="grid-2" style="gap:32px;align-items:start;"><div class="card"><h3 class="mb-20">Payment Method</h3><div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;"><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--accent);"><input type="radio" name="pay" value="card" checked style="width:auto;"> 💳 Credit/Debit Card</label><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);"><input type="radio" name="pay" value="eft" style="width:auto;"> 🏦 EFT / Bank Transfer</label><label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);"><input type="radio" name="pay" value="snapscan" style="width:auto;"> 📱 SnapScan / Zapper</label></div><div class="form-group"><label>Card Number</label><input placeholder="4242 4242 4242 4242" maxlength="19"></div><div class="grid-2" style="gap:12px;"><div class="form-group"><label>Expiry</label><input placeholder="MM/YY"></div><div class="form-group"><label>CVV</label><input placeholder="123" maxlength="3"></div></div><div class="form-group"><label>Name on Card</label><input value="${STATE.user?.name||''}"></div><div class="flex gap-12"><button class="btn btn-ghost" onclick="checkoutNext(1)">← Back</button><button class="btn btn-primary btn-full btn-lg" onclick="checkoutNext(3)">Review Order →</button></div></div><div class="card"><h3 class="mb-16">Order Summary</h3>${STATE.cart.map(i=>`<div class="flex justify-between mb-12"><div class="flex gap-10 items-center"><span>${i.emoji}</span><span class="text-sm">${i.name} x${i.qty}</span></div><span class="text-sm">R${i.price*i.qty}</span></div>`).join('')}<div class="separator"></div><div class="flex justify-between" style="font-family:var(--font-head);font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div></div></div>`;
   } else if (STATE.checkoutStep === 3) {
-    c.innerHTML = `
-      <div class="card" style="max-width:560px;margin:0 auto;text-align:center;">
-        <div style="font-size:3rem;margin-bottom:16px;">✅</div>
-        <h2 class="mb-8">Confirm your order</h2>
-        <p class="text-muted mb-24">Please review your order before placing it.</p>
-        <div style="background:var(--surface2);border-radius:12px;padding:20px;text-align:left;margin-bottom:24px;">
-          ${STATE.cart.map(i=>`<div class="flex justify-between mb-8"><span>${i.emoji} ${i.name} x${i.qty}</span><strong>R${i.price*i.qty}</strong></div>`).join('')}
-          <div class="separator"></div>
-          <div class="flex justify-between" style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div>
-        </div>
-        <div class="flex gap-12 justify-center">
-          <button class="btn btn-ghost" onclick="checkoutNext(2)">← Edit</button>
-          <button class="btn btn-primary btn-lg" onclick="placeOrder()">Place Order 🎉</button>
-        </div>
-      </div>`;
+    c.innerHTML = `<div class="card" style="max-width:560px;margin:0 auto;text-align:center;"><div style="font-size:3rem;margin-bottom:16px;">✅</div><h2 class="mb-8">Confirm your order</h2><p class="text-muted mb-24">Please review your order before placing it.</p><div style="background:var(--surface2);border-radius:12px;padding:20px;text-align:left;margin-bottom:24px;">${STATE.cart.map(i=>`<div class="flex justify-between mb-8"><span>${i.emoji} ${i.name} x${i.qty}</span><strong>R${i.price*i.qty}</strong></div>`).join('')}<div class="separator"></div><div class="flex justify-between" style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;"><span>Total</span><span>R${cartTotal()}</span></div></div><div class="flex gap-12 justify-center"><button class="btn btn-ghost" onclick="checkoutNext(2)">← Edit</button><button class="btn btn-primary btn-lg" onclick="placeOrder()">Place Order 🎉</button></div></div>`;
   }
 }
 
-function updateCheckoutSteps() {
-  for (let i=1;i<=3;i++) {
-    const el = document.getElementById('step-'+i);
-    if (!el) continue;
-    el.classList.remove('active','done');
-    if (i < STATE.checkoutStep) el.classList.add('done');
-    else if (i === STATE.checkoutStep) el.classList.add('active');
-  }
+function updateCheckoutSteps() { for (let i=1;i<=3;i++) { const el=document.getElementById('step-'+i); if(!el) continue; el.classList.remove('active','done'); if(i<STATE.checkoutStep) el.classList.add('done'); else if(i===STATE.checkoutStep) el.classList.add('active'); } }
+function checkoutNext(step) { STATE.checkoutStep = step; renderCheckout(); }
+
+function logoutUser() { STATE.user = null; STATE.isAdmin = false; updateNavAuth(); showToast('You have been logged out.','info'); goTo('home'); }
+
+function updateNavAuth() {
+  const loggedIn = !!STATE.user;
+  const logoutBtn = document.getElementById('nav-logout-btn');
+  const dashBtn = document.getElementById('nav-dashboard-btn');
+  const cartBtn = document.getElementById('nav-cart-btn');
+  if (logoutBtn) logoutBtn.style.display = loggedIn ? '' : 'none';
+  if (dashBtn) { dashBtn.style.display = loggedIn ? '' : 'none'; dashBtn.textContent = STATE.isAdmin ? 'Admin Panel' : 'Dashboard'; }
+  if (cartBtn) cartBtn.style.display = (loggedIn && !STATE.isAdmin) ? '' : 'none';
+  const actions = document.getElementById('nav-actions');
+  if (!actions) return;
+  actions.querySelectorAll('button').forEach(btn => {
+    if (btn.getAttribute('onclick') === "goTo('signin')") btn.style.display = loggedIn ? 'none' : '';
+    if (btn.getAttribute('onclick') === "goTo('signup')") btn.style.display = loggedIn ? 'none' : '';
+  });
 }
 
-function checkoutNext(step) {
-  STATE.checkoutStep = step;
-  renderCheckout();
-}
+function cancelSub() { showToast('Subscription cancelled. Downgraded to Starter.','info'); if (STATE.user) { STATE.user.plan = 'Starter'; STATE.user.subscriptionActive = false; } showDashSection('subscription', null); }
 
-function placeOrder() {
-  const orderId = 'TB-' + Math.floor(Math.random()*90000+10000);
-  const order = {
-    id: orderId, date: new Date().toLocaleDateString('en-ZA'),
-    items: [...STATE.cart], total: cartTotal(), status: 'Processing'
-  };
-  STATE.orders.unshift(order);
-  STATE.cart = [];
-  updateCartUI();
-
-  // Send order confirmation email
-  const emailBody = `
-    <div style="background:var(--surface2);border-radius:12px;padding:24px;margin-top:16px;font-size:0.88rem;">
-      <div class="flex justify-between mb-8"><span class="text-muted">To:</span><span>${STATE.user?.email}</span></div>
-      <div class="flex justify-between mb-12"><span class="text-muted">Subject:</span><span>📦 Order ${orderId} Confirmed!</span></div>
-      <hr class="separator">
-      <p style="margin-bottom:8px;">Hi ${STATE.user?.name},</p>
-      <p style="color:var(--muted);margin-bottom:12px;">Your SmartLF order <strong style="color:var(--text);">${orderId}</strong> has been confirmed! 🎉</p>
-      <p style="color:var(--muted);margin-bottom:12px;">Items ordered:</p>
-      ${order.items.map(i=>`<p style="margin-bottom:4px;">• ${i.emoji} ${i.name} x${i.qty} — R${i.price*i.qty}</p>`).join('')}
-      <p style="margin-top:12px;font-weight:600;">Total: R${order.total}</p>
-      <p style="color:var(--muted);margin-top:12px;">Expected delivery: 3–5 business days. Track your order in your dashboard.</p>
-    </div>
-  `;
-  showToast(`Order ${orderId} placed! 🎉`, 'success');
-  goTo('dashboard');
-  setTimeout(() => {
-    showEmailModal(`Order Confirmation Email`, emailBody);
-    showDashSection('orders', null);
-  }, 800);
-}
-
-// ═══════════════════════════════════════════════
-// USER DASHBOARD
-// ═══════════════════════════════════════════════
-function renderDashboard() {
-  showDashSection(STATE.dashSection, null);
-}
-
-function showDashSection(section, btnEl) {
-  STATE.dashSection = section;
-  document.querySelectorAll('#page-dashboard .sidebar-link').forEach(l => l.classList.remove('active'));
-  if (btnEl) btnEl.classList.add('active');
-
-  const main = document.getElementById('dashboard-main');
-  if (!main) return;
-
-  const u = STATE.user || {};
-  const tags = [
-    { id:'TB-001', name:'Backpack', emoji:'🎒', status:'Active', scans:3 },
-    { id:'TB-002', name:'Keys', emoji:'🔑', status:'Active', scans:1 },
-    { id:'TB-003', name:'Water Bottle', emoji:'💧', status:'Inactive', scans:0 },
-  ];
-
-  const sections = {
-    overview: `
-      <div class="flex justify-between items-center mb-24">
-        <div><h2 class="mb-4">Welcome back, ${u.name?.split(' ')[0] || 'User'}! 👋</h2><p class="text-muted text-sm">Manage your SmartLF tags and account.</p></div>
-        <button class="btn btn-primary" onclick="goTo('products')">+ Order Tags</button>
-      </div>
-      <div class="grid-4 mb-24">
-        <div class="stat-card"><div class="stat-label">Active Tags</div><div class="stat-value text-accent">2</div><div class="stat-change">↑ All working</div></div>
-        <div class="stat-card"><div class="stat-label">Total Scans</div><div class="stat-value">4</div><div class="stat-change text-muted">All time</div></div>
-        <div class="stat-card"><div class="stat-label">Items Recovered</div><div class="stat-value" style="color:var(--accent3);">1</div><div class="stat-change text-muted">This month</div></div>
-        <div class="stat-card"><div class="stat-label">Plan</div><div class="stat-value text-sm" style="font-size:1.2rem;">${u.plan||'Starter'}</div><div class="stat-change" style="color:var(--warn);">Active</div></div>
-      </div>
-      <div class="grid-2" style="gap:24px;">
-        <div class="card">
-          <h3 class="mb-16">Recent Activity</h3>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div class="flex gap-12 items-center"><div class="notif-dot"></div><div><div class="text-sm font-600">TB-001 scanned</div><div class="text-muted" style="font-size:0.78rem;">15 min ago — UKZN Library, Durban</div></div></div>
-            <div class="flex gap-12 items-center"><div class="notif-dot" style="background:var(--accent3);"></div><div><div class="text-sm font-600">Item returned 🎉</div><div class="text-muted" style="font-size:0.78rem;">Yesterday — Bag recovered</div></div></div>
-            <div class="flex gap-12 items-center"><div class="notif-dot" style="background:var(--muted);"></div><div><div class="text-sm">Order TB-00123 shipped</div><div class="text-muted" style="font-size:0.78rem;">3 days ago</div></div></div>
-          </div>
-        </div>
-        <div class="card">
-          <h3 class="mb-16">Quick Actions</h3>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <button class="btn btn-outline btn-full" onclick="showDashSection('tags',null)">🏷️ Manage Tags</button>
-            <button class="btn btn-outline btn-full" onclick="goTo('products')">🛒 Order More Tags</button>
-            <button class="btn btn-outline btn-full" onclick="showDashSection('subscription',null)">💎 Upgrade Plan</button>
-            <button class="btn btn-ghost btn-full" onclick="showDashSection('profile',null)">👤 Edit Profile</button>
-          </div>
-        </div>
-      </div>
-    `,
-    tags: `
-      <div class="flex justify-between items-center mb-24">
-        <h2>My Tags</h2>
-        <button class="btn btn-primary" onclick="goTo('products')">+ Order Tags</button>
-      </div>
-      <div class="table-wrap mb-24">
-        <table>
-          <thead><tr><th>Tag ID</th><th>Item</th><th>Status</th><th>Scans</th><th>Actions</th></tr></thead>
-          <tbody>
-            ${tags.map(t=>`
-              <tr>
-                <td style="font-family:var(--font-head);font-size:0.82rem;color:var(--muted);">${t.id}</td>
-                <td>${t.emoji} ${t.name}</td>
-                <td><span class="badge ${t.status==='Active'?'badge-green':'badge-warn'}">${t.status}</span></td>
-                <td>${t.scans}</td>
-                <td class="flex gap-8"><button class="btn btn-ghost btn-sm">Edit</button><button class="btn btn-ghost btn-sm">${t.status==='Active'?'Deactivate':'Activate'}</button></td>
-              </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
-      <div class="card" style="border-color:var(--accent);">
-        <div class="flex gap-16 items-center">
-          <span style="font-size:2rem;">📡</span>
-          <div>
-            <h4 class="mb-4">Activate a new tag</h4>
-            <p class="text-muted text-sm mb-12">Enter the activation code on the back of your tag.</p>
-            <div class="flex gap-12">
-              <input id="tag-code" placeholder="TB-XXXXXX" style="width:200px;">
-              <button class="btn btn-primary" onclick="activateTag()">Activate</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-    orders: `
-      <h2 class="mb-24">My Orders</h2>
-      ${STATE.orders.length === 0 ? `
-        <div class="card text-center" style="padding:60px;">
-          <div style="font-size:3rem;margin-bottom:12px;">📦</div>
-          <h3 class="mb-8">No orders yet</h3>
-          <p class="text-muted mb-20">Browse our products and place your first order.</p>
-          <button class="btn btn-primary" onclick="goTo('products')">Shop Now</button>
-        </div>
-      ` : `
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Order ID</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead>
-            <tbody>
-              ${STATE.orders.map(o=>`
-                <tr>
-                  <td style="font-family:var(--font-head);color:var(--accent);">${o.id}</td>
-                  <td class="text-muted text-sm">${o.date}</td>
-                  <td class="text-sm">${o.items.map(i=>i.emoji+' '+i.name).join(', ')}</td>
-                  <td style="font-weight:700;">R${o.total}</td>
-                  <td><span class="badge badge-warn">${o.status}</span></td>
-                </tr>`).join('')}
-            </tbody>
-          </table>
-        </div>
-      `}
-    `,
-    subscription: `
-      <h2 class="mb-24">My Subscription</h2>
-      <div class="card mb-24" style="border-color:var(--accent2);">
-        <div class="flex justify-between items-center flex-wrap gap-12">
-          <div>
-            <div class="badge badge-purple mb-8">${u.plan || 'Starter'} Plan</div>
-            <h3 class="mb-4">${u.plan === 'Starter' ? 'Free Plan' : u.plan === 'Student' ? 'R49/month' : 'R199/month'}</h3>
-            <p class="text-muted text-sm">Next renewal: ${u.plan === 'Starter' ? 'N/A (free)' : '1 July 2025'}</p>
-          </div>
-          <div class="flex gap-12">
-            ${u.plan !== 'Business' ? `<button class="btn btn-primary" onclick="goTo('pricing')">Upgrade Plan</button>` : ''}
-            ${u.plan !== 'Starter' ? `<button class="btn btn-danger" onclick="cancelSub()">Cancel</button>` : ''}
-          </div>
-        </div>
-      </div>
-      <h3 class="mb-16">Plan Comparison</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Feature</th><th>Starter (Free)</th><th>Student (R49)</th><th>Business (R199)</th></tr></thead>
-          <tbody>
-            <tr><td>Active tags</td><td>1</td><td>5</td><td>Unlimited</td></tr>
-            <tr><td>Anonymous messages</td><td>❌</td><td>✅</td><td>✅</td></tr>
-            <tr><td>Scan location log</td><td>❌</td><td>✅</td><td>✅</td></tr>
-            <tr><td>Reward feature</td><td>❌</td><td>✅</td><td>✅</td></tr>
-            <tr><td>Analytics</td><td>❌</td><td>Basic</td><td>Full</td></tr>
-            <tr><td>Priority support</td><td>❌</td><td>❌</td><td>✅</td></tr>
-          </tbody>
-        </table>
-      </div>
-    `,
-    profile: `
-      <h2 class="mb-24">My Profile</h2>
-      <div class="grid-2" style="gap:24px;align-items:start;">
-        <div class="card">
-          <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(0,229,255,0.1);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--accent);">${(u.name||'U')[0]}</div>
-            <div><h3>${u.name}</h3><div class="text-muted text-sm">${u.email}</div></div>
-          </div>
-          <div class="form-group"><label>Full Name</label><input value="${u.name||''}"></div>
-          <div class="form-group"><label>Email</label><input value="${u.email||''}" type="email"></div>
-          <div class="form-group"><label>Phone</label><input value="${u.phone||''}" placeholder="071 XXX XXXX"></div>
-          <div class="form-group"><label>Emergency Contact Name</label><input placeholder="e.g. Mom - 082 XXX XXXX"></div>
-          <button class="btn btn-primary" onclick="showToast('Profile updated! ✅','success')">Save Changes</button>
-        </div>
-        <div class="card">
-          <h3 class="mb-16">Profile Privacy</h3>
-          <div style="display:flex;flex-direction:column;gap:14px;">
-            <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
-              <div><div style="font-size:0.9rem;font-weight:600;">Show phone number</div><div class="text-muted text-sm">Displayed to finders when tag is scanned</div></div>
-              <input type="checkbox" checked style="width:auto;cursor:pointer;">
-            </label>
-            <div class="separator"></div>
-            <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
-              <div><div style="font-size:0.9rem;font-weight:600;">Allow anonymous contact</div><div class="text-muted text-sm">Finders can message without seeing your number</div></div>
-              <input type="checkbox" checked style="width:auto;cursor:pointer;">
-            </label>
-            <div class="separator"></div>
-            <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
-              <div><div style="font-size:0.9rem;font-weight:600;">Scan location logging</div><div class="text-muted text-sm">Log where your tag was scanned (premium)</div></div>
-              <input type="checkbox" style="width:auto;cursor:pointer;">
-            </label>
-          </div>
-        </div>
-      </div>
-    `,
-    notifications: `
-      <h2 class="mb-24">Notifications</h2>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <div class="card flex gap-16 items-center">
-          <div class="notif-dot"></div>
-          <div style="flex:1;">
-            <div style="font-weight:600;font-size:0.9rem;">Tag TB-001 was scanned</div>
-            <div class="text-muted text-sm">Your backpack tag was scanned at UKZN Library. If this wasn't you, check your bag.</div>
-            <div class="text-muted text-sm">15 minutes ago</div>
-          </div>
-          <button class="btn btn-ghost btn-sm">Dismiss</button>
-        </div>
-        <div class="card flex gap-16 items-center">
-          <div class="notif-dot" style="background:var(--accent3);"></div>
-          <div style="flex:1;">
-            <div style="font-weight:600;font-size:0.9rem;">🎉 Item returned successfully!</div>
-            <div class="text-muted text-sm">Thabo found your bag and returned it. SmartLF did its job!</div>
-            <div class="text-muted text-sm">Yesterday</div>
-          </div>
-          <button class="btn btn-ghost btn-sm">Dismiss</button>
-        </div>
-        <div class="card flex gap-16 items-center" style="opacity:0.6;">
-          <div class="notif-dot" style="background:var(--muted);"></div>
-          <div style="flex:1;">
-            <div style="font-weight:600;font-size:0.9rem;">Order TB-00123 has been shipped</div>
-            <div class="text-muted text-sm">Expected delivery in 2–3 business days.</div>
-            <div class="text-muted text-sm">3 days ago</div>
-          </div>
-        </div>
-      </div>
-    `,
-  };
-  main.innerHTML = sections[section] || '<p>Section not found.</p>';
-}
-
-function activateTag() {
-  const code = document.getElementById('tag-code')?.value.trim();
-  if (!code) { showToast('Please enter a tag code.','error'); return; }
-  showToast(`Tag ${code} activated successfully! 🏷️`, 'success');
-}
-
-function cancelSub() {
-  showToast('Subscription cancelled. Downgraded to Starter.','info');
-  if (STATE.user) { STATE.user.plan = 'Starter'; }
-  showDashSection('subscription', null);
-}
-
-function subscribePlan(plan, price) {
-  if (!STATE.user) { showToast('Please sign in first.','info'); goTo('signin'); return; }
-  STATE.user.plan = plan;
-  const emailBody = `
-    <div style="background:var(--surface2);border-radius:12px;padding:24px;margin-top:16px;font-size:0.88rem;">
-      <div class="flex justify-between mb-8"><span class="text-muted">To:</span><span>${STATE.user.email}</span></div>
-      <div class="flex justify-between mb-12"><span class="text-muted">Subject:</span><span>💎 SmartLF ${plan} Subscription Confirmed</span></div>
-      <hr class="separator">
-      <p style="margin-bottom:8px;">Hi ${STATE.user.name},</p>
-      <p style="color:var(--muted);margin-bottom:8px;">Your <strong style="color:var(--text);">${plan}</strong> subscription is now active at <strong>${price}</strong>.</p>
-      <p style="color:var(--muted);">You now have access to all ${plan} features. Log in to your dashboard to manage your tags.</p>
-    </div>
-  `;
-  showToast(`Subscribed to ${plan} plan! 💎`, 'success');
-  if (plan !== 'Starter') setTimeout(() => showEmailModal(`Subscription Confirmation`, emailBody), 600);
-  goTo('dashboard');
-}
-
-// ═══════════════════════════════════════════════
-// ADMIN DASHBOARD
-// ═══════════════════════════════════════════════
-function renderAdmin() {
-  showAdminSection(STATE.adminSection, null);
-}
-
-function showAdminSection(section, btnEl) {
-  STATE.adminSection = section;
-  document.querySelectorAll('#page-admin .sidebar-link').forEach(l => l.classList.remove('active'));
-  if (btnEl) btnEl.classList.add('active');
-
-  const main = document.getElementById('admin-main');
-  if (!main) return;
-
-  const allUsers = Object.entries(DEMO_USERS).map(([email, u]) => ({email,...u}));
-  const allOrders = [
-    { id:'TB-83421', user:'Sipho Nkosi', total:'R299', status:'Delivered', date:'2025-05-08' },
-    { id:'TB-72340', user:'Rethabile M.', total:'R149', status:'Processing', date:'2025-05-10' },
-    { id:'TB-61234', user:'Amahle D.', total:'R1490', status:'Shipped', date:'2025-05-07' },
-    ...STATE.orders.map(o=>({ id:o.id, user:STATE.user?.name||'Demo', total:'R'+o.total, status:o.status, date:o.date }))
-  ];
-
-  const sections = {
-    overview: `
-      <h2 class="mb-8">Admin Dashboard</h2>
-      <p class="text-muted mb-24">Overview of SmartLF platform activity.</p>
-      <div class="grid-4 mb-24">
-        <div class="stat-card"><div class="stat-label">Total Users</div><div class="stat-value text-accent">${allUsers.length + 1200}</div><div class="stat-change">↑ +12 today</div></div>
-        <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-value">2,847</div><div class="stat-change">↑ +34 this week</div></div>
-        <div class="stat-card"><div class="stat-label">Tags Active</div><div class="stat-value" style="color:var(--accent3);">4,120</div><div class="stat-change text-muted">Across all users</div></div>
-        <div class="stat-card"><div class="stat-label">Revenue (MTD)</div><div class="stat-value" style="color:var(--warn);">R84K</div><div class="stat-change">↑ +22% vs last month</div></div>
-      </div>
-      <div class="grid-2" style="gap:24px;">
-        <div class="card">
-          <h3 class="mb-16">Recent Signups</h3>
-          ${allUsers.slice(0,4).map(u=>`
-            <div class="flex justify-between items-center mb-12">
-              <div class="flex gap-10 items-center">
-                <div style="width:32px;height:32px;border-radius:50%;background:rgba(0,229,255,0.1);display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:var(--accent);">${u.name[0]}</div>
-                <div><div class="text-sm" style="font-weight:600;">${u.name}</div><div class="text-muted" style="font-size:0.75rem;">${u.email}</div></div>
-              </div>
-              <span class="badge badge-cyan text-sm">${u.plan||'Starter'}</span>
-            </div>`).join('')}
-        </div>
-        <div class="card">
-          <h3 class="mb-16">System Status</h3>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div class="flex justify-between items-center"><span class="text-sm">API Server</span><span class="badge badge-green">Operational</span></div>
-            <div class="flex justify-between items-center"><span class="text-sm">Tag Database</span><span class="badge badge-green">Operational</span></div>
-            <div class="flex justify-between items-center"><span class="text-sm">Email Service</span><span class="badge badge-green">Operational</span></div>
-            <div class="flex justify-between items-center"><span class="text-sm">NFC Provisioning</span><span class="badge badge-green">Operational</span></div>
-          </div>
-        </div>
-      </div>
-    `,
-    users: `
-      <div class="flex justify-between items-center mb-24">
-        <h2>User Management</h2>
-        <button class="btn btn-primary btn-sm" onclick="showAdminSection('emails',null)">📧 Email All Users</button>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Plan</th><th>Actions</th></tr></thead>
-          <tbody>
-            ${allUsers.map(u=>`
-              <tr>
-                <td style="font-weight:600;">${u.name}</td>
-                <td class="text-muted text-sm">${u.email}</td>
-                <td><span class="badge ${u.role==='admin'?'badge-red':'badge-cyan'}">${u.role}</span></td>
-                <td><span class="badge badge-purple">${u.plan||'Starter'}</span></td>
-                <td class="flex gap-8"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-ghost btn-sm" onclick="adminEmail('${u.email}','${u.name}')">Email</button></td>
-              </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
-    `,
-    orders: `
-      <h2 class="mb-24">All Orders</h2>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Order ID</th><th>Customer</th><th>Total</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
-          <tbody>
-            ${allOrders.map(o=>`
-              <tr>
-                <td style="font-family:var(--font-head);color:var(--accent);font-size:0.85rem;">${o.id}</td>
-                <td style="font-weight:600;">${o.user}</td>
-                <td style="font-weight:700;">${o.total}</td>
-                <td class="text-muted text-sm">${o.date}</td>
-                <td><span class="badge ${o.status==='Delivered'?'badge-green':o.status==='Processing'?'badge-warn':'badge-cyan'}">${o.status}</span></td>
-                <td><button class="btn btn-ghost btn-sm">Update</button></td>
-              </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
-    `,
-    tags: `
-      <h2 class="mb-24">Tag Registry</h2>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Tag ID</th><th>Owner</th><th>Type</th><th>Status</th><th>Scans</th><th>Last Seen</th></tr></thead>
-          <tbody>
-            <tr><td style="font-family:var(--font-head);">TB-001</td><td>Sipho Nkosi</td><td><span class="badge badge-purple">NFC+QR</span></td><td><span class="badge badge-green">Active</span></td><td>3</td><td class="text-muted text-sm">10 min ago</td></tr>
-            <tr><td style="font-family:var(--font-head);">TB-002</td><td>Sipho Nkosi</td><td><span class="badge badge-cyan">NFC</span></td><td><span class="badge badge-green">Active</span></td><td>1</td><td class="text-muted text-sm">Yesterday</td></tr>
-            <tr><td style="font-family:var(--font-head);">TB-003</td><td>Rethabile M.</td><td><span class="badge badge-cyan">QR</span></td><td><span class="badge badge-warn">Inactive</span></td><td>0</td><td class="text-muted text-sm">Never</td></tr>
-            <tr><td style="font-family:var(--font-head);">TB-004</td><td>Amahle D.</td><td><span class="badge badge-purple">NFC+QR</span></td><td><span class="badge badge-green">Active</span></td><td>7</td><td class="text-muted text-sm">2 hours ago</td></tr>
-          </tbody>
-        </table>
-      </div>
-    `,
-    emails: `
-      <h2 class="mb-24">Send Email</h2>
-      <div class="card" style="max-width:600px;">
-        <div class="form-group">
-          <label>Recipient</label>
-          <select id="email-to">
-            <option value="all">All Users (broadcast)</option>
-            <option value="student">Student Plan users</option>
-            <option value="business">Business Plan users</option>
-            ${allUsers.map(u=>`<option value="${u.email}">${u.name} (${u.email})</option>`).join('')}
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Subject</label>
-          <input id="email-subject" placeholder="e.g. New features available! 🚀">
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea id="email-body" style="min-height:140px;" placeholder="Write your message here..."></textarea>
-        </div>
-        <div class="form-group">
-          <label>Email Type</label>
-          <select id="email-type">
-            <option value="announcement">📢 Announcement</option>
-            <option value="promo">💰 Promotion</option>
-            <option value="update">🔧 Product Update</option>
-            <option value="reminder">🔔 Reminder</option>
-          </select>
-        </div>
-        <button class="btn btn-primary" onclick="sendAdminEmail()">📧 Send Email</button>
-      </div>
-    `,
-  };
-  main.innerHTML = sections[section] || '<p>Section not found.</p>';
-}
-
-function adminEmail(email, name) {
-  showAdminSection('emails', null);
-  setTimeout(() => {
-    const el = document.getElementById('email-to');
-    if (el) el.value = email;
-  }, 100);
-}
-
-function sendAdminEmail() {
-  const to = document.getElementById('email-to')?.value;
-  const subject = document.getElementById('email-subject')?.value?.trim();
-  const body = document.getElementById('email-body')?.value?.trim();
-  if (!subject || !body) { showToast('Please fill in subject and message.','error'); return; }
-  const emailBody = `
-    <div style="background:var(--surface2);border-radius:12px;padding:24px;margin-top:16px;font-size:0.88rem;">
-      <div class="flex justify-between mb-8"><span class="text-muted">To:</span><span>${to === 'all' ? 'All Users (1,200+)' : to}</span></div>
-      <div class="flex justify-between mb-12"><span class="text-muted">Subject:</span><span>${subject}</span></div>
-      <hr class="separator">
-      <p style="white-space:pre-wrap;color:var(--muted);">${body}</p>
-    </div>
-  `;
-  showToast(`Email sent to ${to === 'all' ? 'all users' : to}! 📧`, 'success');
-  showEmailModal('Email Sent Successfully', emailBody);
-}
-
-// ═══════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════
-function init() {
-  goTo('home');
-}
-
-init();
-</script>
-
-<script>
-// ═══════════════════════════════════════════════
-// INNOV8 SMARTLF FULL-LAYOUT WORKING PATCH
-// Keeps the original shop/products/layout, adds real backend calls.
-// ═══════════════════════════════════════════════
+// ─── API ───
 const API = {
   async call(url, options = {}) {
     const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
@@ -2052,10 +877,12 @@ const API = {
     return data;
   }
 };
+
 let DB_CACHE = { users: [], tags: [], orders: [], scans: [], emails: [] };
 function todaySmartLF() { return new Date().toLocaleDateString('en-ZA', { year:'numeric', month:'short', day:'numeric' }); }
 function smartDateTime(value) { return new Date(value || Date.now()).toLocaleString('en-ZA'); }
 function smartMoney(n) { return 'R' + Number(n || 0).toFixed(0); }
+
 async function refreshSmartData() {
   if (!STATE.user) return DB_CACHE;
   const qs = new URLSearchParams({ userId: STATE.user.id || '', role: STATE.isAdmin ? 'admin' : 'user' });
@@ -2063,8 +890,7 @@ async function refreshSmartData() {
   return DB_CACHE;
 }
 
-// Login/signup now use backend text-file database.
-window.signupUser = async function signupUser() {
+async function signupUser() {
   const name = document.getElementById('su-name').value.trim();
   const email = document.getElementById('su-email').value.trim();
   const phone = document.getElementById('su-phone').value.trim();
@@ -2080,9 +906,9 @@ window.signupUser = async function signupUser() {
     showToast(`Welcome to INNOV8 SmartLF, ${user.name}!`, 'success');
     goTo('dashboard');
   } catch (e) { showToast(e.message, 'error'); }
-};
+}
 
-window.signinUser = async function signinUser() {
+async function signinUser() {
   const email = document.getElementById('si-email').value.trim();
   const password = document.getElementById('si-pass').value;
   if (!email || !password) { showToast('Please enter your credentials.','error'); return; }
@@ -2094,162 +920,158 @@ window.signinUser = async function signinUser() {
     showToast(`Welcome back, ${user.name}!`, 'success');
     goTo(STATE.isAdmin ? 'admin' : 'dashboard');
   } catch (e) { showToast(e.message, 'error'); }
-};
+}
 
-window.updateNavAuth = function updateNavAuth() {
-  const loggedIn = !!STATE.user;
-  const logoutBtn = document.getElementById('nav-logout-btn');
-  const dashBtn = document.getElementById('nav-dashboard-btn');
-  const cartBtn = document.getElementById('nav-cart-btn');
-  if (logoutBtn) logoutBtn.style.display = loggedIn ? '' : 'none';
-  if (dashBtn) { dashBtn.style.display = loggedIn ? '' : 'none'; dashBtn.textContent = STATE.isAdmin ? 'Admin Panel' : 'Dashboard'; }
-  if (cartBtn) cartBtn.style.display = (loggedIn && !STATE.isAdmin) ? '' : 'none';
-  const actions = document.getElementById('nav-actions');
-  if (!actions) return;
-  const signInBtn = actions.querySelector('button[onclick="goTo(\'signin\')"]') || actions.querySelector('.btn-ghost');
-  const signUpBtn = actions.querySelector('button[onclick="goTo(\'signup\')"]') || actions.querySelector('.btn-primary');
-  if (signInBtn) signInBtn.style.display = loggedIn ? 'none' : '';
-  if (signUpBtn) signUpBtn.style.display = loggedIn ? 'none' : '';
-};
+// ── SUBSCRIPTION — saves to Postgres ──
+async function subscribePlan(plan, price) {
+  if (!STATE.user) { showToast('Please sign in first.','info'); goTo('signin'); return; }
+  try {
+    await fetch('/api/admin/users/' + STATE.user.id, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+      body: JSON.stringify({ plan, subscriptionActive: plan !== 'Starter' })
+    });
+    STATE.user.plan = plan;
+    STATE.user.subscriptionActive = plan !== 'Starter';
+    showToast(`${plan} plan activated! ✅`, 'success');
+    goTo('dashboard');
+    setTimeout(() => showDashSection('subscription', null), 100);
+  } catch(e) { showToast(e.message || 'Could not update plan.', 'error'); }
+}
 
-// Admin cannot buy/cart. Users only.
-window.addToCart = function addToCart(productId) {
-  if (STATE.isAdmin) { showToast('Admin accounts cannot buy or use the cart. Use the admin dashboard to assign tags.', 'error'); return; }
-  if (!STATE.user) { showToast('Please sign in as a customer before buying.', 'info'); goTo('signin'); return; }
-  const p = PRODUCTS.find(x => x.id === productId);
-  if (!p) return;
-  const existing = STATE.cart.find(x => x.id === productId);
-  existing ? existing.qty++ : STATE.cart.push({ ...p, qty: 1 });
-  updateCartUI();
-  showToast(`${p.name} added to cart!`, 'success');
-};
-const oldGoTo = window.goTo;
-window.goTo = function(page) {
-  if ((page === 'cart' || page === 'checkout') && STATE.isAdmin) { showToast('Admin dashboard has no cart or checkout.', 'error'); page = 'admin'; }
-  oldGoTo(page);
-};
-
-window.proceedCheckout = function proceedCheckout() {
-  if (STATE.isAdmin) { showToast('Admin cannot checkout.', 'error'); return; }
-  if (!STATE.user) { goTo('signin'); return; }
-  if (STATE.cart.length === 0) { showToast('Your cart is empty.','error'); return; }
-  STATE.checkoutStep = 1;
-  goTo('checkout');
-};
-
-// Make checkout create a real order in data/db.json
-window.placeOrder = async function placeOrder() {
-  if (!STATE.user || STATE.isAdmin) { showToast('Only customers can place orders.', 'error'); return; }
-  if (STATE.cart.length === 0) { showToast('Cart is empty.', 'error'); return; }
+async function placeOrder() {
+  if (!STATE.user || STATE.isAdmin) { showToast('Only customers can place orders.','error'); return; }
+  if (STATE.cart.length === 0) { showToast('Cart is empty.','error'); return; }
   try {
     const payload = { userId: STATE.user.id, items: STATE.cart.map(i => ({ id:i.id, name:i.name, qty:i.qty, price:i.price, type:i.category })), total: cartTotal() };
     const { order } = await API.call('/api/orders', { method:'POST', body: JSON.stringify(payload) });
     STATE.orders.unshift(order); STATE.cart = []; updateCartUI();
-    showToast('Order placed and saved to database/text file.', 'success');
+    showToast('Order placed successfully! 🎉','success');
     goTo('dashboard'); showDashSection('orders', null);
   } catch (e) { showToast(e.message, 'error'); }
-};
+}
 
-// Override checkout confirm button after original render.
-const oldRenderCheckout = window.renderCheckout;
-window.renderCheckout = function renderCheckout() {
-  oldRenderCheckout();
-  setTimeout(() => {
-    document.querySelectorAll('button').forEach(btn => {
-      if (btn.textContent && btn.textContent.includes('Place Order')) btn.setAttribute('onclick','placeOrder()');
-    });
-  }, 0);
-};
+// ── USER DASHBOARD ──
+async function renderDashboard() { await showDashSection(STATE.dashSection || 'overview', null); }
 
-// User dashboard with real tags/orders/scans while keeping original dashboard layout style.
-window.renderDashboard = async function renderDashboard() { await showDashSection(STATE.dashSection || 'overview', null); };
-window.showDashSection = async function showDashSection(section, btnEl) {
+async function showDashSection(section, btnEl) {
   STATE.dashSection = section;
   document.querySelectorAll('#page-dashboard .sidebar-link').forEach(l => l.classList.remove('active'));
   if (btnEl) btnEl.classList.add('active');
   const main = document.getElementById('dashboard-main'); if (!main) return;
   try { await refreshSmartData(); } catch(e) {}
   const tags = DB_CACHE.tags || [], orders = DB_CACHE.orders || [], scans = DB_CACHE.scans || [];
-  const tagRows = tags.map(t => `<tr><td><b>${t.label}</b><br><span class="text-muted text-sm">${t.code}</span></td><td><span class="badge ${t.type.includes('nfc')?'badge-purple':'badge-cyan'}">${t.type.toUpperCase()}</span></td><td>${t.itemName}</td><td><span class="badge ${t.active?'badge-green':'badge-warn'}">${t.active?'Active':'Inactive'}</span></td><td><button class="btn btn-ghost btn-sm" onclick="copySmartLink('${t.url}')">Copy Link</button> <button class="btn btn-outline btn-sm" onclick="editSmartTag('${t.id}')">Edit</button> <button class="btn ${t.active?'btn-danger':'btn-green'} btn-sm" onclick="toggleSmartTag('${t.id}', ${!t.active})">${t.active?'Deactivate':'Activate'}</button></td></tr>`).join('') || '<tr><td colspan="5" class="text-muted">No tags yet. Add one or wait for admin assignment.</td></tr>';
-  const orderRows = orders.map(o => `<tr><td style="color:var(--accent);font-family:var(--font-head);">${o.id}</td><td>${(o.items||[]).map(i=>`${i.name} x${i.qty}`).join('<br>')}</td><td>${smartMoney(o.total)}</td><td><span class="badge badge-cyan">${o.status}</span></td><td>${smartDateTime(o.placedAt)}</td><td>${o.userReceived?'✅ Received':`<button class="btn btn-green btn-sm" onclick="markOrderReceived('${o.id}')">Order received</button>`}</td></tr>`).join('') || '<tr><td colspan="6" class="text-muted">No orders yet.</td></tr>';
-  const scanRows = scans.map(s => `<tr><td>${smartDateTime(s.createdAt)}</td><td>${s.code}</td><td>${s.trackingAllowed ? '✅ NFC subscription tracking' : 'Locked: QR/no subscription'}</td><td>${s.lat ? `${s.lat}, ${s.lng}` : 'No coordinates saved'}</td></tr>`).join('') || '<tr><td colspan="4" class="text-muted">No scans yet.</td></tr>';
+  const tagRows = tags.map(t => `<tr><td><b>${t.label}</b><br><span class="text-muted text-sm">${t.code}</span></td><td><span class="badge ${t.type.includes('nfc')?'badge-purple':'badge-cyan'}">${t.type.toUpperCase()}</span></td><td>${t.itemName}</td><td><span class="badge ${t.active?'badge-green':'badge-warn'}">${t.active?'Active':'Inactive'}</span></td><td><button class="btn btn-ghost btn-sm" onclick="copySmartLink('${t.url}')">Copy Link</button> <button class="btn btn-outline btn-sm" onclick="editSmartTag('${t.id}')">Edit</button> <button class="btn ${t.active?'btn-danger':'btn-green'} btn-sm" onclick="toggleSmartTag('${t.id}', ${!t.active})">${t.active?'Deactivate':'Activate'}</button></td></tr>`).join('') || '<tr><td colspan="5" class="text-muted">No tags yet.</td></tr>';
+  const orderRows = orders.map(o => `<tr><td style="color:var(--accent);font-family:var(--font-head);">${o.id}</td><td>${(o.items||[]).map(i=>`${i.name} x${i.qty}`).join('<br>')}</td><td>${smartMoney(o.total)}</td><td><span class="badge badge-cyan">${o.status}</span></td><td>${smartDateTime(o.placedAt)}</td><td>${o.userReceived?'✅ Received':`<button class="btn btn-green btn-sm" onclick="markOrderReceived('${o.id}')">Mark received</button>`}</td></tr>`).join('') || '<tr><td colspan="6" class="text-muted">No orders yet.</td></tr>';
+  const scanRows = scans.map(s => `<tr><td>${smartDateTime(s.createdAt)}</td><td>${s.code}</td><td>${s.trackingAllowed?'✅ NFC tracking':'Locked'}</td><td>${s.lat ? `${s.lat}, ${s.lng}` : 'No coordinates'}</td></tr>`).join('') || '<tr><td colspan="4" class="text-muted">No scans yet.</td></tr>';
+
+  const currentPlan = STATE.user?.plan || 'Starter';
   const sections = {
-    overview: `<h2 class="mb-8">My INNOV8 SmartLF Dashboard</h2><p class="text-muted mb-24">Real date: <b>${todaySmartLF()}</b></p><div class="grid-4 mb-24"><div class="stat-card"><div class="stat-label">Active Tags</div><div class="stat-value text-accent">${tags.filter(t=>t.active).length}</div></div><div class="stat-card"><div class="stat-label">Orders</div><div class="stat-value">${orders.length}</div></div><div class="stat-card"><div class="stat-label">Plan</div><div class="stat-value" style="font-size:1.4rem;">${STATE.user?.plan || 'Starter'}</div></div><div class="stat-card"><div class="stat-label">Scans</div><div class="stat-value" style="color:var(--accent3);">${scans.length}</div></div></div><div class="card"><h3 class="mb-16">Recent scans</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Code</th><th>Tracking</th><th>Location</th></tr></thead><tbody>${scanRows}</tbody></table></div></div>`,
-    tags: `<div class="flex justify-between items-center mb-24"><h2>My Tags</h2><button class="btn btn-primary btn-sm" onclick="showAddTagModal()">+ Add Tag</button></div><div class="card mb-24"><p class="text-muted text-sm">QR tags can show owner details. NFC/NFC+QR tags can save scan location only when your subscription is active.</p></div><div class="table-wrap"><table><thead><tr><th>Tag</th><th>Type</th><th>Item</th><th>Status</th><th>Actions</th></tr></thead><tbody>${tagRows}</tbody></table></div>`,
+    overview: `<h2 class="mb-8">My Dashboard</h2><p class="text-muted mb-24">Date: <b>${todaySmartLF()}</b></p><div class="grid-4 mb-24"><div class="stat-card"><div class="stat-label">Active Tags</div><div class="stat-value text-accent">${tags.filter(t=>t.active).length}</div></div><div class="stat-card"><div class="stat-label">Orders</div><div class="stat-value">${orders.length}</div></div><div class="stat-card"><div class="stat-label">Plan</div><div class="stat-value" style="font-size:1.4rem;">${currentPlan}</div></div><div class="stat-card"><div class="stat-label">Scans</div><div class="stat-value" style="color:var(--accent3);">${scans.length}</div></div></div><div class="card"><h3 class="mb-16">Recent scans</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Code</th><th>Tracking</th><th>Location</th></tr></thead><tbody>${scanRows}</tbody></table></div></div>`,
+    tags: `<div class="flex justify-between items-center mb-24"><h2>My Tags</h2><button class="btn btn-primary btn-sm" onclick="showAddTagModal()">+ Add Tag</button></div><div class="table-wrap"><table><thead><tr><th>Tag</th><th>Type</th><th>Item</th><th>Status</th><th>Actions</th></tr></thead><tbody>${tagRows}</tbody></table></div>`,
     orders: `<h2 class="mb-24">My Orders</h2><div class="table-wrap"><table><thead><tr><th>Order</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th>Received</th></tr></thead><tbody>${orderRows}</tbody></table></div>`,
-    subscription: `<h2 class="mb-24">Subscription by Equipment</h2><div class="grid-3"><div class="pricing-card"><h3>QR Basic</h3><p class="text-muted text-sm">Shows recovery details only.</p><div class="price-amount">R0</div><button class="btn btn-outline btn-full" onclick="subscribePlan('Starter','R0')">Use Free</button></div><div class="pricing-card featured"><h3>NFC Tracking</h3><p class="text-muted text-sm">Unlock scan location logging for NFC equipment.</p><div class="price-amount">R49</div><button class="btn btn-primary btn-full" onclick="subscribePlan('Student','R49/mo')">Subscribe</button></div><div class="pricing-card"><h3>Business Bulk</h3><p class="text-muted text-sm">Many NFC+QR tags and analytics.</p><div class="price-amount">R199</div><button class="btn btn-green btn-full" onclick="subscribePlan('Business','R199/mo')">Subscribe</button></div></div>`,
+    subscription: `<h2 class="mb-24">Subscription</h2><div class="card mb-24" style="border-color:var(--accent2);"><div class="flex justify-between items-center flex-wrap gap-12"><div><div class="badge badge-purple mb-8">${currentPlan} Plan</div><h3 class="mb-4">${currentPlan === 'Starter' ? 'Free Plan' : currentPlan === 'Student' ? 'R49/month' : 'R199/month'}</h3><p class="text-muted text-sm">Subscription active: <b>${STATE.user?.subscriptionActive ? 'Yes ✅' : 'No'}</b></p></div><div class="flex gap-12">${currentPlan !== 'Business' ? `<button class="btn btn-primary" onclick="goTo('pricing')">Upgrade Plan</button>` : ''}${currentPlan !== 'Starter' ? `<button class="btn btn-danger" onclick="cancelSub()">Cancel</button>` : ''}</div></div></div><div class="table-wrap"><table><thead><tr><th>Feature</th><th>Starter</th><th>Student</th><th>Business</th></tr></thead><tbody><tr><td>Active tags</td><td>1</td><td>5</td><td>Unlimited</td></tr><tr><td>Anonymous messages</td><td>❌</td><td>✅</td><td>✅</td></tr><tr><td>Scan location log</td><td>❌</td><td>✅</td><td>✅</td></tr><tr><td>Analytics</td><td>❌</td><td>Basic</td><td>Full</td></tr><tr><td>Priority support</td><td>❌</td><td>❌</td><td>✅</td></tr></tbody></table></div>`,
     profile: `<h2 class="mb-24">Profile</h2><div class="card" style="max-width:560px;"><div class="form-group"><label>Name</label><input value="${STATE.user?.name||''}" readonly></div><div class="form-group"><label>Email</label><input value="${STATE.user?.email||''}" readonly></div><div class="form-group"><label>Phone</label><input value="${STATE.user?.phone||''}" readonly></div></div>`,
-    notifications: `<h2 class="mb-24">Notifications</h2><div class="card"><p class="text-muted">Email alerts are sent/logged by the backend when tags are assigned, orders update, and scans happen.</p></div>`
+    notifications: `<h2 class="mb-24">Notifications</h2><div class="card"><p class="text-muted">Email alerts are sent when tags are assigned, orders update, and scans happen.</p></div>`
   };
   main.innerHTML = sections[section] || sections.overview;
-};
+}
 
-window.showAddTagModal = function() {
+function showAddTagModal() {
   const overlay = document.createElement('div'); overlay.className='modal-overlay active';
   overlay.innerHTML = `<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Add SmartLF Tag</h3><div class="form-group"><label>Tag Code (optional)</label><input id="new-tag-code" placeholder="Leave blank to generate"></div><div class="form-group"><label>Label</label><input id="new-tag-label" placeholder="My Backpack Tag"></div><div class="form-group"><label>Type</label><select id="new-tag-type"><option value="qr">QR only</option><option value="nfc">NFC only</option><option value="nfc+qr">NFC + QR</option></select></div><div class="form-group"><label>Item Name</label><input id="new-tag-item" placeholder="Black backpack"></div><div class="form-group"><label>Public info shown when scanned</label><textarea id="new-tag-info">Please contact me if found.</textarea></div><button class="btn btn-primary btn-full" onclick="saveUserTag(this)">Save Tag</button></div>`;
   document.body.appendChild(overlay);
-};
-window.saveUserTag = async function(btn) {
-  try { const body = { userId:STATE.user.id, code:document.getElementById('new-tag-code').value.trim(), label:document.getElementById('new-tag-label').value.trim(), type:document.getElementById('new-tag-type').value, itemName:document.getElementById('new-tag-item').value.trim(), publicInfo:document.getElementById('new-tag-info').value.trim() };
-    await API.call('/api/user/tags', { method:'POST', body:JSON.stringify(body) }); btn.closest('.modal-overlay').remove(); showToast('Tag added and QR link generated.', 'success'); showDashSection('tags', null);
-  } catch(e) { showToast(e.message, 'error'); }
-};
-window.toggleSmartTag = async function(id, active) { try { await API.call('/api/tags/'+id, { method:'PUT', body:JSON.stringify({ active }) }); showToast(active?'Tag activated':'Tag deactivated','success'); showDashSection('tags', null); } catch(e){ showToast(e.message,'error'); } };
-window.copySmartLink = function(url) { navigator.clipboard?.writeText(url); showToast('Scan/NFC link copied. Write this URL to the NFC tag or print as QR.', 'success'); };
-window.editSmartTag = function(id) { const t = (DB_CACHE.tags||[]).find(x=>x.id===id); if (!t) return; const label = prompt('Tag label:', t.label); if (label===null) return; const itemName = prompt('Item name:', t.itemName); if (itemName===null) return; API.call('/api/tags/'+id,{method:'PUT',body:JSON.stringify({label,itemName})}).then(()=>{showToast('Tag updated','success');showDashSection('tags',null);}).catch(e=>showToast(e.message,'error')); };
-window.markOrderReceived = async function(id) { try { await API.call('/api/orders/'+id+'/received',{method:'PUT'}); showToast('Order marked as received. Admin side will see it.', 'success'); showDashSection('orders', null); } catch(e){ showToast(e.message,'error'); } };
+}
 
-// Admin dashboard: real users/orders/tags/email/QR assignment, no cart.
-window.renderAdmin = async function renderAdmin() { await showAdminSection(STATE.adminSection || 'overview', null); };
-window.showAdminSection = async function showAdminSection(section, btnEl) {
+async function saveUserTag(btn) {
+  try {
+    const body = { userId:STATE.user.id, code:document.getElementById('new-tag-code').value.trim(), label:document.getElementById('new-tag-label').value.trim(), type:document.getElementById('new-tag-type').value, itemName:document.getElementById('new-tag-item').value.trim(), publicInfo:document.getElementById('new-tag-info').value.trim() };
+    await API.call('/api/user/tags', { method:'POST', body:JSON.stringify(body) });
+    btn.closest('.modal-overlay').remove(); showToast('Tag added!','success'); showDashSection('tags', null);
+  } catch(e) { showToast(e.message,'error'); }
+}
+
+async function toggleSmartTag(id, active) { try { await API.call('/api/tags/'+id, { method:'PUT', body:JSON.stringify({ active }) }); showToast(active?'Tag activated':'Tag deactivated','success'); showDashSection('tags', null); } catch(e){ showToast(e.message,'error'); } }
+function copySmartLink(url) { navigator.clipboard?.writeText(url); showToast('Scan link copied!','success'); }
+function editSmartTag(id) { const t=(DB_CACHE.tags||[]).find(x=>x.id===id); if(!t) return; const label=prompt('Tag label:',t.label); if(label===null) return; const itemName=prompt('Item name:',t.itemName); if(itemName===null) return; API.call('/api/tags/'+id,{method:'PUT',body:JSON.stringify({label,itemName})}).then(()=>{showToast('Tag updated','success');showDashSection('tags',null);}).catch(e=>showToast(e.message,'error')); }
+async function markOrderReceived(id) { try { await API.call('/api/orders/'+id+'/received',{method:'PUT'}); showToast('Order marked as received.','success'); showDashSection('orders', null); } catch(e){ showToast(e.message,'error'); } }
+
+// ── ADMIN DASHBOARD ──
+async function renderAdmin() { await showAdminSection(STATE.adminSection || 'overview', null); }
+
+async function showAdminSection(section, btnEl) {
   STATE.adminSection = section; STATE.cart = []; updateCartUI();
   document.querySelectorAll('#page-admin .sidebar-link').forEach(l => l.classList.remove('active'));
   if (btnEl) btnEl.classList.add('active');
   const main = document.getElementById('admin-main'); if (!main) return;
   try { await refreshSmartData(); } catch(e) {}
   const users=(DB_CACHE.users||[]).filter(u=>u.role!=='admin'), orders=DB_CACHE.orders||[], tags=DB_CACHE.tags||[], scans=DB_CACHE.scans||[];
-  const userOptions = users.map(u=>`<option value="${u.id}">${u.name} (${u.email})</option>`).join('');
+
   const sections = {
-    overview: `<h2 class="mb-8">Admin Dashboard</h2><p class="text-muted mb-24">INNOV8 SmartLF admin area. Admin has no cart/checkout access. Date: <b>${todaySmartLF()}</b></p><div class="grid-4 mb-24"><div class="stat-card"><div class="stat-label">Users</div><div class="stat-value text-accent">${users.length}</div></div><div class="stat-card"><div class="stat-label">Orders</div><div class="stat-value">${orders.length}</div></div><div class="stat-card"><div class="stat-label">Tags</div><div class="stat-value" style="color:var(--accent3);">${tags.length}</div></div><div class="stat-card"><div class="stat-label">Scans</div><div class="stat-value" style="color:var(--warn);">${scans.length}</div></div></div><div class="card"><h3 class="mb-16">Admin rules</h3><p class="text-muted">Admin can create users, assign QR/NFC tags, generate QR codes, send emails, view scans, and update orders — but cannot buy products.</p></div>`,
-    users: `<div class="flex justify-between items-center mb-24"><h2>Users</h2><button class="btn btn-primary btn-sm" onclick="showAdminCreateUser()">+ Create User</button></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Plan</th><th>Actions</th></tr></thead><tbody>${users.map(u=>`<tr><td><b>${u.name}</b></td><td>${u.email}</td><td>${u.phone||''}</td><td><span class="badge badge-purple">${u.plan||'Starter'}</span></td><td><button class="btn btn-ghost btn-sm" onclick="showAdminUserDetails('${u.id}')">View</button> <button class="btn btn-outline btn-sm" onclick="showAdminAssignTag('${u.id}')">Assign Tag</button></td></tr>`).join('') || '<tr><td colspan="5" class="text-muted">No users yet.</td></tr>'}</tbody></table></div>`,
-    orders: `<h2 class="mb-24">All Orders</h2><div class="table-wrap"><table><thead><tr><th>Order</th><th>User</th><th>Items</th><th>Total</th><th>Status</th><th>Received</th><th>Update</th></tr></thead><tbody>${orders.map(o=>{const u=users.find(x=>x.id===o.userId)||{};return `<tr><td style="color:var(--accent);font-family:var(--font-head);">${o.id}</td><td>${u.name||'Unknown'}</td><td>${(o.items||[]).map(i=>`${i.name} x${i.qty}`).join('<br>')}</td><td>${smartMoney(o.total)}</td><td><span class="badge badge-cyan">${o.status}</span></td><td>${o.userReceived?'✅ Yes':'No'}</td><td><select onchange="adminOrderStatus('${o.id}',this.value)"><option value="">Choose</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></td></tr>`}).join('') || '<tr><td colspan="7" class="text-muted">No orders yet.</td></tr>'}</tbody></table></div>`,
-    tags: `<div class="flex justify-between items-center mb-24"><h2>Tag Registry</h2><button class="btn btn-primary btn-sm" onclick="showAdminAssignTag()">+ Assign QR/NFC</button></div><div class="table-wrap"><table><thead><tr><th>QR</th><th>Code</th><th>Owner</th><th>Type</th><th>Item</th><th>Tracking</th><th>Status</th></tr></thead><tbody>${tags.map(t=>{const u=users.find(x=>x.id===t.userId)||{};return `<tr><td>${t.qrDataUrl?`<img src="${t.qrDataUrl}" style="width:70px;background:white;border-radius:8px;padding:4px;">`:''}</td><td><b>${t.code}</b><br><button class="btn btn-ghost btn-sm" onclick="copySmartLink('${t.url}')">Copy Link</button></td><td>${u.name||'Unknown'}</td><td><span class="badge ${t.type.includes('nfc')?'badge-purple':'badge-cyan'}">${t.type.toUpperCase()}</span></td><td>${t.itemName}</td><td>${t.type.includes('nfc')?'Subscription only':'No location'}</td><td>${t.active?'Active':'Inactive'}</td></tr>`}).join('') || '<tr><td colspan="7" class="text-muted">No assigned tags yet.</td></tr>'}</tbody></table></div>`,
-    emails: `<h2 class="mb-24">Send Real Email / Logged Email</h2><div class="card" style="max-width:640px;"><div class="form-group"><label>Recipient</label><select id="admin-email-to">${users.map(u=>`<option value="${u.email}">${u.name} (${u.email})</option>`).join('')}</select></div><div class="form-group"><label>Subject</label><input id="admin-email-subject" placeholder="Your SmartLF details"></div><div class="form-group"><label>Message</label><textarea id="admin-email-message" placeholder="Write message..."></textarea></div><button class="btn btn-primary" onclick="sendAdminEmail()">Send Email</button><p class="form-hint">Configure .env SMTP to actually send. Without SMTP, emails are saved in db.json.</p></div>`
+    overview: `<h2 class="mb-8">Admin Dashboard</h2><p class="text-muted mb-24">Date: <b>${todaySmartLF()}</b></p><div class="grid-4 mb-24"><div class="stat-card"><div class="stat-label">Users</div><div class="stat-value text-accent">${users.length}</div></div><div class="stat-card"><div class="stat-label">Orders</div><div class="stat-value">${orders.length}</div></div><div class="stat-card"><div class="stat-label">Tags</div><div class="stat-value" style="color:var(--accent3);">${tags.length}</div></div><div class="stat-card"><div class="stat-label">Scans</div><div class="stat-value" style="color:var(--warn);">${scans.length}</div></div></div><div class="card"><h3 class="mb-16">Admin rules</h3><p class="text-muted">Admin can create users, assign QR/NFC tags, send emails, view scans, and update orders — but cannot buy products.</p></div>`,
+    users: `<div class="flex justify-between items-center mb-24"><h2>Users</h2><button class="btn btn-primary btn-sm" onclick="showAdminCreateUser()">+ Create User</button></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Plan</th><th>Actions</th></tr></thead><tbody>${users.map(u=>`<tr><td><b>${u.name}</b></td><td>${u.email}</td><td>${u.phone||''}</td><td><span class="badge badge-purple">${u.plan||'Starter'}</span></td><td><button class="btn btn-outline btn-sm" onclick="showAdminAssignTag('${u.id}')">Assign Tag</button></td></tr>`).join('') || '<tr><td colspan="5" class="text-muted">No users yet.</td></tr>'}</tbody></table></div>`,
+    orders: `<h2 class="mb-24">All Orders</h2><div class="table-wrap"><table><thead><tr><th>Order</th><th>User</th><th>Items</th><th>Total</th><th>Status</th><th>Received</th><th>Update</th></tr></thead><tbody>${orders.map(o=>{const u=users.find(x=>x.id===o.userId)||{}; return `<tr><td style="color:var(--accent);font-family:var(--font-head);">${o.id}</td><td>${u.name||'Unknown'}</td><td>${(o.items||[]).map(i=>`${i.name} x${i.qty}`).join('<br>')}</td><td>${smartMoney(o.total)}</td><td><span class="badge badge-cyan">${o.status}</span></td><td>${o.userReceived?'✅ Yes':'No'}</td><td><select onchange="adminOrderStatus('${o.id}',this.value)"><option value="">Choose</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></td></tr>`;}).join('') || '<tr><td colspan="7" class="text-muted">No orders yet.</td></tr>'}</tbody></table></div>`,
+    tags: `<div class="flex justify-between items-center mb-24"><h2>Tag Registry</h2><button class="btn btn-primary btn-sm" onclick="showAdminAssignTag()">+ Assign QR/NFC</button></div><div class="table-wrap"><table><thead><tr><th>QR</th><th>Code</th><th>Owner</th><th>Type</th><th>Item</th><th>Status</th></tr></thead><tbody>${tags.map(t=>{const u=users.find(x=>x.id===t.userId)||{}; return `<tr><td>${t.qrDataUrl?`<img src="${t.qrDataUrl}" style="width:70px;background:white;border-radius:8px;padding:4px;">`:''}</td><td><b>${t.code}</b><br><button class="btn btn-ghost btn-sm" onclick="copySmartLink('${t.url}')">Copy Link</button></td><td>${u.name||'Unknown'}</td><td><span class="badge ${t.type.includes('nfc')?'badge-purple':'badge-cyan'}">${t.type.toUpperCase()}</span></td><td>${t.itemName}</td><td>${t.active?'Active':'Inactive'}</td></tr>`;}).join('') || '<tr><td colspan="6" class="text-muted">No tags yet.</td></tr>'}</tbody></table></div>`,
+    emails: `<h2 class="mb-24">Send Email</h2><div class="card" style="max-width:640px;"><div class="form-group"><label>Recipient</label><select id="admin-email-to">${users.map(u=>`<option value="${u.email}">${u.name} (${u.email})</option>`).join('')}</select></div><div class="form-group"><label>Subject</label><input id="admin-email-subject" placeholder="Your SmartLF details"></div><div class="form-group"><label>Message</label><textarea id="admin-email-message" placeholder="Write message..."></textarea></div><button class="btn btn-primary" onclick="sendAdminEmail()">Send Email</button><p class="form-hint">Configure .env SMTP to actually send. Without SMTP, emails are logged in the database.</p></div>`
   };
   main.innerHTML = sections[section] || sections.overview;
-};
-window.showAdminCreateUser = function() { const overlay=document.createElement('div'); overlay.className='modal-overlay active'; overlay.innerHTML=`<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Create User</h3><div class="form-group"><label>Name</label><input id="au-name"></div><div class="form-group"><label>Email</label><input id="au-email"></div><div class="form-group"><label>Phone</label><input id="au-phone"></div><div class="form-group"><label>Password</label><input id="au-pass" value="demo123"></div><div class="form-group"><label>Plan</label><select id="au-plan"><option>Starter</option><option>Student</option><option>Business</option></select></div><label style="text-transform:none"><input id="au-sub" type="checkbox" style="width:auto"> Active subscription for NFC tracking</label><button class="btn btn-primary btn-full mt-16" onclick="adminCreateUser(this)">Create & Email User</button></div>`; document.body.appendChild(overlay); };
-window.adminCreateUser = async function(btn) { try { await API.call('/api/admin/users',{method:'POST',body:JSON.stringify({name:document.getElementById('au-name').value,email:document.getElementById('au-email').value,phone:document.getElementById('au-phone').value,password:document.getElementById('au-pass').value,plan:document.getElementById('au-plan').value,subscriptionActive:document.getElementById('au-sub').checked})}); btn.closest('.modal-overlay').remove(); showToast('User created and email sent/logged.','success'); showAdminSection('users',null);} catch(e){showToast(e.message,'error');} };
-window.showAdminAssignTag = function(userId='') { const users=(DB_CACHE.users||[]).filter(u=>u.role!=='admin'); const overlay=document.createElement('div'); overlay.className='modal-overlay active'; overlay.innerHTML=`<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Assign QR/NFC Tag</h3><div class="form-group"><label>User</label><select id="at-user">${users.map(u=>`<option value="${u.id}" ${u.id===userId?'selected':''}>${u.name} (${u.email})</option>`).join('')}</select></div><div class="form-group"><label>Equipment Type</label><select id="at-type"><option value="qr">QR only</option><option value="nfc">NFC only</option><option value="nfc+qr">NFC + QR</option></select></div><div class="form-group"><label>Tag Label</label><input id="at-label" placeholder="Wallet Card"></div><div class="form-group"><label>Item Name</label><input id="at-item" placeholder="Wallet / Keys / Laptop"></div><div class="form-group"><label>Public Info</label><textarea id="at-info">Please contact the owner if found.</textarea></div><button class="btn btn-primary btn-full" onclick="adminAssignTag(this)">Generate QR + Assign</button></div>`; document.body.appendChild(overlay); };
-window.adminAssignTag = async function(btn) { try { await API.call('/api/admin/tags',{method:'POST',body:JSON.stringify({userId:document.getElementById('at-user').value,type:document.getElementById('at-type').value,label:document.getElementById('at-label').value,itemName:document.getElementById('at-item').value,publicInfo:document.getElementById('at-info').value})}); btn.closest('.modal-overlay').remove(); showToast('Tag assigned, QR generated, and email sent/logged.','success'); showAdminSection('tags',null); } catch(e){showToast(e.message,'error');} };
-window.showAdminUserDetails = function(id) { const u=(DB_CACHE.users||[]).find(x=>x.id===id); if(!u)return; alert(`User: ${u.name}\nEmail: ${u.email}\nPhone: ${u.phone}\nPlan: ${u.plan}\nSubscription active: ${u.subscriptionActive?'Yes':'No'}`); };
-window.adminOrderStatus = async function(id,status){ if(!status)return; try{ await API.call('/api/admin/orders/'+id+'/status',{method:'PUT',body:JSON.stringify({status})}); showToast('Order status updated and user emailed/logged.','success'); showAdminSection('orders',null);}catch(e){showToast(e.message,'error');} };
-window.sendAdminEmail = async function(){ try{ await API.call('/api/admin/email',{method:'POST',body:JSON.stringify({to:document.getElementById('admin-email-to').value,subject:document.getElementById('admin-email-subject').value,message:document.getElementById('admin-email-message').value})}); showToast('Email sent/logged successfully.','success'); } catch(e){ showToast(e.message,'error'); } };
+}
 
-// Subscription now updates backend user locally enough for prototype.
-window.subscribePlan = async function(plan, price) { if (!STATE.user) { showToast('Please sign in first.','info'); goTo('signin'); return; } STATE.user.plan = plan; STATE.user.subscriptionActive = plan !== 'Starter'; showToast(`${plan} subscription activated for this device/equipment features.`, 'success'); goTo('dashboard'); };
+function showAdminCreateUser() {
+  const overlay=document.createElement('div'); overlay.className='modal-overlay active';
+  overlay.innerHTML=`<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Create User</h3><div class="form-group"><label>Name</label><input id="au-name"></div><div class="form-group"><label>Email</label><input id="au-email"></div><div class="form-group"><label>Phone</label><input id="au-phone"></div><div class="form-group"><label>Password</label><input id="au-pass" value="demo123"></div><div class="form-group"><label>Plan</label><select id="au-plan"><option>Starter</option><option>Student</option><option>Business</option></select></div><label style="text-transform:none"><input id="au-sub" type="checkbox" style="width:auto"> Active subscription for NFC tracking</label><button class="btn btn-primary btn-full mt-16" onclick="adminCreateUser(this)">Create User</button></div>`;
+  document.body.appendChild(overlay);
+}
 
-// Scan/NFC link page prototype: /scan/SLF-CODE
+async function adminCreateUser(btn) {
+  try {
+    await API.call('/api/admin/users',{method:'POST',body:JSON.stringify({name:document.getElementById('au-name').value,email:document.getElementById('au-email').value,phone:document.getElementById('au-phone').value,password:document.getElementById('au-pass').value,plan:document.getElementById('au-plan').value,subscriptionActive:document.getElementById('au-sub').checked})});
+    btn.closest('.modal-overlay').remove(); showToast('User created.','success'); showAdminSection('users',null);
+  } catch(e){showToast(e.message,'error');}
+}
+
+function showAdminAssignTag(userId='') {
+  const users=(DB_CACHE.users||[]).filter(u=>u.role!=='admin');
+  const overlay=document.createElement('div'); overlay.className='modal-overlay active';
+  overlay.innerHTML=`<div class="modal"><div class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</div><h3 class="mb-16">Assign QR/NFC Tag</h3><div class="form-group"><label>User</label><select id="at-user">${users.map(u=>`<option value="${u.id}" ${u.id===userId?'selected':''}>${u.name} (${u.email})</option>`).join('')}</select></div><div class="form-group"><label>Equipment Type</label><select id="at-type"><option value="qr">QR only</option><option value="nfc">NFC only</option><option value="nfc+qr">NFC + QR</option></select></div><div class="form-group"><label>Tag Label</label><input id="at-label" placeholder="Wallet Card"></div><div class="form-group"><label>Item Name</label><input id="at-item" placeholder="Wallet / Keys / Laptop"></div><div class="form-group"><label>Public Info</label><textarea id="at-info">Please contact the owner if found.</textarea></div><button class="btn btn-primary btn-full" onclick="adminAssignTag(this)">Generate QR + Assign</button></div>`;
+  document.body.appendChild(overlay);
+}
+
+async function adminAssignTag(btn) {
+  try {
+    await API.call('/api/admin/tags',{method:'POST',body:JSON.stringify({userId:document.getElementById('at-user').value,type:document.getElementById('at-type').value,label:document.getElementById('at-label').value,itemName:document.getElementById('at-item').value,publicInfo:document.getElementById('at-info').value})});
+    btn.closest('.modal-overlay').remove(); showToast('Tag assigned and QR generated.','success'); showAdminSection('tags',null);
+  } catch(e){showToast(e.message,'error');}
+}
+
+async function adminOrderStatus(id,status){ if(!status)return; try{ await API.call('/api/admin/orders/'+id+'/status',{method:'PUT',body:JSON.stringify({status})}); showToast('Order status updated.','success'); showAdminSection('orders',null);}catch(e){showToast(e.message,'error');} }
+async function sendAdminEmail(){ try{ await API.call('/api/admin/email',{method:'POST',body:JSON.stringify({to:document.getElementById('admin-email-to').value,subject:document.getElementById('admin-email-subject').value,message:document.getElementById('admin-email-message').value})}); showToast('Email sent/logged.','success'); } catch(e){ showToast(e.message,'error'); } }
+
+// ── SCAN PAGE ──
 async function bootScanPageIfNeeded(){
   const match = location.pathname.match(/^\/scan\/([^/]+)/); if(!match) return false;
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   let page=document.getElementById('page-scan');
   if(!page){ page=document.createElement('div'); page.id='page-scan'; page.className='page active pt-64'; document.body.appendChild(page); }
-  const code=match[1]; page.innerHTML=`<div class="section"><div class="container" style="max-width:620px;"><div class="card text-center"><h2 class="mb-12">Loading SmartLF tag...</h2><p class="text-muted">Requesting item details.</p></div></div></div>`;
+  const code=match[1]; page.innerHTML=`<div class="section"><div class="container" style="max-width:620px;"><div class="card text-center"><h2 class="mb-12">Loading SmartLF tag...</h2></div></div></div>`;
   try{
     const {tag,owner}=await API.call('/api/scan/'+code);
-    page.innerHTML=`<div class="section"><div class="container" style="max-width:680px;"><div class="card"><div class="badge badge-cyan mb-16">INNOV8 SmartLF Recovery Page</div><h2 class="mb-8">${tag.itemName}</h2><p class="text-muted mb-16">${tag.publicInfo||'Please help return this item.'}</p><div class="grid-2 mb-24"><div><label>Owner</label><p>${owner?.name||'Hidden'}</p></div><div><label>Contact</label><p>${owner?.phone||owner?.email||'Use form below'}</p></div></div><div class="card mb-16" style="background:var(--surface2)"><h3 class="mb-8">Scan location prototype</h3><p class="text-muted text-sm">Location is saved only for NFC/NFC+QR equipment with an active subscription.</p><button class="btn btn-primary mt-12" onclick="sendScanLocation('${code}')">Share scan location</button></div><div class="form-group"><label>Message to owner</label><textarea id="finder-msg">I found your item.</textarea></div><div class="form-group"><label>Your contact</label><input id="finder-contact" placeholder="Phone or email"></div><button class="btn btn-green btn-full" onclick="contactSmartOwner('${code}')">Contact owner</button></div></div></div>`;
+    page.innerHTML=`<div class="section"><div class="container" style="max-width:680px;"><div class="card"><div class="badge badge-cyan mb-16">INNOV8 SmartLF Recovery Page</div><h2 class="mb-8">${tag.itemName}</h2><p class="text-muted mb-16">${tag.publicInfo||'Please help return this item.'}</p><div class="grid-2 mb-24"><div><label>Owner</label><p>${owner?.name||'Hidden'}</p></div><div><label>Contact</label><p>${owner?.phone||owner?.email||'Use form below'}</p></div></div><div class="card mb-16" style="background:var(--surface2)"><h3 class="mb-8">Scan location</h3><p class="text-muted text-sm">Location saved only for NFC equipment with active subscription.</p><button class="btn btn-primary mt-12" onclick="sendScanLocation('${code}')">Share location</button></div><div class="form-group"><label>Message to owner</label><textarea id="finder-msg">I found your item.</textarea></div><div class="form-group"><label>Your contact</label><input id="finder-contact" placeholder="Phone or email"></div><button class="btn btn-green btn-full" onclick="contactSmartOwner('${code}')">Contact owner</button></div></div></div>`;
   }catch(e){ page.innerHTML=`<div class="section"><div class="container"><div class="card text-center"><h2>Tag not found</h2><p class="text-muted">${e.message}</p></div></div></div>`; }
   return true;
 }
-window.sendScanLocation = function(code){ if(!navigator.geolocation){ showToast('Location not supported.','error'); return; } navigator.geolocation.getCurrentPosition(async pos=>{ try{ const {trackingAllowed}=await API.call('/api/scan/'+code+'/location',{method:'POST',body:JSON.stringify({lat:pos.coords.latitude,lng:pos.coords.longitude,accuracy:pos.coords.accuracy})}); showToast(trackingAllowed?'Location saved for subscribed NFC equipment.':'Scan saved, but coordinates locked because this is QR/no subscription.','success'); } catch(e){showToast(e.message,'error');}},()=>showToast('Location permission denied.','error')); };
-window.contactSmartOwner = async function(code){ try{ await API.call('/api/contact-owner/'+code,{method:'POST',body:JSON.stringify({message:document.getElementById('finder-msg').value,contact:document.getElementById('finder-contact').value})}); showToast('Message sent/logged to owner.','success'); }catch(e){showToast(e.message,'error');} };
 
-// Bright/dark mode toggle, without changing layout.
-function addSmartModeToggle(){ const nav=document.getElementById('nav-actions'); if(!nav||document.getElementById('mode-toggle')) return; const b=document.createElement('button'); b.id='mode-toggle'; b.className='btn btn-ghost btn-sm'; b.textContent='☀️ Bright'; b.onclick=()=>{document.body.classList.toggle('bright-mode'); b.textContent=document.body.classList.contains('bright-mode')?'🌙 Dark':'☀️ Bright';}; nav.prepend(b); }
+function sendScanLocation(code){ if(!navigator.geolocation){ showToast('Location not supported.','error'); return; } navigator.geolocation.getCurrentPosition(async pos=>{ try{ const {trackingAllowed}=await API.call('/api/scan/'+code+'/location',{method:'POST',body:JSON.stringify({lat:pos.coords.latitude,lng:pos.coords.longitude,accuracy:pos.coords.accuracy})}); showToast(trackingAllowed?'Location saved.':'Scan saved, coordinates locked (no NFC subscription).','success'); } catch(e){showToast(e.message,'error');}},()=>showToast('Location permission denied.','error')); }
+async function contactSmartOwner(code){ try{ await API.call('/api/contact-owner/'+code,{method:'POST',body:JSON.stringify({message:document.getElementById('finder-msg').value,contact:document.getElementById('finder-contact').value})}); showToast('Message sent to owner.','success'); }catch(e){showToast(e.message,'error');} }
+
+// ── DARK/BRIGHT TOGGLE ──
+function addSmartModeToggle(){ const nav=document.getElementById('nav-actions'); if(!nav||document.getElementById('mode-toggle')) return; const b=document.createElement('button'); b.id='mode-toggle'; b.className='btn btn-ghost btn-sm'; b.textContent='☀️ Bright'; b.onclick=()=>{ document.body.classList.toggle('bright-mode'); b.textContent=document.body.classList.contains('bright-mode')?'🌙 Dark':'☀️ Bright'; }; nav.prepend(b); }
 const style=document.createElement('style'); style.textContent=`body.bright-mode{--bg:#f7fafc;--surface:#ffffff;--surface2:#eef4f8;--border:#d7e3ea;--text:#0a0a0f;--muted:#51606c;--card:#ffffff;} body.bright-mode nav{background:rgba(255,255,255,.92)} body.bright-mode .product-img{background:#eef4f8}`; document.head.appendChild(style);
-setTimeout(()=>{ addSmartModeToggle(); updateNavAuth(); bootScanPageIfNeeded(); }, 50);
-</script>
 
+setTimeout(()=>{ addSmartModeToggle(); updateNavAuth(); bootScanPageIfNeeded(); }, 50);
+goTo('home');
+</script>
 </body>
 </html>
+HTMLEOF
+echo "Done: $(wc -c < /mnt/user-data/outputs/index.html) bytes"
