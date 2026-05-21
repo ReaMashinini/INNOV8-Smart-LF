@@ -233,9 +233,3 @@ app.get('/scan/:code', (req, res) => res.sendFile(path.join(__dirname, 'public',
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 app.listen(PORT, () => console.log(`INNOV8 SmartLF running on ${BASE_URL}`));
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
