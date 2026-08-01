@@ -2,10 +2,10 @@
   "users": [
     {
       "id": "u-admin",
-      "name": "INNOV8 Admin",
+      "name": "Tshepo Mashinini",
       "email": "admin@innov8.co.za",
-      "phone": "0710000000",
-      "password": "admin123",
+      "phone": "0123456789",
+      "password": "TshepoAdmin123",
       "role": "admin",
       "plan": "Business",
       "subscriptionActive": true,
@@ -13,10 +13,10 @@
     },
     {
       "id": "u-demo",
-      "name": "Demo Customer",
-      "email": "user@innov8.co.za",
-      "phone": "0721112222",
-      "password": "demo123",
+      "name": "Rea Mashinini",
+      "email": "rmashinini@innov8.co.za",
+      "phone": "0123456789",
+      "password": "Masrea123",
       "role": "user",
       "plan": "Student",
       "subscriptionActive": true,
