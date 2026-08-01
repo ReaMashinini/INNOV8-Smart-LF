@@ -1,7 +1,7 @@
 {
   "name": "innov8-smartlf-working-prototype",
   "version": "1.0.0",
-  "description": "INNOV8 SmartLF single page website with admin, QR, NFC link prototype, email and JSON database",
+  "description": "INNOV8 SmartLF single page web with QR, NFC link prototype, email and JSON database",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
